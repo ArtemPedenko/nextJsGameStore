@@ -3,7 +3,7 @@
   "setupTasks": [
     {
       "name": "Install Dependencies",
-      "command": "yarn install"
+      "command": "pnpm install"
     }
   ],
 
@@ -11,22 +11,25 @@
   "tasks": {
     "dev": {
       "name": "dev",
-      "command": "yarn dev",
-      "runAtStart": true
+      "command": "pnpm run dev",
+      "runAtStart": true,
+      "preview": {
+        "port": 3000
+      }
     },
     "build": {
       "name": "build",
-      "command": "yarn build",
+      "command": "pnpm run build",
       "runAtStart": false
     },
     "start": {
       "name": "start",
-      "command": "yarn start",
+      "command": "pnpm run start",
       "runAtStart": false
     },
     "lint": {
       "name": "lint",
-      "command": "yarn lint",
+      "command": "pnpm run lint",
       "runAtStart": false
     }
   }
