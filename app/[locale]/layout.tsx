@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { ReactElement } from 'react'
 import { I18nProviderClient } from '../../locales/client'
 import Header from "./modules/Header"
@@ -13,7 +13,7 @@ export default function SubLayout({
 }) {
   return (
     <I18nProviderClient locale={params.locale}>
-        <Header/>
+      <Header />
       {children}
     </I18nProviderClient>
   )

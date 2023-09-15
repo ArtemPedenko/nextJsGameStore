@@ -1,8 +1,6 @@
-
 import "./styles.css";
 import Link from 'next/link'
 import { HeaderTest } from './header'
-import Header from './[locale]/modules/Header'
 
 
 
@@ -21,7 +19,7 @@ export default function RootLayout({
       <body>
         <HeaderTest />
         {/* <Header/> */}
-          {children}
+        {children}
       </body>
     </html>
   )

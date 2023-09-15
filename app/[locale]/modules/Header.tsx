@@ -38,8 +38,8 @@ const HeaderRight = styled.div`
 `;
 
 export default function Header() {
-  const t = useScopedI18n()
-  
+  const t = useI18n()
+
   const [open, setOpen] = useState(false);
   const modalOpen = () => setOpen(true);
   const modalClose = () => setOpen(false);
