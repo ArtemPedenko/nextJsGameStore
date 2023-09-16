@@ -15,8 +15,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <HeaderTest />
-        {/* <Header/> */}
         {children}
       </body>
     </html>
