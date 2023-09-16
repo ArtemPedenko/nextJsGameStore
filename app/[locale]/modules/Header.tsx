@@ -6,15 +6,11 @@ import LanguageLogo from "@/images/LanguageLogo";
 import ProfileLogo from "@/images/ProfileLogo";
 import IconWrapper from "../components/IconWrapper";
 import Divider from "../components/Divider";
-//import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-//import LanguageModal from "./Header/LanguageModal";
 import LanguageModal from "./header/LanguageModal";
 import { useState, useRef } from "react";
-import ReactModal from "react-modal";
 import HeaderButton from "./header/HeaderButton";
 import { useI18n, useScopedI18n } from '../../../locales/client'
-import { getI18n } from '../../../locales/server'
 
 
 const HeaderWrapper = styled.div`
