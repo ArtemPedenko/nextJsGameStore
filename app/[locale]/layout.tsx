@@ -2,6 +2,7 @@
 import { ReactElement } from 'react'
 import { I18nProviderClient } from '../../locales/client'
 import Header from "./modules/Header"
+import HeaderSticky from './modules/HeaderSticky';
 import { Providers } from '../store/provider';
 
 export default function SubLayout({
@@ -15,6 +16,7 @@ export default function SubLayout({
     <Providers>
       <I18nProviderClient locale={params.locale}>
         <Header />
+        <HeaderSticky />
         {children}
       </I18nProviderClient>
     </Providers>
