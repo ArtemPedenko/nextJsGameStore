@@ -7,9 +7,9 @@ import ProfileLogo from "@/images/ProfileLogo";
 import IconWrapper from "../components/IconWrapper";
 import Divider from "../components/Divider";
 import styled from "styled-components";
-import LanguageModal from "./Header/LanguageModal";
+import LanguageModal from "./Headerr/LanguageModal";
 import { useState, useRef } from "react";
-import HeaderButton from "./Header/HeaderButton";
+import HeaderButton from "./Headerr/HeaderButton";
 import { useI18n, useScopedI18n } from '../../../locales/client'
 
 
