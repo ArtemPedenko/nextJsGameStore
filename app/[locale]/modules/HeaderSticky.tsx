@@ -1,8 +1,8 @@
 "use client";
 
 import styled from "styled-components";
-import SearchField from "./headerSticky/SearchField";
-import HeaderStickyButton from "./headerSticky/HeaderStickyButton";
+import SearchField from "./HeaderSticky/SearchField";
+import HeaderStickyButton from "./HeaderSticky/HeaderStickyButton";
 import { useI18n, useScopedI18n } from '../../../locales/client'
 
 const Wrapper = styled.div`
@@ -26,17 +26,17 @@ const StickyHead = styled.div`
 `;
 
 export default function HeaderSticky() {
-    const t = useI18n()
+  const t = useI18n()
 
 
-    return (
-        <Wrapper>
-            <StickyHead>
-                <SearchField />
-                <HeaderStickyButton href="/">{t(`discover`)}</HeaderStickyButton>
-                <HeaderStickyButton href="/">{t(`browse`)}</HeaderStickyButton>
-                <HeaderStickyButton href="/">{t(`news`)}</HeaderStickyButton>
-            </StickyHead>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <StickyHead>
+        <SearchField />
+        <HeaderStickyButton href="/">{t(`discover`)}</HeaderStickyButton>
+        <HeaderStickyButton href="/">{t(`browse`)}</HeaderStickyButton>
+        <HeaderStickyButton href="/">{t(`news`)}</HeaderStickyButton>
+      </StickyHead>
+    </Wrapper>
+  );
 }

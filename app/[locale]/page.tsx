@@ -3,6 +3,7 @@ import Header from "./modules/Header";
 import { FC } from "react";
 import getData from '../api/games';
 import Fetching from './layout/fetching';
+import Carousel from './modules/Carousel';
 
 
 interface epicProps {
@@ -14,13 +15,10 @@ const Home: FC<epicProps> = async () => {
   const data = await getData();
   const t = await getI18n()
   return (
-    <section>
+    <div>
       <Fetching data={data} />
-      <p>{t('store')}</p>
-
-
-      this start page?
-    </section>
+      <Carousel />
+    </div>
   )
 }
 
