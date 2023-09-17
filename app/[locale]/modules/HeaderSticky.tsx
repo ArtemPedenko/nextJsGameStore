@@ -1,8 +1,8 @@
 "use client";
 
 import styled from "styled-components";
-import SearchField from "./HeaderStickyr/SearchField";
-import HeaderStickyButton from "./HeaderStickyr/HeaderStickyButton";
+import SearchField from "./HeaderSticky/SearchField";
+import HeaderStickyButton from "./HeaderSticky/HeaderStickyButton";
 import { useI18n, useScopedI18n } from '../../../locales/client'
 
 const Wrapper = styled.div`
