@@ -24,12 +24,14 @@ const Slider: FC<sliderProps> = ({ data }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [prevSlide, setPrevSlide] = useState(data.offers.length - 6);
   const [nextSlide, setNextSlide] = useState(6);
+  const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
   function right() {
+    setAnimation("1");
     if (count + 6 >= data.offers.length) {
-      setCount(data.offers.length - 6);
+      setCurrentSlide(data.offers.length - 6);
     } else {
-      setCount(count + 6);
+      setCurrentSlide(currentSlide + 6);
     }
   }
 
@@ -57,6 +59,8 @@ const Slider: FC<sliderProps> = ({ data }) => {
         >
           <SliderElement
             data={data.offers.slice(currentSlide, currentSlide + 6)}
+            animation={animation}
+            setAnimation={setAnimation}
           />
         </div>
         <button onClick={() => right()}>right</button>
