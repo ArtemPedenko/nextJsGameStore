@@ -27,8 +27,10 @@ const Slider: FC<sliderProps> = ({ data }) => {
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
   function right() {
-    setAnimation("1");
-    if (count + 6 >= data.offers.length) {
+    if (currentSlide === data.offers.length - 6) {
+      return;
+    }
+    if (currentSlide + 6 > data.offers.length) {
       setCurrentSlide(data.offers.length - 6);
     } else {
       setCurrentSlide(currentSlide + 6);
@@ -36,14 +38,14 @@ const Slider: FC<sliderProps> = ({ data }) => {
   }
 
   function left() {
-    if (count - 6 <= 0) {
-      setCount(0);
+    if (currentSlide - 6 <= 0) {
+      setCurrentSlide(0);
     } else {
-      setCount(count - 6);
+      setCurrentSlide(currentSlide - 6);
     }
   }
 
-  //console.log(data);
+  //console.log(data.offers);
   return (
     <>
       <SliderWrapper>
@@ -61,9 +63,12 @@ const Slider: FC<sliderProps> = ({ data }) => {
             data={data.offers.slice(currentSlide, currentSlide + 6)}
             animation={animation}
             setAnimation={setAnimation}
+            right={right}
           />
         </div>
-        <button onClick={() => right()}>right</button>
+        <button onClick={() => {
+          currentSlide === data.offers.length - 6 ? null : setAnimation("1")
+        }}>right</button>
         <button onClick={() => left()}>left</button>
       </SliderWrapper>
     </>
