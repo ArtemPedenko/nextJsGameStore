@@ -22,18 +22,31 @@ const SliderWrapper = styled.div`
 
 const Slider: FC<sliderProps> = ({ data }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [prevSlide, setPrevSlide] = useState(data.offers.length - 6);
+  const [prevSlide, setPrevSlide] = useState(0);
   const [nextSlide, setNextSlide] = useState(6);
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
+
+
+
+  console.log("currentSlide", currentSlide)
+
+  console.log("prevSlide", prevSlide)
+
+  function previousSlideControll() {
+    currentSlide - 6 <= 6 ? setPrevSlide(0) : setPrevSlide(currentSlide - 6);
+  }
+
   function right() {
     if (currentSlide === data.offers.length - 6) {
       return;
     }
     if (currentSlide + 6 > data.offers.length) {
       setCurrentSlide(data.offers.length - 6);
+      previousSlideControll();
     } else {
       setCurrentSlide(currentSlide + 6);
+      previousSlideControll();
     }
   }
 
