@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FC } from "react";
 
 interface StyledButtonProps {
-  contained?: boolean;
+  contained?: any;
 }
 
 const StyledButton = styled.button<StyledButtonProps>((props) => ({
@@ -22,7 +22,7 @@ const StyledButton = styled.button<StyledButtonProps>((props) => ({
 
 interface ButtonProps {
   children: string;
-  contained?: boolean;
+  contained?: any;
 }
 
 const Button: FC<ButtonProps> = ({ children, contained }) => {
