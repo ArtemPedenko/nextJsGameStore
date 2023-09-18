@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { setGamesData, setChosenGames } from "@/app/store/slice";
+import SliderElement from "./Slider/SliderElement";
 
 interface sliderProps {
   data: any;
@@ -20,9 +21,11 @@ const SliderWrapper = styled.div`
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [prevSlide, setPrevSlide] = useState(data.offers.length - 6);
+  const [nextSlide, setNextSlide] = useState(6);
   const [count, setCount] = useState(0);
   function right() {
-    console.log(count);
     if (count + 6 >= data.offers.length) {
       setCount(data.offers.length - 6);
     } else {
@@ -31,7 +34,6 @@ const Slider: FC<sliderProps> = ({ data }) => {
   }
 
   function left() {
-    console.log(count);
     if (count - 6 <= 0) {
       setCount(0);
     } else {
@@ -39,11 +41,12 @@ const Slider: FC<sliderProps> = ({ data }) => {
     }
   }
 
-  console.log(data);
+  //console.log(data);
   return (
     <>
       <SliderWrapper>
         {data.title}
+
         <div
           style={{
             display: "flex",
@@ -52,27 +55,9 @@ const Slider: FC<sliderProps> = ({ data }) => {
             justifyContent: "space-between",
           }}
         >
-          {data.offers.slice(count, count + 6).map((item, index) => {
-            let imgUrl = "";
-            item.offer.keyImages.map((item) => {
-              if (item.type === "Thumbnail") {
-                imgUrl = item.url;
-              }
-            });
-            return (
-              <div key={index}>
-                <img
-                  alt=""
-                  src={imgUrl}
-                  style={{
-                    height: "280px",
-                    width: "210px",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-            );
-          })}
+          <SliderElement
+            data={data.offers.slice(currentSlide, currentSlide + 6)}
+          />
         </div>
         <button onClick={() => right()}>right</button>
         <button onClick={() => left()}>left</button>
