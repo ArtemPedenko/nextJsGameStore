@@ -10,8 +10,7 @@ import styled from "styled-components";
 import LanguageModal from "./Header/LanguageModal";
 import { useState, useRef } from "react";
 import HeaderButton from "./Header/HeaderButton";
-import { useI18n, useScopedI18n } from '../../../locales/client'
-
+import { useI18n, useScopedI18n } from "../../../locales/client";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -35,7 +34,7 @@ const HeaderRight = styled.div`
 `;
 
 export default function Header() {
-  const t = useI18n()
+  const t = useI18n();
 
   const [open, setOpen] = useState(false);
   const modalOpen = () => setOpen(true);
@@ -53,12 +52,12 @@ export default function Header() {
             margin="0 10px"
           />
           <HeaderButton href="./">{t(`store`)}</HeaderButton>
-          <HeaderButton href="./distribution">
-            {t(`distribution`)}
-          </HeaderButton>
-          <HeaderButton href="./support">{t(`support`)}</HeaderButton>
+          <HeaderButton href="./">{t(`distribution`)}</HeaderButton>
+          <HeaderButton href="./">{t(`support`)}</HeaderButton>
           <Divider />
-          <HeaderButton href="./">UNREAL ENGINE</HeaderButton>
+          <HeaderButton href="https://www.unrealengine.com/en-US">
+            UNREAL ENGINE
+          </HeaderButton>
         </HeaderLeft>
         <HeaderRight>
           <div

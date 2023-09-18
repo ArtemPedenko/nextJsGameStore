@@ -39,7 +39,6 @@ export default function Carousel() {
     (state) => state.games.animation.current,
   );
   const dispatch = useAppDispatch();
-  console.log(chosenGames);
 
   function chooseCarousel(index: number) {
     dispatch(setAnimationPrevious(animationCurrent));
