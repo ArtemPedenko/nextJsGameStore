@@ -17,7 +17,7 @@ const SliderWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 1px solid red;
+  border: 1px solid green;
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
