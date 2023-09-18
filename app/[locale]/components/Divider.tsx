@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "styled-components";
 
 const VericalDivider = styled.span`
@@ -9,7 +11,7 @@ const VericalDivider = styled.span`
 `;
 
 const Divider = () => {
-    return <VericalDivider />;
+  return <VericalDivider />;
 };
 
 export default Divider;

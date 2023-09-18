@@ -17,8 +17,7 @@ const carousel = keyframes`
     left: 0px;
     opacity: 1;
   }
-`
-
+`;
 
 const SliderImg = styled.img`
   position: relative;
@@ -26,8 +25,8 @@ const SliderImg = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  background-color:rgba(0,0,0,.8);
-  animation: 200ms ${carousel} cubic-bezier(1,.06,.01,.89);
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: 200ms ${carousel} cubic-bezier(1, 0.06, 0.01, 0.89);
 `;
 
 const SliderImgPrevious = styled.img`
@@ -36,10 +35,10 @@ const SliderImgPrevious = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  background-color:rgba(0,0,0,.8);
+  background-color: rgba(0, 0, 0, 0.8);
   animation-name: slideLeft;
   animation-duration: 200ms;
-  animation-timing-function: cubic-bezier(1,.06,.01,.89);
+  animation-timing-function: cubic-bezier(1, 0.06, 0.01, 0.89);
   @keyframes slideLeft {
     from {
       left: 0;
@@ -63,11 +62,11 @@ const GameInfo = styled.div`
   gap: 20px;
   font-size: 20px;
   animation: 200ms ${carousel} cubic-bezier(0.77, 1.01, 0.9, 0.63);
-`
+`;
 
 const GameName = styled.div`
   position: absolute;
-  bottom: 200px;
+  bottom: 250px;
   left: 40px;
   font-size: 40px;
   text-shadow: 2px 2px 5px black;
@@ -91,44 +90,46 @@ const GameName = styled.div`
 
 const ButtonWrapper = styled.div`
   width: 200px;
-`
+`;
 
 interface SliderProps {
-    props: {
-        item: any;
-        index: number;
-        animationCurrent: number;
-        itemPrevious: any;
-    };
+  props: {
+    item: any;
+    index: number;
+    animationCurrent: number;
+    itemPrevious: any;
+  };
 }
 
 const Slider: FC<SliderProps> = ({ props }) => {
-    const { item, index, animationCurrent, itemPrevious } = props;
-    console.log(item)
-    const t = useI18n();
+  const { item, index, animationCurrent, itemPrevious } = props;
+  //console.log(item)
+  const t = useI18n();
 
-
-    return (
+  return (
+    <>
+      {animationCurrent === index ? (
         <>
-            {animationCurrent === index ? (
-                <>
-                    <SliderImgPrevious src={itemPrevious.image.src} alt="img" />
-                    <SliderImg src={item.image.src} alt="img" />
-                    <GameName>
-                        {item.title}
-                    </GameName>
-                    <GameInfo>
-                        <div>{t(`gamePrice1`)} {/* {item.id} */} {t(`gamePrice2`)}</div>
-                        <ButtonWrapper>
-                            <Button contained>{t(`buy`)}</Button>
-                        </ButtonWrapper>
-                    </GameInfo>
-
-
-                </>
-            ) : null}
+          <SliderImgPrevious src={itemPrevious.image.src} alt="img" />
+          <SliderImg src={item.image.src} alt="img" />
+          <GameName>
+            <img alt="img" src={item.logoImage.src} />
+          </GameName>
+          <GameInfo>
+            <div style={{ textShadow: "2px 2px 5px black" }}>
+              {item.eyebrow}
+              <br />
+              {item.description}
+              {t(`gamePrice1`)} {/* {item.id} */} {t(`gamePrice2`)}
+            </div>
+            <ButtonWrapper>
+              <Button contained>{t(`buy`)}</Button>
+            </ButtonWrapper>
+          </GameInfo>
         </>
-    );
+      ) : null}
+    </>
+  );
 };
 
 export default Slider;
