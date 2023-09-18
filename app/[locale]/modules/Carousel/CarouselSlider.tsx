@@ -101,7 +101,7 @@ interface SliderProps {
   };
 }
 
-const Slider: FC<SliderProps> = ({ props }) => {
+const CarouselSlider: FC<SliderProps> = ({ props }) => {
   const { item, index, animationCurrent, itemPrevious } = props;
   //console.log(item)
   const t = useI18n();
@@ -120,7 +120,6 @@ const Slider: FC<SliderProps> = ({ props }) => {
               {item.eyebrow}
               <br />
               {item.description}
-              {t(`gamePrice1`)} {/* {item.id} */} {t(`gamePrice2`)}
             </div>
             <ButtonWrapper>
               <Button contained>{t(`buy`)}</Button>
@@ -132,4 +131,4 @@ const Slider: FC<SliderProps> = ({ props }) => {
   );
 };
 
-export default Slider;
+export default CarouselSlider;

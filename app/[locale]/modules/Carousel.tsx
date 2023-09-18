@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import Slider from "./Carousel/Slider";
+import CarouselSlider from "./Carousel/CarouselSlider";
 import CarouselThumbnail from "./Carousel/CarouselThumbnail";
 import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
 import { setAnimationCurrent, setAnimationPrevious } from "@/app/store/slice";
@@ -60,7 +60,7 @@ export default function Carousel() {
       <SliderWrapper>
         {chosenGames.map((item, index) => {
           return (
-            <Slider
+            <CarouselSlider
               key={item.offer.id}
               props={{ item, index, animationCurrent, itemPrevious }}
             />
