@@ -8,7 +8,7 @@ interface epicProps {
 }
 
 const Fetching: FC<epicProps> = ({ data }) => {
-  console.log(data);
+  //console.log(data);
   const dispatch = useAppDispatch();
   const chosenGames = useAppSelector((state) => state.games.chosenGames);
   const crouselItems =
