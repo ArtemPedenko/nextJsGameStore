@@ -4,20 +4,37 @@ import styled, { keyframes } from "styled-components";
 import { FC, useEffect, useState } from "react";
 import Keyframes from "styled-components/dist/models/Keyframes";
 
-const SliderImgRight = styled.img<{ anim?: any }>`
+/* const SliderImgRight = styled.img<{ anim?: any }>`
   position: relative;
-  left: 0px;
   objectfit: cover;
   width: 100%;
   height: 100%;
   animation: ${(props) =>
     props.anim === "1" ? "2000ms slideLeft linear" : "none"};
+  animation-fill-mode: forwards;
   @keyframes slideLeft {
     from {
       left: 0px;
     }
     to {
       left: -1427px;
+    }
+  }
+`; */
+
+const SliderImgRight = styled.img<{ start?: any; end?: any; anim?: any }>`
+  position: relative;
+  margin-right: 31px;
+  left: ${(props) => props.end};
+  animation: ${(props) =>
+    props.anim === "1" ? "2000ms slideLeft linear" : "none"};
+  animation-fill-mode: forwards;
+  @keyframes slideLeft {
+    from {
+      left: ${(props) => props.start};
+    }
+    to {
+      left: ${(props) => props.end};
     }
   }
 `;
@@ -28,14 +45,16 @@ interface sliderElementProps {
   data: any;
   animation: string;
   setAnimation: Function;
-  right: Function;
+  sliderFrom: string;
+  sliderTo: string;
 }
 
 const SliderElement: FC<sliderElementProps> = ({
   data,
   animation,
   setAnimation,
-  right
+  sliderFrom,
+  sliderTo,
 }) => {
   //console.log(animation);
   //console.log(data);
@@ -55,12 +74,13 @@ const SliderElement: FC<sliderElementProps> = ({
               src={imgUrl}
               style={{
                 height: "280px",
-                width: "210px",
+                width: "212px",
                 objectFit: "cover",
               }}
               anim={animation}
+              start={sliderFrom}
+              end={sliderTo}
               onAnimationEnd={() => {
-                right();
                 setAnimation("0");
               }}
             />

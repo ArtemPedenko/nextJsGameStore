@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { setGamesData, setChosenGames } from "@/app/store/slice";
 import SliderElement from "./Slider/SliderElement";
@@ -22,23 +22,17 @@ const SliderWrapper = styled.div`
 
 const Slider: FC<sliderProps> = ({ data }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [prevSlide, setPrevSlide] = useState(0);
-  const [nextSlide, setNextSlide] = useState(6);
+  const [prevPosition, setPrevPosition] = useState("0px");
+  const [nextPosition, setNextPosition] = useState("0px");
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
 
-
-
-  console.log("currentSlide", currentSlide)
-
-  console.log("prevSlide", prevSlide)
-
-  function previousSlideControll() {
-    currentSlide - 6 <= 6 ? setPrevSlide(0) : setPrevSlide(currentSlide - 6);
-  }
+  /*   function previousSlideControll() {
+    currentSlide - 6 <= 6 ? setPrevPosition(0) : setPrevPosition(currentSlide - 6);
+  } */
 
   function right() {
-    if (currentSlide === data.offers.length - 6) {
+    /*     if (currentSlide === data.offers.length - 6) {
       return;
     }
     if (currentSlide + 6 > data.offers.length) {
@@ -47,7 +41,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
     } else {
       setCurrentSlide(currentSlide + 6);
       previousSlideControll();
-    }
+    } */
   }
 
   function left() {
@@ -56,6 +50,14 @@ const Slider: FC<sliderProps> = ({ data }) => {
     } else {
       setCurrentSlide(currentSlide - 6);
     }
+  }
+  let from = "0px";
+  let to = "";
+
+  function sliderRight() {
+    setPrevPosition(nextPosition);
+    const position = +nextPosition.replace("px", "");
+    setNextPosition(position - 1457 + "px");
   }
 
   //console.log(data.offers);
@@ -73,15 +75,24 @@ const Slider: FC<sliderProps> = ({ data }) => {
           }}
         >
           <SliderElement
-            data={data.offers.slice(currentSlide, currentSlide + 6)}
+            data={data.offers}
             animation={animation}
             setAnimation={setAnimation}
-            right={right}
+            sliderFrom={prevPosition}
+            sliderTo={nextPosition}
           />
         </div>
-        <button onClick={() => {
-          currentSlide === data.offers.length - 6 ? null : setAnimation("1")
-        }}>right</button>
+        <button
+          onClick={() => {
+            sliderRight();
+            setAnimation("1");
+          }}
+          //onClick={() => {
+          //  currentSlide === data.offers.length - 6 ? null : setAnimation("1");
+          //}}
+        >
+          right
+        </button>
         <button onClick={() => left()}>left</button>
       </SliderWrapper>
     </>
