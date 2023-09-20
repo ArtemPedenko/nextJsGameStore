@@ -21,57 +21,42 @@ const SliderWrapper = styled.div`
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [prevPosition, setPrevPosition] = useState("0px");
   const [nextPosition, setNextPosition] = useState("0px");
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
-
-  /*   function previousSlideControll() {
-    currentSlide - 6 <= 6 ? setPrevPosition(0) : setPrevPosition(currentSlide - 6);
-  } */
-
-  function right() {
-    /*     if (currentSlide === data.offers.length - 6) {
-      return;
-    }
-    if (currentSlide + 6 > data.offers.length) {
-      setCurrentSlide(data.offers.length - 6);
-      previousSlideControll();
-    } else {
-      setCurrentSlide(currentSlide + 6);
-      previousSlideControll();
-    } */
-  }
-
-  function left() {
-    if (currentSlide - 6 <= 0) {
-      setCurrentSlide(0);
-    } else {
-      setCurrentSlide(currentSlide - 6);
-    }
-  }
-  let from = "0px";
-  let to = "";
+  const sliderRef = useRef("");
 
   function sliderRight() {
-    setPrevPosition(nextPosition);
-    const position = +nextPosition.replace("px", "");
-    setNextPosition(position - 1457 + "px");
+    console.log("Длина", sliderRef.current.scrollWidth);
+    console.log("Позиция" + nextPosition.replace("px", "").replace("-", ""));
+    if (
+      sliderRef.current.scrollWidth - 2000 <=
+      +nextPosition.replace("px", "").replace("-", "")
+    ) {
+      console.log("харэ уже");
+      return null;
+    } else {
+      setPrevPosition(nextPosition);
+      const position = +nextPosition.replace("px", "");
+      setNextPosition(position - 1457 + "px");
+      setAnimation("1");
+    }
   }
 
-  //console.log(data.offers);
+  
+
   return (
     <>
       <SliderWrapper>
         {data.title}
 
         <div
+          ref={sliderRef}
           style={{
             display: "flex",
             flexDirection: "row",
             overflow: "hidden",
-            justifyContent: "space-between",
           }}
         >
           <SliderElement
@@ -85,15 +70,11 @@ const Slider: FC<sliderProps> = ({ data }) => {
         <button
           onClick={() => {
             sliderRight();
-            setAnimation("1");
           }}
-          //onClick={() => {
-          //  currentSlide === data.offers.length - 6 ? null : setAnimation("1");
-          //}}
         >
           right
         </button>
-        <button onClick={() => left()}>left</button>
+        <button /* onClick={() => } */>left</button>
       </SliderWrapper>
     </>
   );
