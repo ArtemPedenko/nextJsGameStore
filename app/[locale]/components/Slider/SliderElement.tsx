@@ -4,39 +4,41 @@ import styled, { keyframes } from "styled-components";
 import { FC, useEffect, useState } from "react";
 import Keyframes from "styled-components/dist/models/Keyframes";
 
-const SliderImgRight = styled.img<{ start?: any; end?: any; anim?: any }>`
+const SliderImgRight = styled.img<{
+  currentPosition?: any;
+  nextPosition?: any;
+  anim?: any;
+}>`
   position: relative;
   margin-right: 31px;
-  left: ${(props) => props.end};
+  left: ${(props) => props.nextPosition};
   animation: ${(props) =>
-    props.anim === "1" ? "500ms slideLeft linear" : "none"};
+    props.anim === "1" ? "1000ms slideLeft linear" : "none"};
   animation-fill-mode: forwards;
   @keyframes slideLeft {
     from {
-      left: ${(props) => props.start};
+      left: ${(props) => props.currentPosition};
     }
     to {
-      left: ${(props) => props.end};
+      left: ${(props) => props.nextPosition};
     }
   }
 `;
-
-//
 
 interface sliderElementProps {
   data: any;
   animation: string;
   setAnimation: Function;
-  sliderFrom: string;
-  sliderTo: string;
+  currentPosition: string;
+  nextPosition: string;
 }
 
 const SliderElement: FC<sliderElementProps> = ({
   data,
   animation,
   setAnimation,
-  sliderFrom,
-  sliderTo,
+  currentPosition,
+  nextPosition,
 }) => {
   //console.log(animation);
   //console.log(data);
@@ -60,8 +62,8 @@ const SliderElement: FC<sliderElementProps> = ({
                 objectFit: "cover",
               }}
               anim={animation}
-              start={sliderFrom}
-              end={sliderTo}
+              currentPosition={currentPosition}
+              nextPosition={nextPosition}
               onAnimationEnd={() => {
                 setAnimation("0");
               }}

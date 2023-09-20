@@ -21,30 +21,36 @@ const SliderWrapper = styled.div`
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
-  const [prevPosition, setPrevPosition] = useState("0px");
+  const [currentPosition, setCurrentPosition] = useState("0px");
   const [nextPosition, setNextPosition] = useState("0px");
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
   const sliderRef = useRef("");
 
+  console.log("currentPosition", currentPosition);
+  console.log("nextPosition", nextPosition);
+
   function sliderRight() {
-    console.log("Длина", sliderRef.current.scrollWidth);
-    console.log("Позиция" + nextPosition.replace("px", "").replace("-", ""));
     if (
       sliderRef.current.scrollWidth - 2000 <=
       +nextPosition.replace("px", "").replace("-", "")
     ) {
-      console.log("харэ уже");
       return null;
     } else {
-      setPrevPosition(nextPosition);
       const position = +nextPosition.replace("px", "");
+      setCurrentPosition(nextPosition);
       setNextPosition(position - 1457 + "px");
+
       setAnimation("1");
     }
   }
 
-  
+  function sliderLeft() {
+    const position = +nextPosition.replace("px", "");
+    setCurrentPosition(nextPosition);
+    setNextPosition(position + 1457 + "px");
+    setAnimation("1");
+  }
 
   return (
     <>
@@ -63,8 +69,8 @@ const Slider: FC<sliderProps> = ({ data }) => {
             data={data.offers}
             animation={animation}
             setAnimation={setAnimation}
-            sliderFrom={prevPosition}
-            sliderTo={nextPosition}
+            currentPosition={currentPosition}
+            nextPosition={nextPosition}
           />
         </div>
         <button
@@ -74,7 +80,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
         >
           right
         </button>
-        <button /* onClick={() => } */>left</button>
+        <button onClick={() => sliderLeft()}>left</button>
       </SliderWrapper>
     </>
   );

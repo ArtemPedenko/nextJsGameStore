@@ -16,7 +16,7 @@ const Home: FC<epicProps> = async () => {
   return (
     <div>
       <Fetching data={data} />
-      <Carousel />
+      {/* <Carousel /> */}
       <Slider
         data={data.data.Storefront.storefrontModulesPaginated.modules[1]}
       />
