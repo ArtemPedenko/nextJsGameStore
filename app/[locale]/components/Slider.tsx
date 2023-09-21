@@ -4,11 +4,9 @@ import styled from "styled-components";
 import { FC, useEffect, useState, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { setGamesData, setChosenGames } from "@/app/store/slice";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 import "./Slider/slider.css";
+import { register } from "swiper/element/bundle";
+register();
 
 interface sliderProps {
   data: any;
@@ -29,6 +27,8 @@ const Slider: FC<sliderProps> = ({ data }) => {
   const [nextPosition, setNextPosition] = useState("0px");
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
+  const navigationPrevRef = useRef("");
+  const navigationNextRef = useRef("");
 
   return (
     <>
@@ -41,12 +41,11 @@ const Slider: FC<sliderProps> = ({ data }) => {
             currentPosition={currentPosition}
             nextPosition={nextPosition}
           /> */}
-        <Swiper
-          navigation={true}
-          slidesPerView={6}
-          spaceBetween={10}
-          modules={[Navigation]}
-          className="mySwiper"
+
+        <swiper-container
+          navigation="true"
+          slides-per-view="6"
+          space-between="30px"
         >
           {data.offers.map((item: any, index: number) => {
             let imgUrl = "";
@@ -56,14 +55,18 @@ const Slider: FC<sliderProps> = ({ data }) => {
               }
             });
             return (
-              <div key={index}>
-                <SwiperSlide>
-                  <img alt="" src={imgUrl} />
-                </SwiperSlide>
-              </div>
+              <swiper-slide key={index}>
+                <img class="slide-img" alt="" src={imgUrl} />
+              </swiper-slide>
             );
           })}
-        </Swiper>
+        </swiper-container>
+        <div ref={navigationPrevRef} class="swiper-button-prev">
+          suda
+        </div>
+        <div ref={navigationNextRef} class="swiper-button-next">
+          tuda
+        </div>
       </SliderWrapper>
     </>
   );
