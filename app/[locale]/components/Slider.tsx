@@ -107,6 +107,23 @@ const Slider: FC<sliderProps> = ({ data }) => {
                   ? t(`addon`)
                   : t(`base_game`)}
                 <div> {item.offer.title} </div>
+                <div>
+                  {" "}
+                  {
+                    item.offer.price.totalPrice.fmtPrice.originalPrice ===
+                    item.offer.price.totalPrice.fmtPrice.discountPrice ? (
+                      item.offer.price.totalPrice.fmtPrice.originalPrice
+                    ) : (
+                      <>
+                        <s>
+                          {item.offer.price.totalPrice.fmtPrice.originalPrice}
+                        </s>
+                        &nbsp;
+                        {item.offer.price.totalPrice.fmtPrice.discountPrice}
+                      </>
+                    ) /* item.offer.price.totalPrice.fmtPrice.discountPrice */
+                  }{" "}
+                </div>
               </swiper-slide>
             );
           })}
