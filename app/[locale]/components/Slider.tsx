@@ -46,17 +46,15 @@ const SliderNavigationButton = styled.div`
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
-  const sliderRef = useRef("");
+  let sliderRef = useRef(null);
   const t = useI18n();
 
   function handleNext() {
-    const swiperEl = document.querySelector("swiper-container");
-    swiperEl?.swiper.slideNext();
+    sliderRef?.current.swiper.slideNext();
   }
 
   function handlePrev() {
-    const swiperEl = document.querySelector("swiper-container");
-    swiperEl?.swiper.slidePrev();
+    sliderRef?.current.swiper.slidePrev();
   }
 
   return (

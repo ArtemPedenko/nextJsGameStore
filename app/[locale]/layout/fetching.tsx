@@ -8,7 +8,7 @@ interface epicProps {
 }
 
 const Fetching: FC<epicProps> = ({ data }) => {
-  console.log(data.data.Storefront.storefrontModulesPaginated.modules);
+  //console.log(data.data.Storefront.storefrontModulesPaginated.modules);
   const dispatch = useAppDispatch();
   const chosenGames = useAppSelector((state) => state.games.chosenGames);
   const carouselItems =
