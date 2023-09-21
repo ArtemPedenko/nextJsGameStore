@@ -46,6 +46,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
           navigation="true"
           slides-per-view="6"
           space-between="30px"
+          slides-per-group={6}
         >
           {data.offers.map((item: any, index: number) => {
             let imgUrl = "";
@@ -61,12 +62,8 @@ const Slider: FC<sliderProps> = ({ data }) => {
             );
           })}
         </swiper-container>
-        <div ref={navigationPrevRef} class="swiper-button-prev">
-          suda
-        </div>
-        <div ref={navigationNextRef} class="swiper-button-next">
-          tuda
-        </div>
+        <div class="swiper-button-prev">asd</div>
+        <div class="swiper-button-next">asd</div>
       </SliderWrapper>
     </>
   );
