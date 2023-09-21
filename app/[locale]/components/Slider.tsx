@@ -27,8 +27,18 @@ const Slider: FC<sliderProps> = ({ data }) => {
   const [nextPosition, setNextPosition] = useState("0px");
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
-  const navigationPrevRef = useRef("");
+  const sliderRef = useRef("");
   const navigationNextRef = useRef("");
+
+  function handleNext() {
+    const swiperEl = document.querySelector("swiper-container");
+    swiperEl.swiper.slideNext();
+  }
+
+  function handlePrev() {
+    const swiperEl = document.querySelector("swiper-container");
+    swiperEl.swiper.slidePrev();
+  }
 
   return (
     <>
@@ -43,7 +53,8 @@ const Slider: FC<sliderProps> = ({ data }) => {
           /> */}
 
         <swiper-container
-          navigation="true"
+          ref={sliderRef}
+          /* navigation="true" */
           slides-per-view="6"
           space-between="30px"
           slides-per-group={6}
@@ -62,8 +73,8 @@ const Slider: FC<sliderProps> = ({ data }) => {
             );
           })}
         </swiper-container>
-        <div class="swiper-button-prev">asd</div>
-        <div class="swiper-button-next">asd</div>
+        <button onClick={() => handleNext()}>next</button>
+        <button onClick={() => handlePrev()}>prev</button>
       </SliderWrapper>
     </>
   );
