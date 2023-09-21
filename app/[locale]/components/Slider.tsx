@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { FC, useEffect, useState, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { setGamesData, setChosenGames } from "@/app/store/slice";
-import SliderElement from "./Slider/SliderElement";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "./Slider/slider.css";
 
 interface sliderProps {
   data: any;
@@ -25,62 +29,35 @@ const Slider: FC<sliderProps> = ({ data }) => {
   const [nextPosition, setNextPosition] = useState("0px");
   const [animation, setAnimation] = useState("0");
   const [count, setCount] = useState(0);
-  const sliderRef = useRef("");
-
-  console.log("currentPosition", currentPosition);
-  console.log("nextPosition", nextPosition);
-
-  function sliderRight() {
-    if (
-      sliderRef.current.scrollWidth - 2000 <=
-      +nextPosition.replace("px", "").replace("-", "")
-    ) {
-      return null;
-    } else {
-      const position = +nextPosition.replace("px", "");
-      setCurrentPosition(nextPosition);
-      setNextPosition(position - 1457 + "px");
-
-      setAnimation("1");
-    }
-  }
-
-  function sliderLeft() {
-    const position = +nextPosition.replace("px", "");
-    setCurrentPosition(nextPosition);
-    setNextPosition(position + 1457 + "px");
-    setAnimation("1");
-  }
 
   return (
     <>
       <SliderWrapper>
         {data.title}
-
-        <div
-          ref={sliderRef}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            overflow: "hidden",
-          }}
-        >
-          <SliderElement
+        {/*    <SliderElement
             data={data.offers}
             animation={animation}
             setAnimation={setAnimation}
             currentPosition={currentPosition}
             nextPosition={nextPosition}
-          />
-        </div>
-        <button
-          onClick={() => {
-            sliderRight();
-          }}
+          /> */}
+        <Swiper
+          navigation={true}
+          slidesPerView={6}
+          spaceBetween={10}
+          modules={[Navigation]}
+          className="mySwiper"
         >
-          right
-        </button>
-        <button onClick={() => sliderLeft()}>left</button>
+          <SwiperSlide>Slide 1</SwiperSlide>
+          <SwiperSlide>Slide 2</SwiperSlide>
+          <SwiperSlide>Slide 3</SwiperSlide>
+          <SwiperSlide>Slide 4</SwiperSlide>
+          <SwiperSlide>Slide 5</SwiperSlide>
+          <SwiperSlide>Slide 6</SwiperSlide>
+          <SwiperSlide>Slide 7</SwiperSlide>
+          <SwiperSlide>Slide 8</SwiperSlide>
+          <SwiperSlide>Slide 9</SwiperSlide>
+        </Swiper>
       </SliderWrapper>
     </>
   );
