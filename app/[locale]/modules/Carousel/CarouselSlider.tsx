@@ -105,7 +105,7 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
   const { item, index, animationCurrent, itemPrevious } = props;
   //console.log(item)
   const t = useI18n();
-
+  console.log(item);
   return (
     <>
       {animationCurrent === index ? (
@@ -113,7 +113,9 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
           <SliderImgPrevious src={itemPrevious.image.src} alt="img" />
           <SliderImg src={item.image.src} alt="img" />
           <GameName>
-            <img alt="img" src={item.logoImage.src} />
+            {item.logoImage.src ? (
+              <img alt="img" src={item.logoImage.src} />
+            ) : null}
           </GameName>
           <GameInfo>
             <div style={{ textShadow: "2px 2px 5px black" }}>
