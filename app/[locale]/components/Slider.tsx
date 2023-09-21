@@ -106,6 +106,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
                 {item.offer.categories[0] === "addons"
                   ? t(`addon`)
                   : t(`base_game`)}
+                <div> {item.offer.title} </div>
               </swiper-slide>
             );
           })}

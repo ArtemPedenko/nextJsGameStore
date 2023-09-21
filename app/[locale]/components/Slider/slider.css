@@ -3,7 +3,9 @@ swiper-container {
   height: 462px;
 }
 swiper-slide {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .slide-img {
