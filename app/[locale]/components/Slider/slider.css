@@ -11,6 +11,7 @@ swiper-slide {
   height: 280px;
   width: 212px;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 /* .swiper-button-next,

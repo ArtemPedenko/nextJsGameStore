@@ -5,8 +5,6 @@ import { FC, useEffect, useState, useRef } from "react";
 import IconWrapper from "./IconWrapper";
 import SlierArrowLeft from "./Slider/SliderArrowLeft";
 import SliderArrowRight from "./Slider/SliderArrowRight";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
-import { setGamesData, setChosenGames } from "@/app/store/slice";
 import "./Slider/slider.css";
 import { register } from "swiper/element/bundle";
 register();
@@ -28,15 +26,28 @@ const SliderWrapper = styled.div`
 const SliderHead = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0 0 18px 0;
+`;
+
+const SliderNavigation = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
+
+const SliderNavigationButton = styled.div`
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  background-color: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
-  const [currentPosition, setCurrentPosition] = useState("0px");
-  const [nextPosition, setNextPosition] = useState("0px");
-  const [animation, setAnimation] = useState("0");
-  const [count, setCount] = useState(0);
   const sliderRef = useRef("");
-  const navigationNextRef = useRef("");
 
   function handleNext() {
     const swiperEl = document.querySelector("swiper-container");
@@ -53,22 +64,24 @@ const Slider: FC<sliderProps> = ({ data }) => {
       <SliderWrapper>
         <SliderHead>
           {data.title}
-          <div>
-          <IconWrapper
-            icon={<SlierArrowLeft />}
-            height="30px"
-            width="30px"
-            margin="0"
-          />
-          <IconWrapper
-            icon={<SliderArrowRight />}
-            height="30px"
-            width="30px"
-            margin="0"
-          />
-          </div>
-          <button onClick={() => handleNext()}>next</button>
-          <button onClick={() => handlePrev()}>prev</button>
+          <SliderNavigation>
+            <SliderNavigationButton onClick={() => handlePrev()}>
+              <IconWrapper
+                icon={<SlierArrowLeft />}
+                height="20px"
+                width="20px"
+                margin="0 auto"
+              />
+            </SliderNavigationButton>
+            <SliderNavigationButton onClick={() => handleNext()}>
+              <IconWrapper
+                icon={<SliderArrowRight />}
+                height="20px"
+                width="20px"
+                margin="0 auto"
+              />
+            </SliderNavigationButton>
+          </SliderNavigation>
         </SliderHead>
         <swiper-container
           ref={sliderRef}

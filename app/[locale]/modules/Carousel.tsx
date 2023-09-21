@@ -11,7 +11,7 @@ const CarouselWrapper = styled.div`
   height: 640;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
 `;
 
 const SliderWrapper = styled.div`
