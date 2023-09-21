@@ -5,14 +5,3 @@ body {
   color: white;
   margin: 0;
 }
-
-.primary {
-  --btn-bg: rgb(145, 40, 71);
-  --btn-hover: rgb(74, 40, 195);
-  --btn-border-color: rgb(255, 233, 251);
-}
-.secondary {
-  --btn-bg: rgb(45, 64, 178);
-  --btn-hover: rgb(45, 64, 78);
-  --btn-border-color: rgb(209, 239, 248);
-}

@@ -1,16 +1,16 @@
-'use client';
-import { ReactElement } from 'react'
-import { I18nProviderClient } from '../../locales/client'
-import Header from "./modules/Header"
-import HeaderSticky from './modules/HeaderSticky';
-import { Providers } from '../store/provider';
+"use client";
+import { ReactElement } from "react";
+import { I18nProviderClient } from "../../locales/client";
+import Header from "./modules/Header";
+import HeaderSticky from "./modules/HeaderSticky";
+import { Providers } from "../store/provider";
 
 export default function SubLayout({
   children,
-  params
+  params,
 }: {
-  children: ReactElement
-  params: { locale: string }
+  children: ReactElement;
+  params: { locale: string };
 }) {
   return (
     <Providers>
@@ -20,5 +20,5 @@ export default function SubLayout({
         {children}
       </I18nProviderClient>
     </Providers>
-  )
+  );
 }
