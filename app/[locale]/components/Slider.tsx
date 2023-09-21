@@ -20,8 +20,6 @@ const SliderWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-
-  border: 1px solid green;
 `;
 
 const SliderHead = styled.div`
@@ -92,6 +90,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
           slides-per-view="6"
           space-between="30px"
           slides-per-group={6}
+          loop="true"
         >
           {data.offers.map((item: any, index: number) => {
             let imgUrl = "";
