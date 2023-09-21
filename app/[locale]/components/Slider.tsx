@@ -5,6 +5,7 @@ import { FC, useEffect, useState, useRef } from "react";
 import IconWrapper from "./IconWrapper";
 import SlierArrowLeft from "./Slider/SliderArrowLeft";
 import SliderArrowRight from "./Slider/SliderArrowRight";
+import { useI18n } from "@/locales/client";
 import "./Slider/slider.css";
 import { register } from "swiper/element/bundle";
 register();
@@ -48,6 +49,9 @@ const SliderNavigationButton = styled.div`
 
 const Slider: FC<sliderProps> = ({ data }) => {
   const sliderRef = useRef("");
+  const t = useI18n();
+
+  console.log(data.offers);
 
   function handleNext() {
     const swiperEl = document.querySelector("swiper-container");
@@ -99,6 +103,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
             return (
               <swiper-slide key={index}>
                 <img class="slide-img" alt="" src={imgUrl} />
+                {item.offer.catigories[0] === "addons" ? t(`addon`) : t(`base_game`)}
               </swiper-slide>
             );
           })}
