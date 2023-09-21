@@ -2,6 +2,9 @@
 
 import styled from "styled-components";
 import { FC, useEffect, useState, useRef } from "react";
+import IconWrapper from "./IconWrapper";
+import SlierArrowLeft from "./Slider/SliderArrowLeft";
+import SliderArrowRight from "./Slider/SliderArrowRight";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { setGamesData, setChosenGames } from "@/app/store/slice";
 import "./Slider/slider.css";
@@ -22,6 +25,11 @@ const SliderWrapper = styled.div`
   border: 1px solid green;
 `;
 
+const SliderHead = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const Slider: FC<sliderProps> = ({ data }) => {
   const [currentPosition, setCurrentPosition] = useState("0px");
   const [nextPosition, setNextPosition] = useState("0px");
@@ -32,29 +40,38 @@ const Slider: FC<sliderProps> = ({ data }) => {
 
   function handleNext() {
     const swiperEl = document.querySelector("swiper-container");
-    swiperEl.swiper.slideNext();
+    swiperEl?.swiper.slideNext();
   }
 
   function handlePrev() {
     const swiperEl = document.querySelector("swiper-container");
-    swiperEl.swiper.slidePrev();
+    swiperEl?.swiper.slidePrev();
   }
 
   return (
     <>
       <SliderWrapper>
-        {data.title}
-        {/*    <SliderElement
-            data={data.offers}
-            animation={animation}
-            setAnimation={setAnimation}
-            currentPosition={currentPosition}
-            nextPosition={nextPosition}
-          /> */}
-
+        <SliderHead>
+          {data.title}
+          <div>
+          <IconWrapper
+            icon={<SlierArrowLeft />}
+            height="30px"
+            width="30px"
+            margin="0"
+          />
+          <IconWrapper
+            icon={<SliderArrowRight />}
+            height="30px"
+            width="30px"
+            margin="0"
+          />
+          </div>
+          <button onClick={() => handleNext()}>next</button>
+          <button onClick={() => handlePrev()}>prev</button>
+        </SliderHead>
         <swiper-container
           ref={sliderRef}
-          /* navigation="true" */
           slides-per-view="6"
           space-between="30px"
           slides-per-group={6}
@@ -73,8 +90,6 @@ const Slider: FC<sliderProps> = ({ data }) => {
             );
           })}
         </swiper-container>
-        <button onClick={() => handleNext()}>next</button>
-        <button onClick={() => handlePrev()}>prev</button>
       </SliderWrapper>
     </>
   );
