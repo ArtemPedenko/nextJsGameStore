@@ -6,7 +6,7 @@ import { useI18n } from "@/locales/client";
 
 const Wrapper = styled.div`
   width: 1427px;
-  height: 550px;
+  height: 450px;
   display: flex;
   flex-direction: row;
   margin: 0 auto;
