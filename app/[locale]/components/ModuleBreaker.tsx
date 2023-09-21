@@ -19,22 +19,27 @@ interface ModuleBreakerProps {
 
 const ModuleBreaker: FC<ModuleBreakerProps> = ({ data }) => {
   const t = useI18n();
-  console.log(data.modules);
   return (
     <Wrapper>
       {data.modules.map((item, index) => {
         return (
-          <img
-            alt=""
-            src={item.image.src}
-            style={{
-              height: "350px",
-              width: `${
-                (1427 - data.modules.length * 20) / data.modules.length + "px"
-              }`,
-              objectFit: "cover",
-            }}
-          />
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+          >
+            <img
+              key={index}
+              alt=""
+              src={item.image.src}
+              style={{
+                height: "350px",
+                width: `${
+                  (1427 - data.modules.length * 20) / data.modules.length + "px"
+                }`,
+                objectFit: "cover",
+              }}
+            />
+            {item.title}
+          </div>
         );
       })}
     </Wrapper>

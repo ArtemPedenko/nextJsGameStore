@@ -24,6 +24,9 @@ const Home: FC<epicProps> = async () => {
       <ModuleBreaker
         data={data.data.Storefront.storefrontModulesPaginated.modules[2]}
       />
+      <Slider
+        data={data.data.Storefront.storefrontModulesPaginated.modules[4]}
+      />
     </div>
   );
 };
