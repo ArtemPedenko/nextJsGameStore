@@ -49,8 +49,6 @@ const Slider: FC<sliderProps> = ({ data }) => {
   const sliderRef = useRef("");
   const t = useI18n();
 
-  console.log(data.offers);
-
   function handleNext() {
     const swiperEl = document.querySelector("swiper-container");
     swiperEl?.swiper.slideNext();
