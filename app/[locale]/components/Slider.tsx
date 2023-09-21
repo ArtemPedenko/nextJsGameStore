@@ -103,7 +103,9 @@ const Slider: FC<sliderProps> = ({ data }) => {
             return (
               <swiper-slide key={index}>
                 <img class="slide-img" alt="" src={imgUrl} />
-                {item.offer.catigories[0] === "addons" ? t(`addon`) : t(`base_game`)}
+                {item.offer.categories[0] === "addons"
+                  ? t(`addon`)
+                  : t(`base_game`)}
               </swiper-slide>
             );
           })}
