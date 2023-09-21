@@ -105,7 +105,6 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
   const { item, index, animationCurrent, itemPrevious } = props;
   //console.log(item)
   const t = useI18n();
-  console.log(item);
   return (
     <>
       {animationCurrent === index ? (
