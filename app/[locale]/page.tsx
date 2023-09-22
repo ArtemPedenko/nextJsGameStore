@@ -10,7 +10,6 @@ import { getCurrentLocale } from "../../locales/server";
 
 const Home = async () => {
   const locale = getCurrentLocale();
-  console.log(locale);
   const data = await getData(locale);
   const t = await getI18n();
   return (
