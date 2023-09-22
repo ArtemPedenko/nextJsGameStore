@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { FC, useEffect, useState, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import IconWrapper from "./IconWrapper";
 import SlierArrowLeft from "./Slider/SliderArrowLeft";
 import SliderArrowRight from "./Slider/SliderArrowRight";
@@ -46,6 +47,9 @@ const SliderNavigationButton = styled.div`
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
+  const gamesData = useAppSelector((state) => state.games.gamesData);
+  const data1 = gamesData[1];
+  console.log(data1);
   let sliderRef = useRef(null);
   const t = useI18n();
 
