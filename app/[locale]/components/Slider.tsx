@@ -102,10 +102,12 @@ const Slider: FC<sliderProps> = ({ data }) => {
             return (
               <swiper-slide key={index}>
                 <img class="slide-img" alt="" src={imgUrl} />
-                {item.offer.categories[0] === "addons"
-                  ? t(`addon`)
-                  : t(`base_game`)}
-                <div> {item.offer.title} </div>
+                <div style={{ fontSize: "11px", color: "#959595" }}>
+                  {item.offer.categories[0] === "addons"
+                    ? t(`addon`)
+                    : t(`base_game`)}
+                </div>
+                <div style={{ fontSize: "16px" }}> {item.offer.title} </div>
                 <div>
                   {" "}
                   {
@@ -114,9 +116,11 @@ const Slider: FC<sliderProps> = ({ data }) => {
                       item.offer.price.totalPrice.fmtPrice.originalPrice
                     ) : (
                       <>
-                        <s>
+                        {/* <div  style={{ color: "#959595" }}> */}
+                        <s style={{ color: "#959595" }}>
                           {item.offer.price.totalPrice.fmtPrice.originalPrice}
                         </s>
+                        {/* </div> */}
                         &nbsp;
                         {item.offer.price.totalPrice.fmtPrice.discountPrice}
                       </>
