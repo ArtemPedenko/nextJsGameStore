@@ -10,16 +10,10 @@ interface epicProps {
 const Fetching: FC<epicProps> = ({ data }) => {
   const dispatch = useAppDispatch();
   const chosenGames = useAppSelector((state) => state.games.chosenGames);
-  const carouselItems =
-    data.data.Storefront.storefrontModulesPaginated.modules[0].slides.slice(
-      1,
-      6,
-    );
+  const carouselItems = data[0].slides.slice(1, 6);
 
   useEffect(() => {
-    dispatch(
-      setGamesData(data.data.Storefront.storefrontModulesPaginated.modules),
-    );
+    dispatch(setGamesData(data));
     dispatch(setChosenGames(carouselItems));
   }, []);
 

@@ -11,20 +11,15 @@ import { getCurrentLocale } from "../../locales/server";
 const Home = async () => {
   const locale = getCurrentLocale();
   const data = await getData(locale);
+  console.log(data);
   const t = await getI18n();
   return (
     <div>
       <Fetching data={data} />
       <Carousel />
-      <Slider
-        data={data.data.Storefront.storefrontModulesPaginated.modules[1]}
-      />
-      <ModuleBreaker
-        data={data.data.Storefront.storefrontModulesPaginated.modules[2]}
-      />
-      <Slider
-        data={data.data.Storefront.storefrontModulesPaginated.modules[4]}
-      />
+      <Slider data={data[1]} />
+      <ModuleBreaker data={data[2]} />
+      <Slider data={data[4]} />
     </div>
   );
 };
