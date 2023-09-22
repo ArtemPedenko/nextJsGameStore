@@ -10,7 +10,7 @@ import styled from "styled-components";
 import LanguageModal from "./Header/LanguageModal";
 import { useState, useRef } from "react";
 import HeaderButton from "./Header/HeaderButton";
-import { useI18n, useScopedI18n } from "../../../locales/client";
+import { useI18n, useCurrentLocale } from "../../../locales/client";
 
 const HeaderWrapper = styled.div`
   width: 100%;

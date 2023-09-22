@@ -6,13 +6,12 @@ import Fetching from "./layout/fetching";
 import Carousel from "./modules/Carousel";
 import Slider from "./components/Slider";
 import ModuleBreaker from "./components/ModuleBreaker";
+import { getCurrentLocale } from "../../locales/server";
 
-interface epicProps {
-  epic: any;
-}
-
-const Home: FC<epicProps> = async () => {
-  const data = await getData();
+const Home = async () => {
+  const locale = getCurrentLocale();
+  console.log(locale);
+  const data = await getData(locale);
   const t = await getI18n();
   return (
     <div>
