@@ -15,11 +15,12 @@ const ProductPage = async ({ params }) => {
           width: "1600px",
           margin: "0 auto",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           justifyContent: "space-between",
+          border: "1px solid red",
         }}
       >
-        <div>
+        <div style={{ width: "1200px" }}>
           <ProductSlider data={data.data} />
         </div>
         <div
