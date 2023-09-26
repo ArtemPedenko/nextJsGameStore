@@ -14,11 +14,9 @@ const Home = async () => {
   const data = await getData(locale);
   //console.log(data);
   const t = await getI18n();
-  const id = "a-plague-tale-requiem";
   return (
     <div>
       <Fetching data={data} />
-      <Link href={`/${id}`}>link</Link>
       <Carousel />
       <Slider data={data[1]} />
       <ModuleBreaker data={data[2]} />
