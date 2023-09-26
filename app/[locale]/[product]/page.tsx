@@ -2,12 +2,12 @@ const ProductPage = async ({ params }) => {
   const url = `https://store-content-ipv4.ak.epicgames.com/api/ru/content/products/${params.product}`;
   const response = await fetch(url);
   const responseData = await response.json();
-  const data = responseData.pages[responseData.pages.length - 1];
+  const data = responseData.pages[1];
 
   console.log(responseData);
   return (
     <div>
-      <h1>Product ID: {params.product}</h1>
+      <h1>{data.data.about.title}</h1>
       {data.data.about.shortDescription}
     </div>
   );
