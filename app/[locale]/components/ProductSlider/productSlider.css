@@ -1,0 +1,26 @@
+swiper-container {
+  width: 1427px;
+  height: 1000px;
+}
+swiper-slide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.slide-img {
+  display: block;
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* .swiper-button-next,
+.swiper-button-prev {
+  border: 1px solid red;
+  color: red;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
+} */

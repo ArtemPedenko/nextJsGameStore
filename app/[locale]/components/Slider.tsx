@@ -49,7 +49,6 @@ const SliderNavigationButton = styled.div`
 
 const Slider: FC<sliderProps> = ({ data }) => {
   const gamesData = useAppSelector((state) => state.games.gamesData);
-  console.log(data);
   const data1 = gamesData[1];
   let sliderRef = useRef(null);
   const t = useI18n();

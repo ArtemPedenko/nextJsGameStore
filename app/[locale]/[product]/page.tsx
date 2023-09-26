@@ -1,3 +1,5 @@
+import ProductSlider from "../components/ProductSlider";
+
 const ProductPage = async ({ params }) => {
   const url = `https://store-content-ipv4.ak.epicgames.com/api/ru/content/products/${params.product}`;
   const response = await fetch(url);
@@ -8,7 +10,7 @@ const ProductPage = async ({ params }) => {
   return (
     <div>
       <h1>{data.data.about.title}</h1>
-      {data.data.about.shortDescription}
+      <ProductSlider data={data.data} />
     </div>
   );
 };
