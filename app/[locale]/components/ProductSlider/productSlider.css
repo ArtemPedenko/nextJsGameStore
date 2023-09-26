@@ -8,10 +8,10 @@ swiper-slide {
   gap: 10px;
 }
 
-.slide-img {
+.product-slide-img {
   display: block;
-  height: 500px;
-  width: 500px;
+  height: 680px;
+  width: 1200px;
   object-fit: cover;
   border-radius: 5px;
 }

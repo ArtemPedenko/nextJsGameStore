@@ -14,7 +14,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 register();
 
 const SliderWrapper = styled.div`
-  width: 1427px;
+  width: 1200px;
   height: 1000px;
   margin: 0 auto;
   display: flex;
@@ -78,7 +78,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
               imgUrl = item.image.src;
               return (
                 <swiper-slide key={index}>
-                  <img class="slide-img" alt="" src={imgUrl} />
+                  <img class="product-slide-img" alt="" src={imgUrl} />
                 </swiper-slide>
               );
             }

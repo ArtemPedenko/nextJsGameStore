@@ -10,7 +10,27 @@ const ProductPage = async ({ params }) => {
   return (
     <div>
       <h1>{data.data.about.title}</h1>
-      <ProductSlider data={data.data} />
+      <div
+        style={{
+          width: "1600px",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>
+          <ProductSlider data={data.data} />
+        </div>
+        <div
+          style={{
+            width: "320px",
+            border: "1px solid red",
+          }}
+        >
+          asd
+        </div>
+      </div>
     </div>
   );
 };
