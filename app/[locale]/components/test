@@ -12,15 +12,12 @@ import "./ProductSlider/productSlider.css";
 import { register } from "swiper/element/bundle";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
 register();
 
 const SliderWrapper = styled.div`
   width: 1200px;
   height: 1000px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 `;
@@ -65,16 +62,14 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
     <>
       <SliderWrapper>
         <SliderHead>{data.title}</SliderHead>
-        <Swiper
-          style={{
-            "--swiper-navigation-color": "#fff",
-            "--swiper-pagination-color": "#fff",
-          }}
+        <swiper-container
+          ref={sliderRef}
           loop={true}
-          spaceBetween={10}
-          thumbs={{ swiper: thumbsSwiper }}
+          space-between={10}
+          navigation={false}
+          thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper2"
+          class="mySwiper2"
         >
           {data.carousel?.items.map((item, index) => {
             let imgUrl = "";
@@ -82,65 +77,37 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
             if (item.image.src) {
               imgUrl = item.image.src;
               return (
-                <SwiperSlide class="mySwiper2-slide" key={index}>
+                <swiper-slide class="mySwiper2-slide" key={index}>
                   <img class="product-slide2-img" alt="" src={imgUrl} />
-                </SwiperSlide>
+                </swiper-slide>
               );
             }
           })}
-        </Swiper>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "start",
-            alignItems: "start",
-          }}
+        </swiper-container>
+        <swiper-container
+          ref={sliderRef}
+          onSwiper={setThumbsSwiper}
+          loop={true}
+          space-between={1}
+          slides-per-view={4}
+          free-mode={true}
+          watch-slides-progress={true}
+          modules={[FreeMode, Navigation, Thumbs]}
+          class="mySwiper"
         >
-          <SliderNavigationButton onClick={() => handlePrev()}>
-            <IconWrapper
-              icon={<SlierArrowLeft />}
-              height="40px"
-              width="40px"
-              margin="auto auto"
-            />
-          </SliderNavigationButton>
-
-          <Swiper
-            ref={sliderRef}
-            onSwiper={setThumbsSwiper}
-            loop={true}
-            spaceBetween={10}
-            slidesPerView={4}
-            freeMode={true}
-            watchSlidesProgress={true}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper"
-            slidesPerGroup={6}
-          >
-            {data.carousel?.items.map((item, index) => {
-              let imgUrl = "";
-              //console.log(item);
-              if (item.image.src) {
-                imgUrl = item.image.src;
-                return (
-                  <SwiperSlide class="mySwiper-slide" key={index}>
-                    <img class="product-slide-img" alt="" src={imgUrl} />
-                  </SwiperSlide>
-                );
-              }
-            })}
-          </Swiper>
-
-          <SliderNavigationButton onClick={() => handleNext()}>
-            <IconWrapper
-              icon={<SliderArrowRight />}
-              height="40px"
-              width="40px"
-              margin="auto auto"
-            />
-          </SliderNavigationButton>
-        </div>
+          {data.carousel?.items.map((item, index) => {
+            let imgUrl = "";
+            //console.log(item);
+            if (item.image.src) {
+              imgUrl = item.image.src;
+              return (
+                <swiper-slide class="mySwiper-slide" key={index}>
+                  <img class="product-slide-img" alt="" src={imgUrl} />
+                </swiper-slide>
+              );
+            }
+          })}
+        </swiper-container>
       </SliderWrapper>
     </>
   );

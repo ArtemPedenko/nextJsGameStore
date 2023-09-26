@@ -1,17 +1,37 @@
-swiper-container {
+.mySwiper2 {
   width: 1200px;
   height: 1000px;
+  border: 1px solid red;
 }
-swiper-slide {
+.mySwiper2-slide {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.product-slide-img {
+.product-slide2-img {
   display: block;
   height: 680px;
   width: 1200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.mySwiper {
+  width: 800px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid red;
+}
+.mySwiper-slide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.product-slide-img {
+  display: block;
+  height: 50px;
+  width: 100px;
   object-fit: cover;
   border-radius: 5px;
 }
