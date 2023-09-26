@@ -91,7 +91,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
           slides-per-group={6}
           loop="true"
         >
-          {data.offers.map((item: any, index: number) => {
+          {data.offers?.map((item: any, index: number) => {
             let imgUrl = "";
             item.offer.keyImages.map((imgs: any) => {
               if (imgs.type === "Thumbnail") {
