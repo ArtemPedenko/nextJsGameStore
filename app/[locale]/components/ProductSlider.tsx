@@ -50,15 +50,15 @@ const SliderNavigationButton = styled.div`
 const ProductSlider: FC<sliderProps> = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   //console.log(data);
-  let sliderRef = useRef(null);
+  let myRef = useRef(null);
   const t = useI18n();
 
   function handleNext() {
-    sliderRef?.current.swiper.slideNext();
+    myRef?.current.swiper.slideNext();
   }
 
   function handlePrev() {
-    sliderRef?.current.swiper.slidePrev();
+    myRef?.current.swiper.slidePrev();
   }
 
   return (
@@ -66,10 +66,6 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
       <SliderWrapper>
         <SliderHead>{data.title}</SliderHead>
         <Swiper
-          style={{
-            "--swiper-navigation-color": "#fff",
-            "--swiper-pagination-color": "#fff",
-          }}
           loop={true}
           spaceBetween={10}
           thumbs={{ swiper: thumbsSwiper }}
@@ -93,8 +89,9 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "start",
-            alignItems: "start",
+            justifyContent: "space-around",
+            alignItems: "center",
+            marginTop: "20px",
           }}
         >
           <SliderNavigationButton onClick={() => handlePrev()}>
@@ -107,14 +104,14 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
           </SliderNavigationButton>
 
           <Swiper
-            ref={sliderRef}
+            ref={myRef}
             onSwiper={setThumbsSwiper}
+            spaceBetween={30}
             loop={true}
-            spaceBetween={10}
-            slidesPerView={4}
+            slidesPerView={8}
             freeMode={true}
             watchSlidesProgress={true}
-            modules={[FreeMode, Navigation, Thumbs]}
+            modules={[FreeMode, Thumbs]}
             className="mySwiper"
             slidesPerGroup={6}
           >
