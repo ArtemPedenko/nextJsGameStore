@@ -5,11 +5,14 @@ const ProductPage = async ({ params }) => {
   const response = await fetch(url);
   const responseData = await response.json();
   const data = responseData.pages[1];
+  if (data) {
+    console.log(data)
+  }
 
   console.log(responseData);
   return (
     <div>
-      <h1>{data.data.about.title}</h1>
+      <h1>{data?.data.about.title}</h1>
       <div
         style={{
           width: "1600px",
@@ -21,7 +24,7 @@ const ProductPage = async ({ params }) => {
         }}
       >
         <div style={{ width: "1200px" }}>
-          <ProductSlider data={data.data} />
+          <ProductSlider data={data?.data} />
         </div>
         <div
           style={{

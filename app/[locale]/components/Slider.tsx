@@ -94,15 +94,19 @@ const Slider: FC<sliderProps> = ({ data }) => {
         >
           {data.offers?.map((item: any, index: number) => {
             let imgUrl = "";
+            let url = "";
             item.offer.keyImages.map((imgs: any) => {
               if (imgs.type === "Thumbnail") {
                 imgUrl = imgs.url;
+                if (item.offer.catalogNs?.mappings) {
+                  url = item.offer.catalogNs?.mappings[0].pageSlug;
+                }
               }
             });
             return (
               <swiper-slide key={index}>
                 <Link
-                  href={`/${item.offer.catalogNs.mappings[0].pageSlug}`}
+                  href={`/${url}`}
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   <img class="slide-img" alt="" src={imgUrl} />

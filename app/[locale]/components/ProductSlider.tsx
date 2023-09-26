@@ -64,7 +64,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
   return (
     <>
       <SliderWrapper>
-        <SliderHead>{data.title}</SliderHead>
+        <SliderHead>{data?.title}</SliderHead>
         <Swiper
           loop={true}
           spaceBetween={10}
@@ -72,7 +72,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
           modules={[FreeMode, Navigation, Thumbs]}
           className="mySwiper2"
         >
-          {data.carousel?.items.map((item, index) => {
+          {data?.carousel.items.map((item, index) => {
             let imgUrl = "";
             //console.log(item);
             if (item.image.src) {
