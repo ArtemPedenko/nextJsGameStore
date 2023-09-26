@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { FC, useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import IconWrapper from "./IconWrapper";
 import SlierArrowLeft from "./Slider/SliderArrowLeft";
@@ -48,6 +49,7 @@ const SliderNavigationButton = styled.div`
 
 const Slider: FC<sliderProps> = ({ data }) => {
   const gamesData = useAppSelector((state) => state.games.gamesData);
+  console.log(data);
   const data1 = gamesData[1];
   let sliderRef = useRef(null);
   const t = useI18n();
@@ -100,32 +102,37 @@ const Slider: FC<sliderProps> = ({ data }) => {
             });
             return (
               <swiper-slide key={index}>
-                <img class="slide-img" alt="" src={imgUrl} />
-                <div style={{ fontSize: "11px", color: "#959595" }}>
-                  {item.offer.categories[0] === "addons"
-                    ? t(`addon`)
-                    : t(`base_game`)}
-                </div>
-                <div style={{ fontSize: "16px" }}> {item.offer.title} </div>
-                <div>
-                  {" "}
-                  {
-                    item.offer.price.totalPrice.fmtPrice.originalPrice ===
-                    item.offer.price.totalPrice.fmtPrice.discountPrice ? (
-                      item.offer.price.totalPrice.fmtPrice.originalPrice
-                    ) : (
-                      <>
-                        {/* <div  style={{ color: "#959595" }}> */}
-                        <s style={{ color: "#959595" }}>
-                          {item.offer.price.totalPrice.fmtPrice.originalPrice}
-                        </s>
-                        {/* </div> */}
-                        &nbsp;
-                        {item.offer.price.totalPrice.fmtPrice.discountPrice}
-                      </>
-                    ) /* item.offer.price.totalPrice.fmtPrice.discountPrice */
-                  }{" "}
-                </div>
+                <Link
+                  href={`/${item.offer.catalogNs.mappings[0].pageSlug}`}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  <img class="slide-img" alt="" src={imgUrl} />
+                  <div style={{ fontSize: "11px", color: "#959595" }}>
+                    {item.offer.categories[0] === "addons"
+                      ? t(`addon`)
+                      : t(`base_game`)}
+                  </div>
+                  <div style={{ fontSize: "16px" }}> {item.offer.title} </div>
+                  <div>
+                    {" "}
+                    {
+                      item.offer.price.totalPrice.fmtPrice.originalPrice ===
+                      item.offer.price.totalPrice.fmtPrice.discountPrice ? (
+                        item.offer.price.totalPrice.fmtPrice.originalPrice
+                      ) : (
+                        <>
+                          {/* <div  style={{ color: "#959595" }}> */}
+                          <s style={{ color: "#959595" }}>
+                            {item.offer.price.totalPrice.fmtPrice.originalPrice}
+                          </s>
+                          {/* </div> */}
+                          &nbsp;
+                          {item.offer.price.totalPrice.fmtPrice.discountPrice}
+                        </>
+                      ) /* item.offer.price.totalPrice.fmtPrice.discountPrice */
+                    }{" "}
+                  </div>
+                </Link>
               </swiper-slide>
             );
           })}

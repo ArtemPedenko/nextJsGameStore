@@ -32,6 +32,7 @@ const CarouselThumbnailWrapper = styled.div`
 
 export default function Carousel() {
   const chosenGames = useAppSelector((state) => state.games.chosenGames);
+  console.log(chosenGames);
   const animationPrevious = useAppSelector(
     (state) => state.games.animation.previous,
   );

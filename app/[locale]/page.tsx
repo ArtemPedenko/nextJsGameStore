@@ -14,7 +14,7 @@ const Home = async () => {
   const data = await getData(locale);
   //console.log(data);
   const t = await getI18n();
-  const id = "fortnite";
+  const id = "a-plague-tale-requiem";
   return (
     <div>
       <Fetching data={data} />
