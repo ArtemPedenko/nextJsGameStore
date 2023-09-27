@@ -48,6 +48,10 @@ const SliderNavigationButton = styled.div`
   cursor: pointer;
 `;
 
+interface sliderProps {
+  data: any;
+}
+
 const ProductSlider: FC<sliderProps> = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   console.log(data);
