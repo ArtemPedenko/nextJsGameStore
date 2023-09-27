@@ -112,7 +112,6 @@ const Slider: FC<sliderProps> = ({ data }) => {
             return (
               <SwiperSlide className="swiper-slide-slider" key={index}>
                 <Link
-                  prefetch={false}
                   href={`/${url}`}
                   style={{ textDecoration: "none", color: "white" }}
                 >

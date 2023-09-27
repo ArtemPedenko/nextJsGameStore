@@ -1,7 +1,7 @@
 import ProductSlider from "../components/ProductSlider";
 
 const ProductPage = async ({ params }) => {
-  const url = `https://store-content-ipv4.ak.epicgames.com/api/ru/content/products/${params.product}`;
+  const url = `https://store-content-ipv4.ak.epicgames.com/api/${params.locale}/content/products/${params.product}`;
   const response = await fetch(url);
   const responseData = await response.json();
   const data = responseData.pages[1];
