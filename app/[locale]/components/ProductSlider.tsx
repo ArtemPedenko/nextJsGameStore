@@ -54,7 +54,6 @@ interface sliderProps {
 
 const ProductSlider: FC<sliderProps> = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  console.log(data);
   let myRef = useRef(null);
   const t = useI18n();
 
@@ -79,7 +78,6 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
         >
           {data?.carousel.items.map((item, index) => {
             let imgUrl = "";
-            //console.log(item);
             if (item.image.src) {
               imgUrl = item.image.src;
               return (
@@ -122,7 +120,6 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
           >
             {data.carousel?.items.map((item, index) => {
               let imgUrl = "";
-              //console.log(item);
               if (item.image.src) {
                 imgUrl = item.image.src;
                 return (

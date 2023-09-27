@@ -1,14 +1,14 @@
-swiper-container {
+.swiper-container-slider {
   width: 1427px;
   height: 462px;
 }
-swiper-slide {
+.swiper-slide-slider {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.slide-img {
+.slide-img-slider {
   display: block;
   height: 280px;
   width: 212px;

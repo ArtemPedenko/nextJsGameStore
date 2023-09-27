@@ -9,6 +9,11 @@ import SlierArrowLeft from "./Slider/SliderArrowLeft";
 import SliderArrowRight from "./Slider/SliderArrowRight";
 import { useI18n } from "@/locales/client";
 import "./Slider/slider.css";
+import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 import { register } from "swiper/element/bundle";
 register();
 
@@ -85,12 +90,13 @@ const Slider: FC<sliderProps> = ({ data }) => {
             </SliderNavigationButton>
           </SliderNavigation>
         </SliderHead>
-        <swiper-container
+        <Swiper
           ref={sliderRef}
-          slides-per-view="6"
-          space-between="30px"
-          slides-per-group={6}
+          slidesPerView={6}
+          spaceBetween="30px"
+          slidesPerGroup={6}
           loop="true"
+          className="swiper-container-slider"
         >
           {data.offers?.map((item: any, index: number) => {
             let imgUrl = "";
@@ -104,13 +110,13 @@ const Slider: FC<sliderProps> = ({ data }) => {
               }
             });
             return (
-              <swiper-slide key={index}>
+              <SwiperSlide className="swiper-slide-slider" key={index}>
                 <Link
                   prefetch={false}
                   href={`/${url}`}
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  <img className="slide-img" alt="" src={imgUrl} />
+                  <img className="slide-img-slider" alt="" src={imgUrl} />
                   <div style={{ fontSize: "11px", color: "#959595" }}>
                     {item.offer.categories[0] === "addons"
                       ? t(`addon`)
@@ -137,10 +143,10 @@ const Slider: FC<sliderProps> = ({ data }) => {
                     }{" "}
                   </div>
                 </Link>
-              </swiper-slide>
+              </SwiperSlide>
             );
           })}
-        </swiper-container>
+        </Swiper>
       </SliderWrapper>
     </>
   );

@@ -17,8 +17,6 @@ const Fetching: FC<epicProps> = ({ data }) => {
     dispatch(setChosenGames(carouselItems));
   }, []);
 
-  //console.log(chosenGames)
-  //console.log(data);
   return <></>;
 };
 

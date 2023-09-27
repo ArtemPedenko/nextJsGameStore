@@ -40,8 +40,6 @@ const SliderElement: FC<sliderElementProps> = ({
   currentPosition,
   nextPosition,
 }) => {
-  //console.log(animation);
-  //console.log(data);
   return (
     <>
       {data.map((item: any, index: number) => {

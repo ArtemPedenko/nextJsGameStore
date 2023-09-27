@@ -6,7 +6,6 @@ const ProductPage = async ({ params }) => {
   const responseData = await response.json();
   const data = responseData.pages[1];
 
-  console.log(responseData);
   return (
     <div>
       <h1>{data?.data.about.title}</h1>

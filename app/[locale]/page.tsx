@@ -12,15 +12,21 @@ import Link from "next/link";
 const Home = async () => {
   const locale = getCurrentLocale();
   const data = await getData(locale);
-  //console.log(data);
   const t = await getI18n();
+  let sliderGroup = [];
+  data.map((item, index) => {
+    if (item.type === "group") {
+      sliderGroup.push(index);
+    }
+  });
+
   return (
     <div>
       <Fetching data={data} />
       <Carousel />
-      <Slider data={data[1]} />
+      <Slider data={data[sliderGroup[0]]} />
       <ModuleBreaker data={data[2]} />
-      <Slider data={data[4]} />
+      <Slider data={data[sliderGroup[1]]} />
     </div>
   );
 };

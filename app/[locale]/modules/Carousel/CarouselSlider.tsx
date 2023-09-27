@@ -103,7 +103,6 @@ interface SliderProps {
 
 const CarouselSlider: FC<SliderProps> = ({ props }) => {
   const { item, index, animationCurrent, itemPrevious } = props;
-  //console.log(item)
   const t = useI18n();
   return (
     <>
@@ -123,7 +122,7 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
               {item.description}
             </div>
             <ButtonWrapper>
-              <Button contained>{t(`buy`)}</Button>
+              <Button contained="true">{t(`buy`)}</Button>
             </ButtonWrapper>
           </GameInfo>
         </>
