@@ -5,6 +5,7 @@ import CarouselSlider from "./Carousel/CarouselSlider";
 import CarouselThumbnail from "./Carousel/CarouselThumbnail";
 import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
 import { setAnimationCurrent, setAnimationPrevious } from "@/app/store/slice";
+import { v4 as uuidv4 } from "uuid";
 
 const CarouselWrapper = styled.div`
   width: 1427px;
@@ -62,7 +63,7 @@ export default function Carousel() {
         {chosenGames.map((item, index) => {
           return (
             <CarouselSlider
-              key={item.offer.id}
+              key={uuidv4()}
               props={{ item, index, animationCurrent, itemPrevious }}
             />
           );
@@ -73,7 +74,7 @@ export default function Carousel() {
           return (
             <>
               <CarouselThumbnail
-                key={item.offer.namespace}
+                key={uuidv4()}
                 props={{
                   item,
                   animationCurrent,

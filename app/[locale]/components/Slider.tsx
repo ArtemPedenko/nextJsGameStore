@@ -110,7 +110,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
                   href={`/${url}`}
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  <img class="slide-img" alt="" src={imgUrl} />
+                  <img className="slide-img" alt="" src={imgUrl} />
                   <div style={{ fontSize: "11px", color: "#959595" }}>
                     {item.offer.categories[0] === "addons"
                       ? t(`addon`)

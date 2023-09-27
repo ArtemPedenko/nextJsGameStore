@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { FC, useEffect, useState, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import IconWrapper from "./IconWrapper";
@@ -78,8 +79,8 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
             if (item.image.src) {
               imgUrl = item.image.src;
               return (
-                <SwiperSlide class="mySwiper2-slide" key={index}>
-                  <img class="product-slide2-img" alt="" src={imgUrl} />
+                <SwiperSlide className="mySwiper2-slide" key={uuidv4()}>
+                  <img className="product-slide2-img" alt="" src={imgUrl} />
                 </SwiperSlide>
               );
             }
@@ -122,7 +123,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
                 imgUrl = item.image.src;
                 return (
                   <SwiperSlide className="mySwiper-slide" key={index}>
-                    <img class="product-slide-img" alt="" src={imgUrl} />
+                    <img className="product-slide-img" alt="" src={imgUrl} />
                   </SwiperSlide>
                 );
               }

@@ -25,7 +25,7 @@ const ModuleBreaker: FC<ModuleBreakerProps> = ({ data }) => {
       {data.modules.map((item, index) => {
         return (
           <div
-            key={index}
+            key={uuid()}
             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
           >
             <img
