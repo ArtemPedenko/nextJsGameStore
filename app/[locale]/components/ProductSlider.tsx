@@ -49,7 +49,7 @@ const SliderNavigationButton = styled.div`
 
 const ProductSlider: FC<sliderProps> = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  //console.log(data);
+  console.log(data);
   let myRef = useRef(null);
   const t = useI18n();
 
@@ -121,7 +121,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
               if (item.image.src) {
                 imgUrl = item.image.src;
                 return (
-                  <SwiperSlide class="mySwiper-slide" key={index}>
+                  <SwiperSlide className="mySwiper-slide" key={index}>
                     <img class="product-slide-img" alt="" src={imgUrl} />
                   </SwiperSlide>
                 );

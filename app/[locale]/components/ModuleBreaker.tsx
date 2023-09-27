@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { FC, useEffect, useState, useRef } from "react";
 import { useI18n } from "@/locales/client";
+import { v4 as uuid } from "uuid";
 
 const Wrapper = styled.div`
   width: 1427px;
@@ -24,10 +25,10 @@ const ModuleBreaker: FC<ModuleBreakerProps> = ({ data }) => {
       {data.modules.map((item, index) => {
         return (
           <div
+            key={index}
             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
           >
             <img
-              key={index}
               alt=""
               src={item.image.src}
               style={{

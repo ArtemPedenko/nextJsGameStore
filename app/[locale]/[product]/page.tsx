@@ -5,9 +5,6 @@ const ProductPage = async ({ params }) => {
   const response = await fetch(url);
   const responseData = await response.json();
   const data = responseData.pages[1];
-  if (data) {
-    console.log(data)
-  }
 
   console.log(responseData);
   return (
