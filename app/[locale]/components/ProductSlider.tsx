@@ -110,13 +110,13 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
             ref={myRef}
             onSwiper={setThumbsSwiper}
             spaceBetween={30}
-            loop={true}
+            loop="true"
             slidesPerView={8}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Thumbs]}
             className="mySwiper"
-            slidesPerGroup={6}
+            slidesPerGroup={8}
           >
             {data.carousel?.items.map((item, index) => {
               let imgUrl = "";
