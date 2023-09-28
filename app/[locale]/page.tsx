@@ -24,9 +24,9 @@ const Home = async () => {
     <div>
       <Fetching data={data} />
       <Carousel />
-      <Slider data={data[sliderGroup[0]]} />
+      <Slider /* data={data[sliderGroup[0]]} */ sliderGroup={sliderGroup[0]} />
       <ModuleBreaker data={data[2]} />
-      <Slider data={data[sliderGroup[1]]} />
+      <Slider /* data={data[sliderGroup[1]]} */ sliderGroup={sliderGroup[1]} />
     </div>
   );
 };

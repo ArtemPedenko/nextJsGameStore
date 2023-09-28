@@ -18,7 +18,8 @@ import { register } from "swiper/element/bundle";
 register();
 
 interface sliderProps {
-  data: any;
+  /*  data: any; */
+  sliderGroup: number;
 }
 
 const SliderWrapper = styled.div`
@@ -52,9 +53,11 @@ const SliderNavigationButton = styled.div`
   cursor: pointer;
 `;
 
-const Slider: FC<sliderProps> = ({ data }) => {
+const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
   const gamesData = useAppSelector((state) => state.games.gamesData);
-  const data1 = gamesData[1];
+  console.log("sliderGroup", sliderGroup);
+  const data1 = gamesData[sliderGroup];
+  console.log(data1);
   let sliderRef = useRef(null);
   const t = useI18n();
 
@@ -70,7 +73,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
     <>
       <SliderWrapper>
         <SliderHead>
-          {data.title}
+          {data1?.title}
           <SliderNavigation>
             <SliderNavigationButton onClick={() => handlePrev()}>
               <IconWrapper
@@ -98,7 +101,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
           loop="true"
           className="swiper-container-slider"
         >
-          {data.offers?.map((item: any, index: number) => {
+          {data1?.offers.map((item: any, index: number) => {
             let imgUrl = "";
             let url = "";
             item.offer.keyImages.map((imgs: any) => {
