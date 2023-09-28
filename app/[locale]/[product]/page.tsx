@@ -1,4 +1,5 @@
 import ProductSlider from "../components/ProductSlider";
+import StickyGameInfo from "../modules/StickyGameInfo";
 
 const ProductPage = async ({ params }) => {
   const url = `https://store-content-ipv4.ak.epicgames.com/api/${params.locale}/content/products/${params.product}`;
@@ -17,20 +18,21 @@ const ProductPage = async ({ params }) => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            border: "1px solid red",
           }}
         >
           <div style={{ width: "1200px" }}>
             <ProductSlider data={data?.data} />
           </div>
-          <div
+          {/* <div
             style={{
               width: "320px",
               border: "1px solid red",
+              backgroundColor: "white",
             }}
           >
-            asd
-          </div>
+            <img alt="" src={data?.data.hero.logoImage.src} />
+          </div> */}
+          <StickyGameInfo data={data.data} />
         </div>
       </div>
     );

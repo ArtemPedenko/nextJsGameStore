@@ -1,7 +1,6 @@
 .mySwiper2 {
   width: 1200px;
   height: 680px;
-  border: 1px solid red;
 }
 .mySwiper2-slide {
   display: flex;
@@ -21,7 +20,6 @@
   width: 1000px;
   height: 50px;
   cursor: pointer;
-  border: 1px solid green;
 }
 .mySwiper-slide {
   display: flex;
@@ -35,12 +33,3 @@
   object-fit: cover;
   border-radius: 5px;
 }
-
-/* .swiper-button-next,
-.swiper-button-prev {
-  border: 1px solid red;
-  color: red;
-  justify-content: center;
-  align-items: center;
-  margin: auto 0;
-} */
