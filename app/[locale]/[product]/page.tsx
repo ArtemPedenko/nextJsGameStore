@@ -6,33 +6,37 @@ const ProductPage = async ({ params }) => {
   const responseData = await response.json();
   const data = responseData.pages[1];
 
-  return (
-    <div>
-      <h1>{data?.data.about.title}</h1>
-      <div
-        style={{
-          width: "1600px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          border: "1px solid red",
-        }}
-      >
-        <div style={{ width: "1200px" }}>
-          <ProductSlider data={data?.data} />
-        </div>
+  if (data) {
+    return (
+      <div>
+        <h1>{data?.data.about.title}</h1>
         <div
           style={{
-            width: "320px",
+            width: "1600px",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
             border: "1px solid red",
           }}
         >
-          asd
+          <div style={{ width: "1200px" }}>
+            <ProductSlider data={data?.data} />
+          </div>
+          <div
+            style={{
+              width: "320px",
+              border: "1px solid red",
+            }}
+          >
+            asd
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div>Полномочия - всё</div>;
+  }
 };
 
 export default ProductPage;

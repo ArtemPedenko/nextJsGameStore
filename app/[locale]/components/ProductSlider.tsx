@@ -53,6 +53,7 @@ interface sliderProps {
 }
 
 const ProductSlider: FC<sliderProps> = ({ data }) => {
+  console.log(data);
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   let myRef = useRef(null);
   const t = useI18n();
@@ -144,5 +145,6 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
     </>
   );
 };
+//
 
 export default ProductSlider;
