@@ -8,6 +8,7 @@ import { useI18n, useScopedI18n } from "../../../locales/client";
 
 interface gameInfoProps {
   data: any;
+  offerData: any;
 }
 
 const Wrapper = styled.div`
@@ -17,11 +18,13 @@ const Wrapper = styled.div`
   background-color: white;
   width: 320px;
   border-radius: 6px;
+  color: black;
 `;
 
-const StickyGameInfo: FC<gameInfoProps> = ({ data }) => {
+const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
   console.log(data);
-
+  console.log(offerData);
+  //
   return (
     <Wrapper>
       <img
@@ -29,6 +32,12 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data }) => {
         src={data.hero.logoImage.src}
         style={{ width: "280px", padding: "20px" }}
       />
+      <div>
+        {
+          offerData.data.Catalog.catalogOffer.price.totalPrice.fmtPrice
+            .originalPrice
+        }
+      </div>
     </Wrapper>
   );
 };
