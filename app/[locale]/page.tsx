@@ -9,6 +9,7 @@ import ModuleBreaker from "./components/ModuleBreaker";
 import { getCurrentLocale } from "../../locales/server";
 import Link from "next/link";
 
+
 const Home = async () => {
   const locale = getCurrentLocale();
   const data = await getData(locale);

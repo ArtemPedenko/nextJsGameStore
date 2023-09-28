@@ -22,8 +22,8 @@ const Wrapper = styled.div`
 `;
 
 const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
-  console.log(data);
-  console.log(offerData);
+  //console.log(data);
+  //console.log(offerData);
   //
   return (
     <Wrapper>

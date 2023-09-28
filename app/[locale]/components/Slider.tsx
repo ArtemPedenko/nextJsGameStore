@@ -55,7 +55,7 @@ const SliderNavigationButton = styled.div`
 
 const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
   const gamesData = useAppSelector((state) => state.games.gamesData);
-  console.log("sliderGroup", sliderGroup);
+  //console.log("sliderGroup", sliderGroup);
   const data1 = gamesData[sliderGroup];
   console.log(data1);
   let sliderRef = useRef(null);
@@ -115,7 +115,7 @@ const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
             return (
               <SwiperSlide className="swiper-slide-slider" key={index}>
                 <Link
-                  href={`/${url}`}
+                  href={`/${url}/${item.id}/${item.namespace}`}
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   <img className="slide-img-slider" alt="" src={imgUrl} />
