@@ -22,45 +22,28 @@ const ProductPage = async ({ searchParams, params }) => {
 
 	return (
 		<>
-			<Logger
+			{/* <Logger
 				data={data}
 				offerData={offerData}
 				productImageData={productImageData}
 			/>
-			<ProductSlider data={productImageData} />
+ */}
+			<div
+				style={{
+					width: '1600px',
+					margin: '0 auto',
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+				}}
+			>
+				<div style={{ width: '1200px' }}>
+					<ProductSlider data={productImageData} />
+				</div>
+				<StickyGameInfo data={data} offerData={offerData} />
+			</div>
 		</>
 	);
-
-	/* if (data) {
-		return (
-			<div>
-				id {params.product[1]} <br />
-				namespace {params.product[2]}
-				<h1>{data?.data.about.title}</h1>
-				<div
-					style={{
-						width: '1600px',
-						margin: '0 auto',
-						display: 'flex',
-						flexDirection: 'row',
-						justifyContent: 'space-between',
-					}}
-				>
-					<div style={{ width: '1200px' }}>
-						<ProductSlider data={data?.data} />
-					</div>
-					<StickyGameInfo data={data.data} offerData={offerData} />
-				</div>
-			</div>
-		);
-	} else {
-		return (
-			<>
-				<div>Полномочия - всё</div>
-				<Logger data={offerData} dataLog={data} />
-			</>
-		);
-	} */
 };
 
 export default ProductPage;

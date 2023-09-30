@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import styled from 'styled-components'
-import { FC, useEffect, useState, useRef } from 'react'
-import Link from 'next/link'
-import { useAppDispatch, useAppSelector } from '@/app/store/hooks'
-import IconWrapper from './IconWrapper'
-import SlierArrowLeft from './Slider/SliderArrowLeft'
-import SliderArrowRight from './Slider/SliderArrowRight'
-import { useI18n } from '@/locales/client'
-import './Slider/slider.css'
-import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/free-mode'
-import 'swiper/css/navigation'
-import 'swiper/css/thumbs'
-import { register } from 'swiper/element/bundle'
-register()
+import styled from 'styled-components';
+import { FC, useEffect, useState, useRef } from 'react';
+import Link from 'next/link';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import IconWrapper from './IconWrapper';
+import SlierArrowLeft from './Slider/SliderArrowLeft';
+import SliderArrowRight from './Slider/SliderArrowRight';
+import { useI18n } from '@/locales/client';
+import './Slider/slider.css';
+import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import { register } from 'swiper/element/bundle';
+register();
 
 interface sliderProps {
 	/*  data: any; */
-	sliderGroup: number
+	sliderGroup: number;
 }
 
 const SliderWrapper = styled.div`
@@ -28,19 +28,19 @@ const SliderWrapper = styled.div`
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-`
+`;
 
 const SliderHead = styled.div`
 	display: flex;
 	justify-content: space-between;
 	margin: 0 0 18px 0;
-`
+`;
 
 const SliderNavigation = styled.div`
 	display: flex;
 	flex-direction: row;
 	gap: 10px;
-`
+`;
 
 const SliderNavigationButton = styled.div`
 	height: 30px;
@@ -51,22 +51,22 @@ const SliderNavigationButton = styled.div`
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-`
+`;
 
 const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
-	const gamesData = useAppSelector(state => state.games.gamesData)
+	const gamesData = useAppSelector((state) => state.games.gamesData);
 	//console.log("sliderGroup", sliderGroup);
-	const data1 = gamesData[sliderGroup]
-	console.log(data1)
-	let sliderRef = useRef(null)
-	const t = useI18n()
+	const data1 = gamesData[sliderGroup];
+	console.log(data1);
+	let sliderRef = useRef(null);
+	const t = useI18n();
 
 	function handleNext() {
-		sliderRef?.current.swiper.slideNext()
+		sliderRef?.current.swiper.slideNext();
 	}
 
 	function handlePrev() {
-		sliderRef?.current.swiper.slidePrev()
+		sliderRef?.current.swiper.slidePrev();
 	}
 
 	return (
@@ -102,16 +102,16 @@ const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
 					className='swiper-container-slider'
 				>
 					{data1?.offers.map((item: any, index: number) => {
-						let imgUrl = ''
-						let url = ''
+						let imgUrl = '';
+						let url = '';
 						item.offer.keyImages.map((imgs: any) => {
 							if (imgs.type === 'Thumbnail') {
-								imgUrl = imgs.url
+								imgUrl = imgs.url;
 								if (item.offer.catalogNs?.mappings) {
-									url = item.offer.catalogNs?.mappings[0].pageSlug
+									url = item.offer.catalogNs?.mappings[0].pageSlug;
 								}
 							}
-						})
+						});
 						return (
 							<SwiperSlide className='swiper-slide-slider' key={index}>
 								<Link
@@ -150,12 +150,12 @@ const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
 									</div>
 								</Link>
 							</SwiperSlide>
-						)
+						);
 					})}
 				</Swiper>
 			</SliderWrapper>
 		</>
-	)
-}
+	);
+};
 
-export default Slider
+export default Slider;

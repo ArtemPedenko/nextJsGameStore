@@ -10,13 +10,12 @@ interface gameInfoProps {
 
 const Logger: FC<gameInfoProps> = ({ data, offerData, productImageData }) => {
 	console.log('data');
-
 	console.log(data);
 
 	console.log('offerData');
 	console.log(offerData);
-	console.log('productImageData');
 
+	console.log('productImageData');
 	console.log(productImageData);
 	//console.log(offerData);
 	//
