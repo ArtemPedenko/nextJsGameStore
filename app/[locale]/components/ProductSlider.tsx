@@ -66,94 +66,75 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 		myRef?.current.swiper.slidePrev();
 	}
 
-	if (data) {
-		return (
-			<>
-				<SliderWrapper>
-					<SliderHead>{data?.title}</SliderHead>
+	return (
+		<>
+			<SliderWrapper>
+				<Swiper
+					loop={true}
+					spaceBetween={10}
+					thumbs={{ swiper: thumbsSwiper }}
+					modules={[FreeMode, Navigation, Thumbs]}
+					className='mySwiper2'
+				>
+					{data.map((item) => {
+						return (
+							<SwiperSlide className='mySwiper2-slide' key={uuidv4()}>
+								<img className='product-slide2-img' alt='' src={item} />
+							</SwiperSlide>
+						);
+					})}
+				</Swiper>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'space-around',
+						alignItems: 'center',
+						marginTop: '20px',
+					}}
+				>
+					<SliderNavigationButton onClick={() => handlePrev()}>
+						<IconWrapper
+							icon={<SlierArrowLeft />}
+							height='40px'
+							width='40px'
+							margin='auto auto'
+						/>
+					</SliderNavigationButton>
+
 					<Swiper
-						loop={true}
+						ref={myRef}
+						onSwiper={setThumbsSwiper}
 						spaceBetween={10}
-						thumbs={{ swiper: thumbsSwiper }}
-						modules={[FreeMode, Navigation, Thumbs]}
-						className='mySwiper2'
+						loop={true}
+						slidesPerView={4}
+						freeMode={true}
+						watchSlidesProgress={true}
+						modules={[FreeMode, Thumbs]}
+						className='mySwiper'
+						slidesPerGroup={4}
 					>
-						{data.Product.sandbox.configuration[1].configs.keyImages.map(
-							(item, index) => {
-								let imgUrl = '';
-								if (item.type === 'featuredMedia') {
-									imgUrl = item.url;
-									return (
-										<SwiperSlide className='mySwiper2-slide' key={uuidv4()}>
-											<img className='product-slide2-img' alt='' src={imgUrl} />
-										</SwiperSlide>
-									);
-								}
-							}
-						)}
+						{data.map((item) => {
+							return (
+								<SwiperSlide className='mySwiper-slide' key={uuidv4()}>
+									<img className='product-slide-img' alt='' src={item} />
+								</SwiperSlide>
+							);
+						})}
 					</Swiper>
-					<div
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							justifyContent: 'space-around',
-							alignItems: 'center',
-							marginTop: '20px',
-						}}
-					>
-						<SliderNavigationButton onClick={() => handlePrev()}>
-							<IconWrapper
-								icon={<SlierArrowLeft />}
-								height='40px'
-								width='40px'
-								margin='auto auto'
-							/>
-						</SliderNavigationButton>
 
-						<Swiper
-							ref={myRef}
-							onSwiper={setThumbsSwiper}
-							spaceBetween={10}
-							loop={true}
-							slidesPerView={4}
-							freeMode={true}
-							watchSlidesProgress={true}
-							modules={[FreeMode, Thumbs]}
-							className='mySwiper'
-							slidesPerGroup={4}
-						>
-							{data.Product.sandbox.configuration[1].configs.keyImages.map(
-								(item, index) => {
-									let imgUrl = '';
-									if (item.type === 'featuredMedia') {
-										imgUrl = item.url;
-										return (
-											<SwiperSlide className='mySwiper-slide' key={index}>
-												<img
-													className='product-slide-img'
-													alt=''
-													src={imgUrl}
-												/>
-											</SwiperSlide>
-										);
-									}
-								}
-							)}
-						</Swiper>
-
-						<SliderNavigationButton onClick={() => handleNext()}>
-							<IconWrapper
-								icon={<SliderArrowRight />}
-								height='40px'
-								width='40px'
-								margin='auto auto'
-							/>
-						</SliderNavigationButton>
-					</div>
-				</SliderWrapper>
-			</>
-		);
-	}
+					<SliderNavigationButton onClick={() => handleNext()}>
+						<IconWrapper
+							icon={<SliderArrowRight />}
+							height='40px'
+							width='40px'
+							margin='auto auto'
+						/>
+					</SliderNavigationButton>
+				</div>
+			</SliderWrapper>
+		</>
+	);
 };
 //
 

@@ -9,25 +9,51 @@ const ProductPage = async ({ searchParams, params }) => {
 	async function getData(url: string) {
 		const response = await fetch(url);
 		const responseData = await response.json();
-		return responseData.data;
+		return responseData;
 	}
 
 	const url = `https://store.epicgames.com/graphql?operationName=getStoreConfig&variables=%7B%22locale%22:%22${params.locale}%22,%22sandboxId%22:%22${searchParams.namespace}%22%7D&extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%220247771a057e44ee16627574296ad79fd48e41b4cb056465515a54ade05aa7f2%22%7D%7D`;
 	const productImagesUrl = `https://store.epicgames.com/graphql?operationName=getProductHomeConfig&variables=%7B%22locale%22:%22${params.locale}%22,%22sandboxId%22:%22${searchParams.namespace}%22%7D&extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%225a922bd3e5c84b60a4f443a019ef640b05cb0ae379beb4aca4515bf9812dfcb4%22%7D%7D`;
+	const productImagesUrlAnother = `https://store-content-ipv4.ak.epicgames.com/api/${params.locale}/content/products/${params.product[1]}`;
 	const offerUrl = `https://store.epicgames.com/graphql?operationName=getCatalogOffer&variables=%7B%22locale%22:%22${params.locale}%22,%22country%22:%22RU%22,%22offerId%22:%22${searchParams.id}%22,%22sandboxId%22:%22${searchParams.namespace}%22%7D&extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%22c4ad546ad2757b60ff13ace19ffaf134abb23cb663244de34771a0444abfdf33%22%7D%7D`;
 
 	const data = await getData(url);
-	const productImageData = await getData(productImagesUrl);
+	let productImageData = await getData(productImagesUrl);
+	let imageArray = [];
 	const offerData = await getData(offerUrl);
+
+	if (productImageData.data.Product.sandbox.configuration[1] === undefined) {
+		console.log('undeffffff');
+		productImageData = await getData(productImagesUrlAnother);
+		imageArray = productImageData.pages[0]._images_;
+		console.log(productImageData);
+		//productImageArray = [...productImageData?.pages[0]._images_];
+	} else if (productImageData.data.Product.sandbox.configuration[1]) {
+		//item.type === 'featuredMedia'
+		productImageData.data.Product.sandbox.configuration[1].configs.keyImages.map(
+			(item) => {
+				if (item.type === 'featuredMedia') {
+					imageArray.push(item.url);
+				}
+			}
+		);
+	}
+
+	/* return (
+		<>
+			<Logger data={data} offerData={offerData} productImageData={imageArray} />
+			<ProductSlider data={imageArray} />
+		</>
+	); */
 
 	return (
 		<>
-			{/* <Logger
+			<Logger
 				data={data}
 				offerData={offerData}
 				productImageData={productImageData}
 			/>
- */}
+
 			<div
 				style={{
 					width: '1600px',
@@ -38,9 +64,9 @@ const ProductPage = async ({ searchParams, params }) => {
 				}}
 			>
 				<div style={{ width: '1200px' }}>
-					<ProductSlider data={productImageData} />
+					<ProductSlider data={imageArray} />
 				</div>
-				<StickyGameInfo data={data} offerData={offerData} />
+				{/* <StickyGameInfo data={data.data} offerData={offerData.data} /> */}
 			</div>
 		</>
 	);

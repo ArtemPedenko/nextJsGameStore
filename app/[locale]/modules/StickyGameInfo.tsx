@@ -27,7 +27,7 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 	//console.log(data);
 	//console.log(offerData);
 	//
-	console.log(data);
+	const t = useI18n();
 
 	if (data) {
 		return (
@@ -41,12 +41,13 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 						border: '1px solid red',
 					}}
 				/>
-				{/* <div>
-          {
-            offerData.data.Catalog.catalogOffer.price.totalPrice.fmtPrice
-              .originalPrice
-          }
-        </div> */}
+				<div>
+					{offerData.Catalog.catalogOffer.offerType === 'BASE_GAME' ? (
+						t('base_game')
+					) : (
+						<></>
+					)}
+				</div>
 			</Wrapper>
 		);
 	}

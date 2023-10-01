@@ -57,7 +57,6 @@ const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
 	const gamesData = useAppSelector((state) => state.games.gamesData);
 	//console.log("sliderGroup", sliderGroup);
 	const data1 = gamesData[sliderGroup];
-	console.log(data1);
 	let sliderRef = useRef(null);
 	const t = useI18n();
 
@@ -119,7 +118,6 @@ const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
 										pathname: `${url}`,
 										query: { id: `${item.id}`, namespace: `${item.namespace}` },
 									}}
-									//href={`/${url}/${item.id}/${item.namespace}`}
 									style={{ textDecoration: 'none', color: 'white' }}
 								>
 									<img className='slide-img-slider' alt='' src={imgUrl} />
