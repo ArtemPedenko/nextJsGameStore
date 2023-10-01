@@ -29,28 +29,13 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 	//
 	const t = useI18n();
 
-	if (data) {
-		return (
-			<Wrapper>
-				<img
-					alt=''
-					src={data?.Product.sandbox.configuration[0].configs.keyImages[0].url}
-					style={{
-						width: '280px',
-						padding: '20px',
-						border: '1px solid red',
-					}}
-				/>
-				<div>
-					{offerData.Catalog.catalogOffer.offerType === 'BASE_GAME' ? (
-						t('base_game')
-					) : (
-						<></>
-					)}
-				</div>
-			</Wrapper>
-		);
-	}
+	return (
+		<Wrapper>
+			<div>{offerData.title}</div>
+			<div>{offerData.offerType === 'BASE_GAME' ? t('base_game') : <></>}</div>
+			<div>{offerData.price}</div>
+		</Wrapper>
+	);
 };
 
 export default StickyGameInfo;

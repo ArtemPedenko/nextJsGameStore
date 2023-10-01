@@ -20,7 +20,7 @@ import 'swiper/css/thumbs';
 
 const SliderWrapper = styled.div`
 	width: 1200px;
-	height: 1000px;
+	height: 800px;
 	display: flex;
 	flex-direction: column;
 `;

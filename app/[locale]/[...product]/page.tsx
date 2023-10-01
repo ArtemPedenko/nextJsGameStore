@@ -21,6 +21,14 @@ const ProductPage = async ({ searchParams, params }) => {
 	let productImageData = await getData(productImagesUrl);
 	let imageArray = [];
 	const offerData = await getData(offerUrl);
+	let offerDataObj = {
+		description: offerData.data.Catalog.catalogOffer.description,
+		offerType: offerData.data.Catalog.catalogOffer.offerType,
+		price:
+			offerData.data.Catalog.catalogOffer.price.totalPrice.fmtPrice
+				.originalPrice,
+		title: offerData.data.Catalog.catalogOffer.title,
+	};
 
 	if (productImageData.data.Product.sandbox.configuration[1] === undefined) {
 		console.log('undeffffff');
@@ -65,8 +73,9 @@ const ProductPage = async ({ searchParams, params }) => {
 			>
 				<div style={{ width: '1200px' }}>
 					<ProductSlider data={imageArray} />
+					{offerDataObj.description}
 				</div>
-				{/* <StickyGameInfo data={data.data} offerData={offerData.data} /> */}
+				<StickyGameInfo data={data.data} offerData={offerDataObj} />
 			</div>
 		</>
 	);
