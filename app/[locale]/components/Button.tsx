@@ -13,9 +13,10 @@ const StyledButton = styled.button<StyledButtonProps>((props) => ({
   height: "50px",
   width: "100%",
   background: props.contained ? "#ffffff" : "none",
+  color: props.contained ? "black" : "white",
   cursor: "pointer",
   "&:hover": {
-    backgroundColor: "#ffffff", // or other color,
+    backgroundColor: "#ffffff",
     opacity: "0.9",
   },
 }));
