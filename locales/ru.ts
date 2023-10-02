@@ -10,6 +10,8 @@ export default {
   gamePrice1: "От",
   gamePrice2: "Руб.",
   buy: "КУПИТЬ СЕЙЧАС",
+  add_to_cart: "ДОБАВИТЬ В КОРЗИНУ",
+  add_to_wishlist: "ДОБАВИТЬ В СПИСОК ЖЕЛАЕМОГО",
   base_game: "БАЗОВАЯ ИГРА",
   addon: "АДДОН",
 } as const;

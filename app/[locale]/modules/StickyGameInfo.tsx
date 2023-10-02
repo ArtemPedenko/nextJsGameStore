@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   width: 320px;
   border-radius: 6px;
   color: white;
-
+  gap: 15px;
   border: 1px solid red;
 `;
 
@@ -36,6 +36,8 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
       <div>{offerData.offerType === "BASE_GAME" ? t("base_game") : <></>}</div>
       <div>{offerData.price}</div>
       <Button>{t("buy")}</Button>
+      <Button>{t("add_to_cart")}</Button>
+      <Button>{t("add_to_wishlist")}</Button>
     </Wrapper>
   );
 };

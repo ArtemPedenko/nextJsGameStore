@@ -10,6 +10,8 @@ export default {
   gamePrice1: "Starting at RUB",
   gamePrice2: "",
   buy: "BUY NOW",
+  add_to_cart: "ADD TO CART",
+  add_to_wishlist: "ADD TO WISHLIST",
   base_game: "BASE GAME",
   addon: "ADDON",
 } as const;
