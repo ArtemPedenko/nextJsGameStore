@@ -14,4 +14,5 @@ export default {
   add_to_wishlist: "ADD TO WISHLIST",
   base_game: "BASE GAME",
   addon: "ADDON",
+  developer: "Developer",
 } as const;

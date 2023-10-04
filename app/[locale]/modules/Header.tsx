@@ -51,9 +51,9 @@ export default function Header() {
             width="50px"
             margin="0 10px"
           />
-          <HeaderButton href="./">{t(`store`)}</HeaderButton>
-          <HeaderButton href="./">{t(`distribution`)}</HeaderButton>
-          <HeaderButton href="./">{t(`support`)}</HeaderButton>
+          <HeaderButton href="/">{t(`store`)}</HeaderButton>
+          <HeaderButton href="/">{t(`distribution`)}</HeaderButton>
+          <HeaderButton href="/">{t(`support`)}</HeaderButton>
           <Divider />
           <HeaderButton href="https://www.unrealengine.com/en-US">
             UNREAL ENGINE

@@ -1,10 +1,13 @@
 import ProductSlider from "../components/ProductSlider";
 import StickyGameInfo from "../modules/StickyGameInfo";
 import Logger from "./logger";
+import { getI18n } from "@/locales/server";
 //
 const ProductPage = async ({ searchParams, params }) => {
   console.log(searchParams);
   console.log(params);
+
+  const t = await getI18n();
 
   async function getData(url: string) {
     const response = await fetch(url);
@@ -28,6 +31,7 @@ const ProductPage = async ({ searchParams, params }) => {
       offerData.data.Catalog.catalogOffer.price.totalPrice.fmtPrice
         .originalPrice,
     title: offerData.data.Catalog.catalogOffer.title,
+    developer: offerData.data.Catalog.catalogOffer.developerDisplayName,
   };
 
   if (productImageData.data.Product.sandbox.configuration[1] === undefined) {
@@ -84,7 +88,8 @@ const ProductPage = async ({ searchParams, params }) => {
       >
         <div style={{ width: "1200px" }}>
           <ProductSlider data={imageArray} />
-          {offerDataObj.description}
+          {offerDataObj.description} <br />
+          {t(`developer`)} : {offerDataObj.developer}
         </div>
         <StickyGameInfo data={data.data} offerData={offerDataObj} />
       </div>

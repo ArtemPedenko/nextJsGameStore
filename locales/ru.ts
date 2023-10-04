@@ -14,4 +14,5 @@ export default {
   add_to_wishlist: "ДОБАВИТЬ В СПИСОК ЖЕЛАЕМОГО",
   base_game: "БАЗОВАЯ ИГРА",
   addon: "АДДОН",
+  developer: "Разработчик",
 } as const;
