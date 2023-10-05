@@ -1,3 +1,5 @@
+import Slider from "../components/Slider";
+
 const allGamesPage = async ({ params }) => {
   async function getData(url: string) {
     const response = await fetch(url);
@@ -7,6 +9,10 @@ const allGamesPage = async ({ params }) => {
 
   const url = `https://egs-platform-service.store.epicgames.com/api/v1/egs/category-cards?count=100&country=RU&locale=${params.locale}&start=0&store=EGS`;
   const genres = await getData(url);
+  let genresImgArray = [];
+  genres.data.map((item) => {
+    genresImgArray.push(item.images[0])
+  })
   console.log(genres.offerDataObj);
   return (
     <>

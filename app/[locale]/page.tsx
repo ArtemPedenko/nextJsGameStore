@@ -15,19 +15,27 @@ const Home = async () => {
   const data = await getData(locale);
   const t = await getI18n();
   let sliderGroup = [];
-  data.map((item, index) => {
+  const sliderData = [];
+  data.map((item: any, index: number) => {
     if (item.type === "group") {
       sliderGroup.push(index);
+      sliderData.push(item)
     }
   });
+
+  let log = []
+
+
+
+
 
   return (
     <div>
       <Fetching data={data} />
       <Carousel />
-      <Slider /* data={data[sliderGroup[0]]} */ sliderGroup={sliderGroup[0]} />
+      <Slider data={sliderData} sliderGroup={sliderGroup[0]} />
       <ModuleBreaker data={data[2]} />
-      <Slider /* data={data[sliderGroup[1]]} */ sliderGroup={sliderGroup[1]} />
+      <Slider data={log} sliderGroup={sliderGroup[1]} />
     </div>
   );
 };

@@ -18,7 +18,7 @@ import { register } from 'swiper/element/bundle';
 register();
 
 interface sliderProps {
-	/*  data: any; */
+	 data: any;
 	sliderGroup: number;
 }
 
@@ -53,10 +53,12 @@ const SliderNavigationButton = styled.div`
 	cursor: pointer;
 `;
 
-const Slider: FC<sliderProps> = ({ /* data, */ sliderGroup }) => {
+const Slider: FC<sliderProps> = ({ data, sliderGroup }) => {
 	const gamesData = useAppSelector((state) => state.games.gamesData);
 	//console.log("sliderGroup", sliderGroup);
 	const data1 = gamesData[sliderGroup];
+	//console.log(data)
+	console.log(data1)
 	let sliderRef = useRef(null);
 	const t = useI18n();
 

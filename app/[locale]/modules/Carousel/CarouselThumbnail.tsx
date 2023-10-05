@@ -95,7 +95,6 @@ interface CarouselThumbnailProps {
 const CarouselThumbnail: FC<CarouselThumbnailProps> = ({ props }) => {
   const { item, index, animationCurrent, chooseCarousel, animationController } =
     props;
-  console.log(item);
 
   return (
     <AnimationWrapper>
