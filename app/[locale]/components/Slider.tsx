@@ -1,161 +1,161 @@
-'use client';
+"use client";
 
-import styled from 'styled-components';
-import { FC, useEffect, useState, useRef } from 'react';
-import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
-import IconWrapper from './IconWrapper';
-import SlierArrowLeft from './Slider/SliderArrowLeft';
-import SliderArrowRight from './Slider/SliderArrowRight';
-import { useI18n } from '@/locales/client';
-import './Slider/slider.css';
-import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
-import { register } from 'swiper/element/bundle';
+import styled from "styled-components";
+import { FC, useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import IconWrapper from "./IconWrapper";
+import SlierArrowLeft from "./Slider/SliderArrowLeft";
+import SliderArrowRight from "./Slider/SliderArrowRight";
+import { useI18n } from "@/locales/client";
+import "./Slider/slider.css";
+import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { register } from "swiper/element/bundle";
 register();
 
 interface sliderProps {
-	 data: any;
-	sliderGroup: number;
+  data: any;
+  sliderGroup: number;
 }
 
 const SliderWrapper = styled.div`
-	width: 1427px;
-	height: 462px;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
+  width: 1427px;
+  height: 462px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 const SliderHead = styled.div`
-	display: flex;
-	justify-content: space-between;
-	margin: 0 0 18px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 18px 0;
 `;
 
 const SliderNavigation = styled.div`
-	display: flex;
-	flex-direction: row;
-	gap: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 `;
 
 const SliderNavigationButton = styled.div`
-	height: 30px;
-	width: 30px;
-	border-radius: 100%;
-	background-color: #2a2a2a;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  background-color: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const Slider: FC<sliderProps> = ({ data, sliderGroup }) => {
-	const gamesData = useAppSelector((state) => state.games.gamesData);
-	//console.log("sliderGroup", sliderGroup);
-	const data1 = gamesData[sliderGroup];
-	//console.log(data)
-	console.log(data1)
-	let sliderRef = useRef(null);
-	const t = useI18n();
+  const gamesData = useAppSelector((state) => state.games.gamesData);
+  //console.log("sliderGroup", sliderGroup);
+  const data1 = gamesData[sliderGroup];
+  console.log(data1);
+  console.log(data);
+  let sliderRef = useRef(null);
+  const t = useI18n();
 
-	function handleNext() {
-		sliderRef?.current.swiper.slideNext();
-	}
+  function handleNext() {
+    sliderRef?.current.swiper.slideNext();
+  }
 
-	function handlePrev() {
-		sliderRef?.current.swiper.slidePrev();
-	}
+  function handlePrev() {
+    sliderRef?.current.swiper.slidePrev();
+  }
 
-	return (
-		<>
-			<SliderWrapper>
-				<SliderHead>
-					{data1?.title}
-					<SliderNavigation>
-						<SliderNavigationButton onClick={() => handlePrev()}>
-							<IconWrapper
-								icon={<SlierArrowLeft />}
-								height='20px'
-								width='20px'
-								margin='0 auto'
-							/>
-						</SliderNavigationButton>
-						<SliderNavigationButton onClick={() => handleNext()}>
-							<IconWrapper
-								icon={<SliderArrowRight />}
-								height='20px'
-								width='20px'
-								margin='0 auto'
-							/>
-						</SliderNavigationButton>
-					</SliderNavigation>
-				</SliderHead>
-				<Swiper
-					ref={sliderRef}
-					slidesPerView={6}
-					spaceBetween='30px'
-					slidesPerGroup={6}
-					loop='true'
-					className='swiper-container-slider'
-				>
-					{data1?.offers.map((item: any, index: number) => {
-						let imgUrl = '';
-						let url = '';
-						item.offer.keyImages.map((imgs: any) => {
-							if (imgs.type === 'Thumbnail') {
-								imgUrl = imgs.url;
-								if (item.offer.catalogNs?.mappings) {
-									url = item.offer.catalogNs?.mappings[0].pageSlug;
-								}
-							}
-						});
-						return (
-							<SwiperSlide className='swiper-slide-slider' key={index}>
-								<Link
-									href={{
-										pathname: `${url}`,
-										query: { id: `${item.id}`, namespace: `${item.namespace}` },
-									}}
-									style={{ textDecoration: 'none', color: 'white' }}
-								>
-									<img className='slide-img-slider' alt='' src={imgUrl} />
-									<div style={{ fontSize: '11px', color: '#959595' }}>
-										{item.offer.categories[0] === 'addons'
-											? t(`addon`)
-											: t(`base_game`)}
-									</div>
-									<div style={{ fontSize: '16px' }}> {item.offer.title} </div>
-									<div>
-										{' '}
-										{
-											item.offer.price.totalPrice.fmtPrice.originalPrice ===
-											item.offer.price.totalPrice.fmtPrice.discountPrice ? (
-												item.offer.price.totalPrice.fmtPrice.originalPrice
-											) : (
-												<>
-													{/* <div  style={{ color: "#959595" }}> */}
-													<s style={{ color: '#959595' }}>
-														{item.offer.price.totalPrice.fmtPrice.originalPrice}
-													</s>
-													{/* </div> */}
-													&nbsp;
-													{item.offer.price.totalPrice.fmtPrice.discountPrice}
-												</>
-											) /* item.offer.price.totalPrice.fmtPrice.discountPrice */
-										}{' '}
-									</div>
-								</Link>
-							</SwiperSlide>
-						);
-					})}
-				</Swiper>
-			</SliderWrapper>
-		</>
-	);
+  return (
+    <>
+      <SliderWrapper>
+        <SliderHead>
+          {data1?.title}
+          <SliderNavigation>
+            <SliderNavigationButton onClick={() => handlePrev()}>
+              <IconWrapper
+                icon={<SlierArrowLeft />}
+                height="20px"
+                width="20px"
+                margin="0 auto"
+              />
+            </SliderNavigationButton>
+            <SliderNavigationButton onClick={() => handleNext()}>
+              <IconWrapper
+                icon={<SliderArrowRight />}
+                height="20px"
+                width="20px"
+                margin="0 auto"
+              />
+            </SliderNavigationButton>
+          </SliderNavigation>
+        </SliderHead>
+        <Swiper
+          ref={sliderRef}
+          slidesPerView={6}
+          spaceBetween="30px"
+          slidesPerGroup={6}
+          loop="true"
+          className="swiper-container-slider"
+        >
+          {data1?.offers.map((item: any, index: number) => {
+            let imgUrl = "";
+            let url = "";
+            item.offer.keyImages.map((imgs: any) => {
+              if (imgs.type === "Thumbnail") {
+                imgUrl = imgs.url;
+                if (item.offer.catalogNs?.mappings) {
+                  url = item.offer.catalogNs?.mappings[0].pageSlug;
+                }
+              }
+            });
+            return (
+              <SwiperSlide className="swiper-slide-slider" key={index}>
+                <Link
+                  href={{
+                    pathname: `${url}`,
+                    query: { id: `${item.id}`, namespace: `${item.namespace}` },
+                  }}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  <img className="slide-img-slider" alt="" src={imgUrl} />
+                  <div style={{ fontSize: "11px", color: "#959595" }}>
+                    {item.offer.categories[0] === "addons"
+                      ? t(`addon`)
+                      : t(`base_game`)}
+                  </div>
+                  <div style={{ fontSize: "16px" }}> {item.offer.title} </div>
+                  <div>
+                    {" "}
+                    {
+                      item.offer.price.totalPrice.fmtPrice.originalPrice ===
+                      item.offer.price.totalPrice.fmtPrice.discountPrice ? (
+                        item.offer.price.totalPrice.fmtPrice.originalPrice
+                      ) : (
+                        <>
+                          {/* <div  style={{ color: "#959595" }}> */}
+                          <s style={{ color: "#959595" }}>
+                            {item.offer.price.totalPrice.fmtPrice.originalPrice}
+                          </s>
+                          {/* </div> */}
+                          &nbsp;
+                          {item.offer.price.totalPrice.fmtPrice.discountPrice}
+                        </>
+                      ) /* item.offer.price.totalPrice.fmtPrice.discountPrice */
+                    }{" "}
+                  </div>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </SliderWrapper>
+    </>
+  );
 };
 
 export default Slider;
