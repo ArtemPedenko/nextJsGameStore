@@ -1,45 +1,51 @@
-"use client";
+'use client';
 
-import { FC, useEffect, useState, useRef } from "react";
-import styled from "styled-components";
-import SearchField from "./HeaderSticky/SearchField";
-import HeaderStickyButton from "./HeaderSticky/HeaderStickyButton";
-import { useI18n, useScopedI18n } from "../../../locales/client";
-import Button from "../components/Button";
+import { FC, useEffect, useState, useRef } from 'react';
+import styled from 'styled-components';
+import SearchField from './HeaderSticky/SearchField';
+import HeaderStickyButton from './HeaderSticky/HeaderStickyButton';
+import { useI18n, useScopedI18n } from '../../../locales/client';
+import Button from '../components/Button';
 
 interface gameInfoProps {
-  data: any;
-  offerData: any;
+	data: any;
+	offerData: any;
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #121212;
-  width: 320px;
-  border-radius: 6px;
-  color: white;
-  gap: 15px;
-  border: 1px solid red;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #121212;
+	width: 320px;
+	height: 500px;
+	color: white;
+	gap: 15px;
+	position: relative;
+	top: 200px;
+	z-index: -1;
 `;
 
 const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
-  //console.log(data);
-  //console.log(offerData);
-  //
-  const t = useI18n();
+	//console.log(data);
+	//console.log(offerData);
+	//
+	const t = useI18n();
 
-  return (
-    <Wrapper>
-      <h2>{offerData.title}</h2>
-      <div style={{color: "#b8b8b8"}}>{offerData.offerType === "BASE_GAME" ? t("base_game") : <></>}</div>
-      <div>{offerData.price}</div>
-      <Button>{t("buy")}</Button>
-      <Button>{t("add_to_cart")}</Button>
-      <Button>{t("add_to_wishlist")}</Button>
-    </Wrapper>
-  );
+	return (
+		<Wrapper>
+			<div style={{ position: 'sticky', top: '200px' }}>
+				<h2>{offerData.title}</h2>
+				<div style={{ color: '#b8b8b8' }}>
+					{offerData.offerType === 'BASE_GAME' ? t('base_game') : <></>}
+				</div>
+				<div>{offerData.price}</div>
+				<Button>{t('buy')}</Button>
+				<Button>{t('add_to_cart')}</Button>
+				<Button>{t('add_to_wishlist')}</Button>
+			</div>
+		</Wrapper>
+	);
 };
 
 export default StickyGameInfo;
