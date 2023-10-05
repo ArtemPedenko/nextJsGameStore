@@ -47,8 +47,6 @@ const ProductPage = async ({ searchParams, params }) => {
       imageArray = productImageData.pages[0]._images_;
     }
   } else if (productImageData.data.Product.sandbox.configuration[1]) {
-    console.log("ololo");
-    //item.type === 'featuredMedia'
     productImageData.data.Product.sandbox.configuration[1].configs.keyImages.map(
       (item) => {
         if (item.type === "featuredMedia") {
@@ -71,11 +69,7 @@ const ProductPage = async ({ searchParams, params }) => {
 
   return (
     <>
-      <Logger
-        data={data}
-        offerData={offerData}
-        productImageData={productImageData}
-      />
+      <Logger data={data} />
 
       <div
         style={{
