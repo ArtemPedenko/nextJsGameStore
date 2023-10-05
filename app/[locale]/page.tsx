@@ -13,7 +13,6 @@ const Home = async () => {
   const locale = getCurrentLocale();
   const data = await getData(locale);
   const t = await getI18n();
-  let sliderGroup = [];
   const sliderData1 = [];
   const sliderData = [
     { title: null, offers: [] },
@@ -22,18 +21,11 @@ const Home = async () => {
 
   data.map((item: any, index: number) => {
     if (item.type === "group") {
-      sliderGroup.push(index);
       sliderData1.push(item);
     }
   });
 
-  let log = [];
-
   sliderData1.map((item: any, index: number) => {
-    //sliderData[index] = {
-    //  title: item.title,
-    //  offers: item.offers,
-    //};
     sliderData[index].title = item.title;
     item.offers.map((offer: any, offerIndex: number) => {
       let imgUrl = "";
@@ -67,4 +59,3 @@ const Home = async () => {
 };
 
 export default Home;
-//
