@@ -34,6 +34,7 @@ const Home = async () => {
     //  title: item.title,
     //  offers: item.offers,
     //};
+    sliderData[index].title = item.title;
     item.offers.map((offer: any, offerIndex: number) => {
       let imgUrl = "";
 
@@ -58,9 +59,9 @@ const Home = async () => {
     <div>
       <Fetching data={data} />
       <Carousel />
-      <Slider data={sliderData} sliderGroup={sliderGroup[0]} />
+      <Slider data={sliderData[0]} />
       <ModuleBreaker data={data[2]} />
-      <Slider data={log} sliderGroup={sliderGroup[1]} />
+      <Slider data={sliderData[1]} />
     </div>
   );
 };

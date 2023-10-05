@@ -19,7 +19,6 @@ register();
 
 interface sliderProps {
   data: any;
-  sliderGroup: number;
 }
 
 const SliderWrapper = styled.div`
@@ -53,11 +52,7 @@ const SliderNavigationButton = styled.div`
   cursor: pointer;
 `;
 
-const Slider: FC<sliderProps> = ({ data, sliderGroup }) => {
-  const gamesData = useAppSelector((state) => state.games.gamesData);
-  //console.log("sliderGroup", sliderGroup);
-  const data1 = gamesData[sliderGroup];
-  console.log(data1);
+const Slider: FC<sliderProps> = ({ data }) => {
   console.log(data);
   let sliderRef = useRef(null);
   const t = useI18n();
@@ -74,7 +69,7 @@ const Slider: FC<sliderProps> = ({ data, sliderGroup }) => {
     <>
       <SliderWrapper>
         <SliderHead>
-          {data1?.title}
+          {data.title}
           <SliderNavigation>
             <SliderNavigationButton onClick={() => handlePrev()}>
               <IconWrapper
@@ -102,52 +97,23 @@ const Slider: FC<sliderProps> = ({ data, sliderGroup }) => {
           loop="true"
           className="swiper-container-slider"
         >
-          {data1?.offers.map((item: any, index: number) => {
-            let imgUrl = "";
-            let url = "";
-            item.offer.keyImages.map((imgs: any) => {
-              if (imgs.type === "Thumbnail") {
-                imgUrl = imgs.url;
-                if (item.offer.catalogNs?.mappings) {
-                  url = item.offer.catalogNs?.mappings[0].pageSlug;
-                }
-              }
-            });
+          {data.offers.map((item: any, index: number) => {
             return (
               <SwiperSlide className="swiper-slide-slider" key={index}>
                 <Link
                   href={{
-                    pathname: `${url}`,
+                    pathname: `${item.url}`,
                     query: { id: `${item.id}`, namespace: `${item.namespace}` },
                   }}
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  <img className="slide-img-slider" alt="" src={imgUrl} />
-                  <div style={{ fontSize: "11px", color: "#959595" }}>
-                    {item.offer.categories[0] === "addons"
-                      ? t(`addon`)
-                      : t(`base_game`)}
-                  </div>
-                  <div style={{ fontSize: "16px" }}> {item.offer.title} </div>
-                  <div>
-                    {" "}
-                    {
-                      item.offer.price.totalPrice.fmtPrice.originalPrice ===
-                      item.offer.price.totalPrice.fmtPrice.discountPrice ? (
-                        item.offer.price.totalPrice.fmtPrice.originalPrice
-                      ) : (
-                        <>
-                          {/* <div  style={{ color: "#959595" }}> */}
-                          <s style={{ color: "#959595" }}>
-                            {item.offer.price.totalPrice.fmtPrice.originalPrice}
-                          </s>
-                          {/* </div> */}
-                          &nbsp;
-                          {item.offer.price.totalPrice.fmtPrice.discountPrice}
-                        </>
-                      ) /* item.offer.price.totalPrice.fmtPrice.discountPrice */
-                    }{" "}
-                  </div>
+                  <img
+                    className="slide-img-slider"
+                    alt=""
+                    src={item.imageUrl}
+                  />
+                  <div style={{ fontSize: "16px" }}>{item.gameName} </div>
+                  <div>{item.price}</div>
                 </Link>
               </SwiperSlide>
             );
