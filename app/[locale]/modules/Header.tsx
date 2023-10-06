@@ -12,7 +12,11 @@ import styled from "styled-components";
 import LanguageModal from "./Header/LanguageModal";
 import { useState, useRef } from "react";
 import HeaderButton from "./Header/HeaderButton";
-import { useI18n, useCurrentLocale } from "../../../locales/client";
+import {
+  useI18n,
+  useCurrentLocale,
+  useChangeLocale,
+} from "../../../locales/client";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -69,21 +73,17 @@ const MobileMenuTop = styled.div`
   display: flex;
   flex-direction: column;
   height: 180px;
-  margin: 0 0 10px 0;
-  border: 1px solid red;
+  margin: 0 0 0 10px;
 `;
 
 const MobileMenuBottom = styled.div`
   display: flex;
   flex-direction: row;
   height: 50px;
-  border: 1px solid red;
   align-items: center;
-  border: 1px solid red;
 `;
 const MobileMenuBottomLeft = styled.div`
   width: 30%;
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +91,22 @@ const MobileMenuBottomLeft = styled.div`
 
 const MobileMenuBottomRight = styled.div`
   width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const MobileLanguageMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
   border: 1px solid red;
+`;
+
+const MobileLanguageMenuItem = styled.div`
+  height: 35px;
+  width: 100%;
+  border: 1px solid #8e8e8e;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,10 +114,22 @@ const MobileMenuBottomRight = styled.div`
 
 export default function Header() {
   const t = useI18n();
+  const currentLocale = useCurrentLocale();
+  console.log(currentLocale);
 
   const [open, setOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const menuSwitcher = () => setMobileMenuOpen(!mobileMenuOpen);
+  const [mobiLanguageMenu, setMobileLanguageMenu] = useState(false);
+  const mobiLanguageMenuSwithcer = () =>
+    setMobileLanguageMenu(!mobiLanguageMenu);
+  const menuSwitcher = () => {
+    if (mobileMenuOpen | mobiLanguageMenu) {
+      setMobileMenuOpen(false);
+      setMobileLanguageMenu(false);
+    } else {
+      setMobileMenuOpen(true);
+    }
+  };
   const modalOpen = () => setOpen(true);
   const modalClose = () => setOpen(false);
   const myRef = useRef(null);
@@ -174,7 +201,7 @@ export default function Header() {
             </HeaderButton>
           </MobileMenuTop>
           <MobileMenuBottom>
-            <MobileMenuBottomLeft>
+            <MobileMenuBottomLeft onClick={() => mobiLanguageMenuSwithcer()}>
               <IconWrapper
                 icon={<LanguageLogo />}
                 height="30px"
@@ -182,8 +209,8 @@ export default function Header() {
                 margin="0"
               />
             </MobileMenuBottomLeft>
+            <Divider />
             <MobileMenuBottomRight>
-              <Divider />
               <IconWrapper
                 icon={<ProfileLogo />}
                 height="30px"
@@ -193,6 +220,31 @@ export default function Header() {
               <HeaderButton href="./">{t(`sign_in`)}</HeaderButton>
             </MobileMenuBottomRight>
           </MobileMenuBottom>
+        </MobileMenu>
+      ) : null}
+      {mobiLanguageMenu ? (
+        <MobileMenu>
+          <div>
+            {currentLocale === "ru" ? (
+              <MobileLanguageMenu>
+                <MobileLanguageMenuItem
+                  onClick={() => mobiLanguageMenuSwithcer()}
+                >
+                  РУССКИЙ
+                </MobileLanguageMenuItem>
+                <MobileLanguageMenuItem>ENGLISH</MobileLanguageMenuItem>
+              </MobileLanguageMenu>
+            ) : (
+              <MobileLanguageMenu>
+                <MobileLanguageMenuItem
+                  onClick={() => mobiLanguageMenuSwithcer()}
+                >
+                  ENGLISH
+                </MobileLanguageMenuItem>
+                <MobileLanguageMenuItem>РУССКИЙ</MobileLanguageMenuItem>
+              </MobileLanguageMenu>
+            )}
+          </div>
         </MobileMenu>
       ) : null}
       <LanguageModal
