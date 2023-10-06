@@ -124,7 +124,7 @@ export default function Header() {
 	const mobiLanguageMenuSwithcer = () =>
 		setMobileLanguageMenu(!mobiLanguageMenu);
 	const menuSwitcher = () => {
-		if (mobileMenuOpen | mobiLanguageMenu) {
+		if (mobileMenuOpen || mobiLanguageMenu) {
 			setMobileMenuOpen(false);
 			setMobileLanguageMenu(false);
 		} else {
