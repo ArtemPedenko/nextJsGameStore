@@ -56,6 +56,7 @@ export default function Carousel() {
     dispatch(setAnimationCurrent(animationCurrent + 1));
   }
   let itemPrevious = chosenGames[animationPrevious];
+
   return (
     <CarouselWrapper>
       <SliderWrapper>
@@ -71,18 +72,16 @@ export default function Carousel() {
       <CarouselThumbnailWrapper>
         {chosenGames.map((item, index) => {
           return (
-            <>
-              <CarouselThumbnail
-                key={uuidv4()}
-                props={{
-                  item,
-                  animationCurrent,
-                  chooseCarousel,
-                  index,
-                  animationController,
-                }}
-              />
-            </>
+            <CarouselThumbnail
+              key={uuidv4()}
+              props={{
+                item,
+                animationCurrent,
+                chooseCarousel,
+                index,
+                animationController,
+              }}
+            />
           );
         })}
       </CarouselThumbnailWrapper>

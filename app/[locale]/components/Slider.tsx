@@ -54,7 +54,7 @@ const SliderNavigationButton = styled.div`
 `;
 
 const Slider: FC<sliderProps> = ({ data }) => {
-  console.log(data);
+  //console.log(data);
   let sliderRef = useRef(null);
   const t = useI18n();
 

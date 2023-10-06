@@ -122,7 +122,7 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
               {item.description}
             </div>
             <ButtonWrapper>
-              <Button contained="true">{t(`buy`)}</Button>
+              <Button $contained="true">{t(`buy`)}</Button>
             </ButtonWrapper>
           </GameInfo>
         </>
