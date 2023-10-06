@@ -51,10 +51,10 @@ const Home = async () => {
   return (
     <div>
       <Fetching data={data} />
-      <Carousel />
+      {/* <Carousel />
       <Slider data={sliderData[0]} />
       <ModuleBreaker data={data[2]} />
-      <Slider data={sliderData[1]} />
+      <Slider data={sliderData[1]} /> */}
     </div>
   );
 };

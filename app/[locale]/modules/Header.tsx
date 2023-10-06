@@ -4,6 +4,7 @@ import React from "react";
 import SiteLogo from "@/images/SiteLogo";
 import LanguageLogo from "@/images/LanguageLogo";
 import ProfileLogo from "@/images/ProfileLogo";
+import MobileMenuLogo from "@/images/MobileMenuLogo";
 import IconWrapper from "../components/IconWrapper";
 import Divider from "../components/Divider";
 import styled from "styled-components";
@@ -18,12 +19,14 @@ const HeaderWrapper = styled.div`
   background-color: #2a2a2a;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 const HeaderLeft = styled.div`
   display: flex;
   align-items: center;
   height: 50px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const HeaderRight = styled.div`
@@ -31,12 +34,36 @@ const HeaderRight = styled.div`
   align-items: center;
   height: 50px;
   gap: 10px;
+  margin: 0 0 0 auto;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileMenuButton = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #0078f2;
+    margin: 0 0 0 auto;
+  }
+`;
+
+const MobileMenu = styled.div`
+  margin: 0 0 0 auto;
+  width: 80vw;
+  background-color: #2a2a2a;
+  height: 100vh;
 `;
 
 export default function Header() {
   const t = useI18n();
 
   const [open, setOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuSwitcher = () => setMobileMenuOpen(!mobileMenuOpen);
   const modalOpen = () => setOpen(true);
   const modalClose = () => setOpen(false);
   const myRef = useRef(null);
@@ -44,21 +71,23 @@ export default function Header() {
   return (
     <>
       <HeaderWrapper>
-        <HeaderLeft>
+        <>
           <IconWrapper
             icon={<SiteLogo />}
             height="100%"
             width="50px"
             margin="0 10px"
           />
-          <HeaderButton href="/">{t(`store`)}</HeaderButton>
-          <HeaderButton href="/">{t(`distribution`)}</HeaderButton>
-          <HeaderButton href="/">{t(`support`)}</HeaderButton>
-          <Divider />
-          <HeaderButton href="https://www.unrealengine.com/en-US">
-            UNREAL ENGINE
-          </HeaderButton>
-        </HeaderLeft>
+          <HeaderLeft>
+            <HeaderButton href="/">{t(`store`)}</HeaderButton>
+            <HeaderButton href="/">{t(`distribution`)}</HeaderButton>
+            <HeaderButton href="/">{t(`support`)}</HeaderButton>
+            <Divider />
+            <HeaderButton href="https://www.unrealengine.com/en-US">
+              UNREAL ENGINE
+            </HeaderButton>
+          </HeaderLeft>
+        </>
         <HeaderRight>
           <div
             style={{
@@ -87,6 +116,10 @@ export default function Header() {
           />
           <HeaderButton href="./">{t(`sign_in`)}</HeaderButton>
         </HeaderRight>
+        <MobileMenuButton onClick={() => menuSwitcher()}>
+          <IconWrapper icon={<MobileMenuLogo />} height="100%" width="50px" />
+        </MobileMenuButton>
+        {mobileMenuOpen ? <MobileMenu /> : null}
       </HeaderWrapper>
       <LanguageModal
         isOpen={open}
