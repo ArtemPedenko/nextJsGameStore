@@ -61,6 +61,8 @@ const MobileMenu = styled.div`
   z-index: 10;
   display: flex;
   flex-direction: column;
+  align-items: space-between;
+  justify-content: space-between;
 `;
 
 const MobileMenuTop = styled.div`
@@ -68,6 +70,7 @@ const MobileMenuTop = styled.div`
   flex-direction: column;
   height: 180px;
   margin: 0 0 10px 0;
+  border: 1px solid red;
 `;
 
 const MobileMenuBottom = styled.div`
@@ -76,19 +79,22 @@ const MobileMenuBottom = styled.div`
   height: 50px;
   border: 1px solid red;
   align-items: center;
+  border: 1px solid red;
 `;
 const MobileMenuBottomLeft = styled.div`
   width: 30%;
   border: 1px solid red;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const MobileMenuBottomRight = styled.div`
-  width: 30%;
+  width: 70%;
   border: 1px solid red;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export default function Header() {
@@ -176,14 +182,16 @@ export default function Header() {
                 margin="0"
               />
             </MobileMenuBottomLeft>
-            <Divider />
-            <IconWrapper
-              icon={<ProfileLogo />}
-              height="30px"
-              width="30px"
-              margin="0"
-            />
-            <HeaderButton href="./">{t(`sign_in`)}</HeaderButton>
+            <MobileMenuBottomRight>
+              <Divider />
+              <IconWrapper
+                icon={<ProfileLogo />}
+                height="30px"
+                width="30px"
+                margin="0"
+              />
+              <HeaderButton href="./">{t(`sign_in`)}</HeaderButton>
+            </MobileMenuBottomRight>
           </MobileMenuBottom>
         </MobileMenu>
       ) : null}
