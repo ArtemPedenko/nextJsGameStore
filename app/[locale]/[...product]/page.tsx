@@ -38,7 +38,7 @@ const ProductPage = async ({ searchParams, params }) => {
     productImageData = await getData(productImagesUrlAnother);
     if (productImageData.pages === undefined) {
       console.log("я тут епта");
-      offerData.data.Catalog.catalogOffer.keyImages.map((item) => {
+      offerData.data.Catalog.catalogOffer.keyImages.map((item: any) => {
         if (item.type === "featuredMedia") {
           imageArray.push(item.url);
         }

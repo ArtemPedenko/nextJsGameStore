@@ -2,7 +2,14 @@ import Slider from "../components/Slider";
 import Logger from "../[...product]/logger";
 import { getI18n } from "@/locales/server";
 
-const allGamesPage = async ({ params }) => {
+interface Iparams {
+  params: {
+    locale: string;
+    product: string[];
+  };
+}
+
+const allGamesPage = async ({ params }: Iparams) => {
   const t = await getI18n();
 
   async function getData(url: string) {
@@ -13,18 +20,18 @@ const allGamesPage = async ({ params }) => {
 
   const url = `https://egs-platform-service.store.epicgames.com/api/v1/egs/category-cards?count=100&country=RU&locale=${params.locale}&start=0&store=EGS`;
   const genres = await getData(url);
-  let genresArray = {
+  let genresArray: any = {
     title: params.locale === "ru" ? "Популярные жанры" : "Popular genres",
     offers: [],
   };
-  genres.data.map((item, index) => {
+  genres.data.map((item: any) => {
     genresArray.offers.push({
       id: null,
       namespace: null,
       gameName: item.title,
       url: item.slug,
       price: null,
-      imageUrl: item.images[0],
+      imageUrl: item.images[1],
     });
   });
 
