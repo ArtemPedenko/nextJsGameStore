@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const CarouselWrapper = styled.div`
 	max-width: 1427px;
+	width: 90%;
 	height: 640;
 	display: flex;
 	justify-content: space-between;

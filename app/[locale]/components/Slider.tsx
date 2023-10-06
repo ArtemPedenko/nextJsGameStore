@@ -20,7 +20,8 @@ interface sliderProps {
 }
 
 const SliderWrapper = styled.div`
-	width: 100%;
+	max-width: 1427px;
+	width: 90%;
 	height: 462px;
 	margin: 0 auto;
 	display: flex;
