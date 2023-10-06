@@ -4,6 +4,7 @@ import React from "react";
 import SiteLogo from "@/images/SiteLogo";
 import LanguageLogo from "@/images/LanguageLogo";
 import ProfileLogo from "@/images/ProfileLogo";
+import CloseLogo from "@/images/CloseLogo";
 import MobileMenuLogo from "@/images/MobileMenuLogo";
 import IconWrapper from "../components/IconWrapper";
 import Divider from "../components/Divider";
@@ -52,10 +53,42 @@ const MobileMenuButton = styled.div`
 `;
 
 const MobileMenu = styled.div`
-  margin: 0 0 0 auto;
+  position: absolute;
+  right: 0px;
   width: 80vw;
   background-color: #2a2a2a;
-  height: 100vh;
+  height: 90vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MobileMenuTop = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  margin: 0 0 10px 0;
+`;
+
+const MobileMenuBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  border: 1px solid red;
+  align-items: center;
+`;
+const MobileMenuBottomLeft = styled.div`
+  width: 30%;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+`;
+
+const MobileMenuBottomRight = styled.div`
+  width: 30%;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
 `;
 
 export default function Header() {
@@ -117,10 +150,43 @@ export default function Header() {
           <HeaderButton href="./">{t(`sign_in`)}</HeaderButton>
         </HeaderRight>
         <MobileMenuButton onClick={() => menuSwitcher()}>
-          <IconWrapper icon={<MobileMenuLogo />} height="100%" width="50px" />
+          <IconWrapper
+            icon={mobileMenuOpen ? <CloseLogo /> : <MobileMenuLogo />}
+            height="100%"
+            width="50px"
+          />
         </MobileMenuButton>
-        {mobileMenuOpen ? <MobileMenu /> : null}
       </HeaderWrapper>
+      {mobileMenuOpen ? (
+        <MobileMenu>
+          <MobileMenuTop>
+            <HeaderButton href="/">{t(`store`)}</HeaderButton>
+            <HeaderButton href="/">{t(`distribution`)}</HeaderButton>
+            <HeaderButton href="/">{t(`support`)}</HeaderButton>
+            <HeaderButton href="https://www.unrealengine.com/en-US">
+              UNREAL ENGINE
+            </HeaderButton>
+          </MobileMenuTop>
+          <MobileMenuBottom>
+            <MobileMenuBottomLeft>
+              <IconWrapper
+                icon={<LanguageLogo />}
+                height="30px"
+                width="30px"
+                margin="0"
+              />
+            </MobileMenuBottomLeft>
+            <Divider />
+            <IconWrapper
+              icon={<ProfileLogo />}
+              height="30px"
+              width="30px"
+              margin="0"
+            />
+            <HeaderButton href="./">{t(`sign_in`)}</HeaderButton>
+          </MobileMenuBottom>
+        </MobileMenu>
+      ) : null}
       <LanguageModal
         isOpen={open}
         close={modalClose}
