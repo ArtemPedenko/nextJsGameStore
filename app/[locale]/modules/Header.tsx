@@ -115,6 +115,7 @@ const MobileLanguageMenuItem = styled.div`
 export default function Header() {
   const t = useI18n();
   const currentLocale = useCurrentLocale();
+  const changeLocale = useChangeLocale();
   console.log(currentLocale);
 
   const [open, setOpen] = useState(false);
@@ -232,7 +233,9 @@ export default function Header() {
                 >
                   РУССКИЙ
                 </MobileLanguageMenuItem>
-                <MobileLanguageMenuItem>ENGLISH</MobileLanguageMenuItem>
+                <MobileLanguageMenuItem onClick={() => changeLocale("en")}>
+                  ENGLISH
+                </MobileLanguageMenuItem>
               </MobileLanguageMenu>
             ) : (
               <MobileLanguageMenu>
@@ -241,7 +244,9 @@ export default function Header() {
                 >
                   ENGLISH
                 </MobileLanguageMenuItem>
-                <MobileLanguageMenuItem>РУССКИЙ</MobileLanguageMenuItem>
+                <MobileLanguageMenuItem onClick={() => changeLocale("ru")}>
+                  РУССКИЙ
+                </MobileLanguageMenuItem>
               </MobileLanguageMenu>
             )}
           </div>
