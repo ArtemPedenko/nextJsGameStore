@@ -22,10 +22,11 @@ interface sliderProps {
 const SliderWrapper = styled.div`
 	max-width: 1427px;
 	width: 90%;
-	height: 462px;
+	height: 490px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
+	border: 1px solid red;
 `;
 
 const SliderHead = styled.div`

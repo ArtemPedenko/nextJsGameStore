@@ -13,8 +13,8 @@
 
 .slide-img-slider {
 	display: block;
-	height: 90%;
 	width: 100%;
+	height: 85%;
 	object-fit: cover;
 	border-radius: 5px;
 }

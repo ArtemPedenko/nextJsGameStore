@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 	height: 450px;
 	display: flex;
 	flex-direction: row;
-	margin: 0 auto;
+	margin: 15px auto;
 	border: 1px solid red;
 	justify-content: space-between;
 	@media (max-width: 1540px) {
