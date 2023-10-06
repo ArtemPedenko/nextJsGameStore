@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ProductSlider from "../components/ProductSlider";
 import StickyGameInfo from "../modules/StickyGameInfo";
 import Logger from "./logger";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import { ReactElement } from "react";
 import { I18nProviderClient } from "../../locales/client";

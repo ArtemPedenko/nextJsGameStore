@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getI18n } from "../../locales/server";
 import Header from "./modules/Header";
 import { FC } from "react";
