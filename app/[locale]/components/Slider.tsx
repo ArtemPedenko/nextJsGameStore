@@ -20,7 +20,7 @@ interface sliderProps {
 }
 
 const SliderWrapper = styled.div`
-	width: 1427px;
+	width: 100%;
 	height: 462px;
 	margin: 0 auto;
 	display: flex;
@@ -89,9 +89,26 @@ const Slider: FC<sliderProps> = ({ data }) => {
 				</SliderHead>
 				<Swiper
 					ref={sliderRef}
-					slidesPerView={6}
+					slidesPerView={1}
 					spaceBetween='30px'
-					slidesPerGroup={6}
+					slidesPerGroup={1}
+					breakpoints={{
+						640: {
+							slidesPerView: 2,
+							spaceBetween: 20,
+							slidesPerGroup: 2,
+						},
+						768: {
+							slidesPerView: 4,
+							spaceBetween: 40,
+							slidesPerGroup: 4,
+						},
+						1024: {
+							slidesPerView: 5,
+							spaceBetween: 50,
+							slidesPerGroup: 5,
+						},
+					}}
 					loop='true'
 					className='swiper-container-slider'
 				>
@@ -103,7 +120,10 @@ const Slider: FC<sliderProps> = ({ data }) => {
 										pathname: `${item.url}`,
 										query: { id: `${item.id}`, namespace: `${item.namespace}` },
 									}}
-									style={{ textDecoration: 'none', color: 'white' }}
+									style={{
+										textDecoration: 'none',
+										color: 'white',
+									}}
 								>
 									<img
 										className='slide-img-slider'

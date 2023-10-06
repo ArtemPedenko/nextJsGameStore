@@ -53,8 +53,8 @@ const Home = async () => {
 			<Fetching data={data} />
 			<Carousel />
 			<Slider data={sliderData[0]} />
-			<ModuleBreaker data={data[2]} />
-			<Slider data={sliderData[1]} />
+			{/* <ModuleBreaker data={data[2]} />
+			<Slider data={sliderData[1]} /> */}
 		</>
 	);
 };
