@@ -8,27 +8,35 @@ import { setAnimationCurrent, setAnimationPrevious } from "@/app/store/slice";
 import { v4 as uuidv4 } from "uuid";
 
 const CarouselWrapper = styled.div`
-  width: 1427px;
+  max-width: 1427px;
   height: 640;
   display: flex;
   justify-content: space-between;
   margin: 0 auto 20px auto;
+  @media (max-width: 1540px) {
+    justify-content: center;
+  }
 `;
 
 const SliderWrapper = styled.div`
-  width: 1140px;
+  max-width: 1140px;
   height: 640px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   border-radius: 16px;
+  border: 1px solid red;
 `;
 
 const CarouselThumbnailWrapper = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: column;
+  border: 1px solid red;
+  @media (max-width: 1540px) {
+    display: none;
+  }
 `;
 
 export default function Carousel() {
