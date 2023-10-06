@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import SearchField from './HeaderSticky/SearchField';
 import HeaderStickyButton from './HeaderSticky/HeaderStickyButton';
-import { useI18n, useScopedI18n } from '../../../locales/client';
+import { useI18n } from '@/locales/client';
 
 const Wrapper = styled.div`
 	height: 100px;

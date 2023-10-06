@@ -4,14 +4,11 @@
 import styled from 'styled-components';
 import { FC, useEffect, useState, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import IconWrapper from './IconWrapper';
 import SlierArrowLeft from './ProductSlider/SliderArrowLeft';
 import SliderArrowRight from './ProductSlider/SliderArrowRight';
 import { useI18n } from '@/locales/client';
 import './ProductSlider/productSlider.css';
-import { register } from 'swiper/element/bundle';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from 'swiper/react';
 import 'swiper/css';
