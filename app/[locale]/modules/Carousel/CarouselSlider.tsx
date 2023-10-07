@@ -2,6 +2,7 @@
 'use client';
 
 import styled, { keyframes } from 'styled-components';
+import Link from 'next/link';
 import { FC } from 'react';
 import { useI18n } from '@/locales/client';
 import Button from '../../components/Button';
@@ -113,7 +114,7 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
 					<SliderImg src={item.image.src} alt='img' />
 					<GameName>
 						{item.logoImage.src ? (
-							<img alt='img' src={item.logoImage.src} />
+							<Link alt='img' src={item.logoImage.src} />
 						) : null}
 					</GameName>
 					<GameInfo>

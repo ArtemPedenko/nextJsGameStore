@@ -4,6 +4,7 @@
 import styled from 'styled-components';
 import { FC, useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import IconWrapper from './IconWrapper';
 import SlierArrowLeft from './Slider/SliderArrowLeft';
 import SliderArrowRight from './Slider/SliderArrowRight';
@@ -127,7 +128,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
 										color: 'white',
 									}}
 								>
-									<img
+									<Link
 										className='slide-img-slider'
 										alt=''
 										src={item.imageUrl}
