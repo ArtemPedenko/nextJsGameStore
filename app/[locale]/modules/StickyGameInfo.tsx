@@ -38,7 +38,8 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 				<div style={{ color: '#b8b8b8' }}>
 					{offerData.offerType === 'BASE_GAME' ? t('base_game') : <></>}
 				</div>
-				<div>{offerData.price}</div>
+				{offerData.price === 0 ? <div>{offerData.price}</div> : null}
+
 				<Button>{t('buy')}</Button>
 				<Button>{t('add_to_cart')}</Button>
 				<Button>{t('add_to_wishlist')}</Button>
