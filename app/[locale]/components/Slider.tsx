@@ -128,7 +128,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
 										color: 'white',
 									}}
 								>
-									<Link
+									<img
 										className='slide-img-slider'
 										alt=''
 										src={item.imageUrl}

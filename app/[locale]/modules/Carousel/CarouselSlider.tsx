@@ -3,6 +3,7 @@
 
 import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FC } from 'react';
 import { useI18n } from '@/locales/client';
 import Button from '../../components/Button';
@@ -114,7 +115,7 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
 					<SliderImg src={item.image.src} alt='img' />
 					<GameName>
 						{item.logoImage.src ? (
-							<Link alt='img' src={item.logoImage.src} />
+							<img alt='img' src={item.logoImage.src} />
 						) : null}
 					</GameName>
 					<GameInfo>
@@ -124,7 +125,7 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
 							{item.description}
 						</div>
 						<ButtonWrapper>
-							<Button $contained='true'>{t(`buy`)}</Button>
+							<Button $contained>{t(`buy`)}</Button>
 						</ButtonWrapper>
 					</GameInfo>
 				</>

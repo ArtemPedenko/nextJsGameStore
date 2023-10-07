@@ -4,6 +4,7 @@
 import styled from 'styled-components';
 import { FC, useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
 import IconWrapper from './IconWrapper';
 import SlierArrowLeft from './ProductSlider/SliderArrowLeft';
@@ -78,7 +79,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 					{data.map((item) => {
 						return (
 							<SwiperSlide className='mySwiper2-slide' key={uuidv4()}>
-								<Link className='product-slide2-img' alt='' src={item} />
+								<img className='product-slide2-img' alt='' src={item} />
 							</SwiperSlide>
 						);
 					})}
@@ -116,7 +117,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 						{data.map((item) => {
 							return (
 								<SwiperSlide className='mySwiper-slide' key={uuidv4()}>
-									<Link className='product-slide-img' alt='' src={item} />
+									<img className='product-slide-img' alt='' src={item} />
 								</SwiperSlide>
 							);
 						})}

@@ -1,8 +1,9 @@
+// @ts-nocheck
+
 'use client';
 
 import { FC, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-//import { useI18n, useScopedI18n } from '../../../locales/client';
 import { useI18n } from '@/locales/client';
 import Button from '../components/Button';
 
@@ -22,7 +23,6 @@ const Wrapper = styled.div`
 	gap: 15px;
 	position: relative;
 	top: 200px;
-	z-index: -1;
 `;
 
 const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
@@ -48,4 +48,3 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 };
 
 export default StickyGameInfo;
-//Product.sandbox.configuration[0].configs.keyImages[0].url

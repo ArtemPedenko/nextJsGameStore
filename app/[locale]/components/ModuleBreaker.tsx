@@ -3,6 +3,7 @@
 
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FC, useEffect, useState, useRef } from 'react';
 import { useI18n } from '@/locales/client';
 import { v4 as uuid } from 'uuid';
@@ -37,7 +38,7 @@ const ModuleBreaker: FC<ModuleBreakerProps> = ({ data }) => {
 						key={uuid()}
 						style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}
 					>
-						<Link
+						<img
 							alt=''
 							src={item.image.src}
 							style={{

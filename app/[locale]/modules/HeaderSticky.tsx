@@ -11,18 +11,21 @@ const Wrapper = styled.div`
 	position: sticky;
 	top: 0;
 	z-index: 9;
+	border: 1px solid red;
 `;
 
 const StickyHead = styled.div`
 	display: flex;
 	align-items: center;
 	height: 100px;
-	width: 100%;
+	max-width: 1427px;
+	width: 90%;
 	background-color: #121212;
 	margin-left: auto;
 	margin-right: auto;
 	flex-wrap: wrap;
 	gap: 0 20px;
+	border: 1px solid yellow;
 `;
 
 export default function HeaderSticky() {
