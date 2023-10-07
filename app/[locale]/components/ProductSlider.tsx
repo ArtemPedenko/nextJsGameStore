@@ -57,12 +57,10 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 	const t = useI18n();
 
 	function handleNext() {
-		console.log(myRef?.current);
 		myRef?.current.swiper.slideNext();
 	}
 
 	function handlePrev() {
-		console.log(myRef?.current);
 		myRef?.current.swiper.slidePrev();
 	}
 

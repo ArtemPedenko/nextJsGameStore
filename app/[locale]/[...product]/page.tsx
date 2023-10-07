@@ -6,9 +6,6 @@ import Logger from './logger';
 import { getI18n } from '@/locales/server';
 //
 const ProductPage = async ({ searchParams, params }) => {
-	console.log(searchParams);
-	console.log(params);
-
 	const t = await getI18n();
 
 	async function getData(url: string) {
@@ -43,7 +40,6 @@ const ProductPage = async ({ searchParams, params }) => {
 	if (productImageData.data.Product.sandbox.configuration[1] === undefined) {
 		productImageData = await getData(productImagesUrlAnother);
 		if (productImageData.pages === undefined) {
-			console.log('я тут епта');
 			offerData.data.Catalog.catalogOffer.keyImages.map((item: any) => {
 				if (item.type === 'featuredMedia') {
 					imageArray.push(item.url);

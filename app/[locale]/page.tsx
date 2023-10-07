@@ -1,15 +1,11 @@
 // @ts-nocheck
 import { getI18n } from '../../locales/server';
-import Header from './modules/Header';
-import HeaderSticky from './modules/HeaderSticky';
-import { FC } from 'react';
 import getData from '../api/games';
 import Fetching from './layout/fetching';
 import Carousel from './modules/Carousel';
 import Slider from './components/Slider';
 import ModuleBreaker from './components/ModuleBreaker';
 import { getCurrentLocale } from '../../locales/server';
-import Link from 'next/link';
 
 const Home = async () => {
 	const locale = getCurrentLocale();

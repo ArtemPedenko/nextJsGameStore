@@ -62,7 +62,6 @@ export default function Header() {
 	const t = useI18n();
 	const currentLocale = useCurrentLocale();
 	const changeLocale = useChangeLocale();
-	console.log(currentLocale);
 
 	const [open, setOpen] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

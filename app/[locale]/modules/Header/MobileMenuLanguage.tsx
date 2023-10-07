@@ -1,5 +1,3 @@
-'use client';
-
 import { FC } from 'react';
 import styled from 'styled-components';
 import { useI18n } from '@/locales/client';
