@@ -11,7 +11,6 @@ const Wrapper = styled.div`
 	position: sticky;
 	top: 0;
 	z-index: 9;
-	border: 1px solid red;
 `;
 
 const StickyHead = styled.div`
@@ -25,7 +24,6 @@ const StickyHead = styled.div`
 	margin-right: auto;
 	flex-wrap: wrap;
 	gap: 0 20px;
-	border: 1px solid yellow;
 `;
 
 export default function HeaderSticky() {
