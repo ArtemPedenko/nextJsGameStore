@@ -5,6 +5,8 @@ import SearchField from './HeaderSticky/SearchField';
 import HeaderStickyButton from './HeaderSticky/HeaderStickyButton';
 import { useI18n } from '@/locales/client';
 
+import { ReactElement } from 'react';
+
 const Wrapper = styled.div`
 	height: 100px;
 	background-color: #121212;

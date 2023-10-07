@@ -17,6 +17,8 @@ import {
 	useCurrentLocale,
 	useChangeLocale,
 } from '../../../locales/client';
+import MobileMenu from './Header/MobileMenu';
+import MobileMenuLanguage from './Header/MobileMenuLanguage';
 
 const HeaderWrapper = styled.div`
 	width: 100%;
@@ -54,62 +56,6 @@ const MobileMenuButton = styled.div`
 		background-color: #0078f2;
 		margin: 0 0 0 auto;
 	}
-`;
-
-const MobileMenu = styled.div`
-	position: absolute;
-	right: 0px;
-	width: 80vw;
-	background-color: #2a2a2a;
-	height: 90vh;
-	z-index: 10;
-	display: flex;
-	flex-direction: column;
-	align-items: space-between;
-	justify-content: space-between;
-`;
-
-const MobileMenuTop = styled.div`
-	display: flex;
-	flex-direction: column;
-	height: 180px;
-	margin: 0 0 0 10px;
-`;
-
-const MobileMenuBottom = styled.div`
-	display: flex;
-	flex-direction: row;
-	height: 50px;
-	align-items: center;
-`;
-const MobileMenuBottomLeft = styled.div`
-	width: 30%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-
-const MobileMenuBottomRight = styled.div`
-	width: 70%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-const MobileLanguageMenu = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 25px;
-`;
-
-const MobileLanguageMenuItem = styled.div`
-	height: 35px;
-	width: 100%;
-	border-top: 1px solid #8e8e8e;
-	border-bottom: 1px solid #8e8e8e;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 `;
 
 export default function Header() {
@@ -192,65 +138,14 @@ export default function Header() {
 				</MobileMenuButton>
 			</HeaderWrapper>
 			{mobileMenuOpen ? (
-				<MobileMenu>
-					<MobileMenuTop>
-						<HeaderButton href='/'>{t(`store`)}</HeaderButton>
-						<HeaderButton href='/'>{t(`distribution`)}</HeaderButton>
-						<HeaderButton href='/'>{t(`support`)}</HeaderButton>
-						<HeaderButton href='https://www.unrealengine.com/en-US'>
-							UNREAL ENGINE
-						</HeaderButton>
-					</MobileMenuTop>
-					<MobileMenuBottom>
-						<MobileMenuBottomLeft onClick={() => mobiLanguageMenuSwithcer()}>
-							<IconWrapper
-								icon={<LanguageLogo />}
-								height='30px'
-								width='30px'
-								margin='0'
-							/>
-						</MobileMenuBottomLeft>
-						<Divider />
-						<MobileMenuBottomRight>
-							<IconWrapper
-								icon={<ProfileLogo />}
-								height='30px'
-								width='30px'
-								margin='0'
-							/>
-							<HeaderButton href='./'>{t(`sign_in`)}</HeaderButton>
-						</MobileMenuBottomRight>
-					</MobileMenuBottom>
-				</MobileMenu>
+				<MobileMenu mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer} />
 			) : null}
 			{mobiLanguageMenu ? (
-				<MobileMenu>
-					<div>
-						{currentLocale === 'ru' ? (
-							<MobileLanguageMenu>
-								<MobileLanguageMenuItem
-									onClick={() => mobiLanguageMenuSwithcer()}
-								>
-									РУССКИЙ
-								</MobileLanguageMenuItem>
-								<MobileLanguageMenuItem onClick={() => changeLocale('en')}>
-									ENGLISH
-								</MobileLanguageMenuItem>
-							</MobileLanguageMenu>
-						) : (
-							<MobileLanguageMenu>
-								<MobileLanguageMenuItem
-									onClick={() => mobiLanguageMenuSwithcer()}
-								>
-									ENGLISH
-								</MobileLanguageMenuItem>
-								<MobileLanguageMenuItem onClick={() => changeLocale('ru')}>
-									РУССКИЙ
-								</MobileLanguageMenuItem>
-							</MobileLanguageMenu>
-						)}
-					</div>
-				</MobileMenu>
+				<MobileMenuLanguage
+					mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer}
+					currentLocale={currentLocale}
+					changeLocale={changeLocale}
+				/>
 			) : null}
 			<LanguageModal
 				isOpen={open}

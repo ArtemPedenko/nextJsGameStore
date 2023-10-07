@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { getI18n } from '../../locales/server';
 import Header from './modules/Header';
+import HeaderSticky from './modules/HeaderSticky';
 import { FC } from 'react';
 import getData from '../api/games';
 import Fetching from './layout/fetching';
