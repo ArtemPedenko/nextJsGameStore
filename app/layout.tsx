@@ -1,5 +1,4 @@
 import './styles.css';
-import Link from 'next/link';
 import StyledComponentsRegistry from './styled-registry';
 
 export const metadata = {
