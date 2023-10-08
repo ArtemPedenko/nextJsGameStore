@@ -9,7 +9,7 @@ import { getCurrentLocale } from '../../locales/server';
 
 const Home = async () => {
 	const locale = getCurrentLocale();
-	const data = await getData(locale);
+	const data = await getData(locale); //
 	const t = await getI18n();
 	const sliderData1 = [];
 	const sliderData = [
