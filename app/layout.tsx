@@ -22,8 +22,8 @@ export default function RootLayout({
 			<body>
 				<LanguageProvider locale={locale}>
 					<StyledComponentsRegistry>
-						{/* <Header />
-						<HeaderSticky /> */}
+						<Header />
+						<HeaderSticky />
 						{children}
 						<Footer />
 					</StyledComponentsRegistry>
