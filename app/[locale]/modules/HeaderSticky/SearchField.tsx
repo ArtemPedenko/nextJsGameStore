@@ -30,6 +30,23 @@ const Search = styled.input`
 const SearchField = () => {
 	const t = useI18n();
 
+	async function fffffetch() {
+		fetch('/en/api/search')
+			.then(function (serverPromise) {
+				serverPromise
+					.json()
+					.then(function (data) {
+						console.log(data);
+					})
+					.catch(function (e) {
+						console.log(e);
+					});
+			})
+			.catch(function (e) {
+				console.log(e);
+			});
+	}
+
 	return (
 		<SearchContainer>
 			<IconWrapper
@@ -39,7 +56,7 @@ const SearchField = () => {
 				margin='0'
 				padding='10px'
 			/>
-			<Search placeholder={t(`search`)}></Search>
+			<Search placeholder={t(`search`)} onChange={() => fffffetch()}></Search>
 		</SearchContainer>
 	);
 };
