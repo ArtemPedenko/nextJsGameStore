@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import IconWrapper from '../../components/IconWrapper';
 import SearchLogo from '@/images/SearchLogo';
 import { useI18n } from '@/locales/client';
+import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
+import { setSearchGames } from '@/app/store/slice';
+import { useEffect } from 'react';
 
 let myInterval: any;
 
@@ -31,6 +34,8 @@ const Search = styled.input`
 
 const SearchField = () => {
 	const t = useI18n();
+	const dispatch = useAppDispatch();
+	const searchGames = useAppSelector((state) => state.games.searchGames);
 
 	function delaySearching(searchText: string) {
 		clearInterval(myInterval);
@@ -44,7 +49,8 @@ const SearchField = () => {
 				serverPromise
 					.json()
 					.then(function (data) {
-						console.log(data);
+						console.log(data.data.Catalog.searchStore.elements);
+						dispatch(setSearchGames(data.data.Catalog.searchStore.elements));
 					})
 					.catch(function (e) {
 						console.log(e);
