@@ -1,0 +1,35 @@
+.mySwiper2 {
+  width: 1200px;
+  height: 680px;
+}
+.mySwiper2-slide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-slide2-img {
+  display: block;
+  height: 680px;
+  width: 1200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.mySwiper {
+  width: 1000px;
+  height: 50px;
+  cursor: pointer;
+}
+.mySwiper-slide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.product-slide-img {
+  display: block;
+  height: 50px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
