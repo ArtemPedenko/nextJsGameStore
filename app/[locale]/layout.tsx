@@ -7,6 +7,21 @@ import HeaderSticky from './modules/HeaderSticky';
 import Footer from './modules/Footer';
 import { Providers } from '../store/provider';
 
-export default function SubLayout({ children }: { children: ReactElement }) {
-	return <Providers>{children}</Providers>;
+export default function SubLayout({
+	children,
+	params,
+}: {
+	children: ReactElement;
+	params: { locale: string };
+}) {
+	return (
+		<Providers>
+			<I18nProviderClient locale={params.locale}>
+				<Header />
+				<HeaderSticky />
+				{children}
+				<Footer />
+			</I18nProviderClient>
+		</Providers>
+	);
 }
