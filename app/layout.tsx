@@ -4,6 +4,8 @@ import StyledComponentsRegistry from './styled-registry';
 export const metadata = {
 	title: 'Games Store',
 	description: 'Games Store',
+	initialScale: '1',
+	maximumScale: '1',
 };
 
 export default function RootLayout({
