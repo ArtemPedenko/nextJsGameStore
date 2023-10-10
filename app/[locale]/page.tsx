@@ -12,6 +12,7 @@ const Home = async () => {
 	const data = await getData(locale); //
 	const t = await getI18n();
 	const sliderData1 = [];
+	let moduleBeakerData;
 	const sliderData = [
 		{ title: null, offers: [] },
 		{ title: null, offers: [] },
@@ -20,6 +21,9 @@ const Home = async () => {
 	data.map((item: any) => {
 		if (item.type === 'group') {
 			sliderData1.push(item);
+		}
+		if (item.id === 'module-breaker-lists') {
+			moduleBeakerData = item;
 		}
 	});
 
@@ -50,7 +54,7 @@ const Home = async () => {
 			<Fetching data={data} />
 			<Carousel />
 			<Slider data={sliderData[0]} />
-			<ModuleBreaker data={data[2]} />
+			<ModuleBreaker data={moduleBeakerData} />
 			<Slider data={sliderData[1]} />
 		</>
 	);
