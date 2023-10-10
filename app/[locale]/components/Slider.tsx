@@ -27,7 +27,6 @@ const SliderWrapper = styled.div`
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid red;
 `;
 
 const SliderHead = styled.div`

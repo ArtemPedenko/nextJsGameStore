@@ -19,8 +19,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 const SliderWrapper = styled.div`
-	width: 1200px;
-	height: 800px;
+	max-width: 1200px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 `;

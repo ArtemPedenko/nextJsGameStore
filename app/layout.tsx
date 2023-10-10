@@ -1,6 +1,6 @@
 import './styles.css';
 import StyledComponentsRegistry from './styled-registry';
-//
+
 export const metadata = {
 	title: 'Games Store',
 	description: 'Games Store',

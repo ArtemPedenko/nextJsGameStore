@@ -1,10 +1,11 @@
 // @ts-nocheck
+import './page.css';
 import ProductSlider from '../components/ProductSlider';
 import StickyGameInfo from '../modules/StickyGameInfo';
 import Logger from './logger';
 //import { getI18n } from "@/locales/server";
 import { getI18n } from '@/locales/server';
-//
+
 const ProductPage = async ({ searchParams, params }) => {
 	const t = await getI18n();
 
@@ -73,19 +74,11 @@ const ProductPage = async ({ searchParams, params }) => {
 		<>
 			<Logger data={serchData} />
 
-			<div
-				style={{
-					width: '1600px',
-					margin: '0 auto',
-					display: 'flex',
-					flexDirection: 'row',
-					justifyContent: 'space-between',
-				}}
-			>
-				<div style={{ width: '1200px' }}>
+			<div className='product-page'>
+				<div className='product-slider'>
 					<ProductSlider data={imageArray} />
-					{offerDataObj.description} <br />
-					{t(`developer`)} : {offerDataObj.developer}
+					{/* {offerDataObj.description} <br />
+					{t(`developer`)} : {offerDataObj.developer} */}
 				</div>
 				<StickyGameInfo data={data.data} offerData={offerDataObj} />
 			</div>

@@ -10,6 +10,8 @@ const FooterWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin: 50px 0 0 0;
+	z-index: 10;
+	position: relative;
 `;
 
 export default function Footer() {
