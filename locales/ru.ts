@@ -15,4 +15,7 @@ export default {
   base_game: "БАЗОВАЯ ИГРА",
   addon: "АДДОН",
   developer: "Разработчик",
+  enter_email: "Введите email",
+  enter_password: "Enter password",
+  enter_now: "Enter now",
 } as const;

@@ -126,7 +126,7 @@ export default function Header() {
 						width='30px'
 						margin='0'
 					/>
-					<HeaderButton href='./'>{t(`sign_in`)}</HeaderButton>
+					<HeaderButton href='./authorization'>{t(`sign_in`)}</HeaderButton>
 				</HeaderRight>
 				<MobileMenuButton onClick={() => menuSwitcher()}>
 					<IconWrapper

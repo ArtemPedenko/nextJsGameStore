@@ -15,4 +15,7 @@ export default {
   base_game: "BASE GAME",
   addon: "ADDON",
   developer: "Developer",
+  enter_email: "Enter email",
+  enter_password: "Enter password",
+  enter_now: "Enter now",
 } as const;
