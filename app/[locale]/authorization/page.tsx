@@ -130,27 +130,43 @@ const Authorization = () => {
 	return (
 		<AuthorizationPage>
 			<AuthorizationContentWrapper>
-				<IconWrapper
-					icon={<SiteLogo />}
-					height='100px'
-					width='100px'
-					margin='0 10px'
-				/>
-				<EmailInput
-					placeholder={'Введите отображаемое имя'}
-					onChange={(e) => setUserName(e.target.value)}
-				/>
-				<EmailInput
-					placeholder={t(`enter_email`)}
-					onChange={(e) => setUserEmail(e.target.value)}
-				/>
-				<PasswordInput
-					placeholder={t(`enter_password`)}
-					onChange={(e) => setUserPass(e.target.value)}
-				/>
-				<Button onClick={registerUser}>{t(`enter_now`)}</Button>
-				<Button onClick={loginUser}>Войти</Button>
-				<Button onClick={sighOut}>Выйти</Button>
+				{userData ? (
+					<>
+						<EmailInput
+							placeholder={t(`enter_email`)}
+							onChange={(e) => setUserEmail(e.target.value)}
+						/>
+						<PasswordInput
+							placeholder={t(`enter_password`)}
+							onChange={(e) => setUserPass(e.target.value)}
+						/>
+						<Button onClick={loginUser}>Войти</Button>
+					</>
+				) : (
+					<>
+						<IconWrapper
+							icon={<SiteLogo />}
+							height='100px'
+							width='100px'
+							margin='0 10px'
+						/>
+						<EmailInput
+							placeholder={'Введите отображаемое имя'}
+							onChange={(e) => setUserName(e.target.value)}
+						/>
+						<EmailInput
+							placeholder={t(`enter_email`)}
+							onChange={(e) => setUserEmail(e.target.value)}
+						/>
+						<PasswordInput
+							placeholder={t(`enter_password`)}
+							onChange={(e) => setUserPass(e.target.value)}
+						/>
+						<Button onClick={registerUser}>{t(`enter_now`)}</Button>
+						<Button onClick={loginUser}>Войти</Button>
+						<Button onClick={sighOut}>Выйти</Button>
+					</>
+				)}
 			</AuthorizationContentWrapper>
 		</AuthorizationPage>
 	);
