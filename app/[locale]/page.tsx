@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getI18n } from '../../locales/server';
-import getData from '../api/games';
+import getData from '../utils/gameInfo';
 import Fetching from './layout/fetching';
 import Carousel from './modules/Carousel';
 import Slider from './components/Slider';
