@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// Define a type for the slice state
 interface gameState {
 	email: string | null;
 	gamesData: any;
@@ -10,8 +9,8 @@ interface gameState {
 		current: number;
 	};
 	searchGames: any[];
+	userData: any;
 }
-// Define the initial state using that type
 const initialState: gameState = {
 	email: null,
 	gamesData: [],
@@ -22,6 +21,7 @@ const initialState: gameState = {
 		current: 0,
 	},
 	searchGames: [],
+	userData: {},
 };
 
 export const gameStore = createSlice({
@@ -49,6 +49,9 @@ export const gameStore = createSlice({
 		setSearchGames: (state, action: PayloadAction<any>) => {
 			state.searchGames = action.payload;
 		},
+		setUserData: (state, action: PayloadAction<any>) => {
+			state.userData = action.payload;
+		},
 	},
 });
 
@@ -60,5 +63,6 @@ export const {
 	setAnimationPrevious,
 	setAnimationCurrent,
 	setSearchGames,
+	setUserData,
 } = gameStore.actions;
 export default gameStore.reducer;
