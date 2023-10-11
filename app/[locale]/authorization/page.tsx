@@ -148,15 +148,9 @@ const Authorization = () => {
 					placeholder={t(`enter_password`)}
 					onChange={(e) => setUserPass(e.target.value)}
 				/>
-				<div onClick={() => registerUser()}>
-					<Button>{t(`enter_now`)}</Button>
-				</div>
-				<div onClick={() => loginUser()}>
-					<Button>Войти</Button>
-				</div>
-				<div onClick={() => sighOut()}>
-					<Button>Выйти</Button>
-				</div>
+				<Button onClick={registerUser}>{t(`enter_now`)}</Button>
+				<Button onClick={loginUser}>Войти</Button>
+				<Button onClick={sighOut}>Выйти</Button>
 			</AuthorizationContentWrapper>
 		</AuthorizationPage>
 	);
