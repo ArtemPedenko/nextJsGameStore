@@ -26,7 +26,6 @@ const AuthorizationContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
   gap: 10px;
 `;
 
@@ -38,6 +37,9 @@ const EmailInput = styled.input`
   border-radius: 3px;
   color: white;
   padding: 0;
+  &:focus {
+    border: 1px solid white;
+  }
 `;
 
 const PasswordInput = styled.input`
@@ -58,10 +60,15 @@ const Authorization = () => {
     const responseData = await response.json();
     return responseData;
   }
-  //{t(`enter_email`)}
   return (
     <AuthorizationPage>
       <AuthorizationContentWrapper>
+        <IconWrapper
+          icon={<SiteLogo />}
+          height="100px"
+          width="100px"
+          margin="0 10px"
+        />
         <EmailInput placeholder={t(`enter_email`)} />
         <PasswordInput placeholder={t(`enter_password`)} />
         <Button>{t(`enter_now`)}</Button>
