@@ -1,31 +1,31 @@
-'use client';
-import { FC, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
-import { setGamesData, setChosenGames } from '@/app/store/slice';
+"use client";
+import { FC, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { setGamesData, setChosenGames } from "@/app/store/slice";
 
 interface epicProps {
-	data: any;
+  data: any;
 }
 
 const Fetching: FC<epicProps> = ({ data }) => {
-	console.log(data);
-	const dispatch = useAppDispatch();
-	const chosenGames = useAppSelector((state) => state.games.chosenGames);
+  /* console.log(data); */
+  const dispatch = useAppDispatch();
+  const chosenGames = useAppSelector((state) => state.games.chosenGames);
 
-	let carouselItems: any;
+  let carouselItems: any;
 
-	data.map((item: { id: string }) => {
-		if (item.id === 'new-carousel-definitive') {
-			carouselItems = data[0].slides.slice(1, 6);
-		}
-	});
+  data.map((item: { id: string }) => {
+    if (item.id === "new-carousel-definitive") {
+      carouselItems = data[0].slides.slice(1, 6);
+    }
+  });
 
-	useEffect(() => {
-		dispatch(setGamesData(data));
-		dispatch(setChosenGames(carouselItems));
-	}, []);
+  useEffect(() => {
+    dispatch(setGamesData(data));
+    dispatch(setChosenGames(carouselItems));
+  }, []);
 
-	return <></>;
+  return <></>;
 };
 
 export default Fetching;

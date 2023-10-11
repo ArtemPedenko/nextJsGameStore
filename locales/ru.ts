@@ -16,6 +16,6 @@ export default {
   addon: "АДДОН",
   developer: "Разработчик",
   enter_email: "Введите email",
-  enter_password: "Enter password",
-  enter_now: "Enter now",
+  enter_password: "Введите пароль",
+  enter_now: "Войти сейчас",
 } as const;

@@ -11,8 +11,8 @@ interface gameInfoProps {
 }
 
 const Logger: FC<gameInfoProps> = ({ data }) => {
-	console.log('data');
-	console.log(data);
+	/* console.log('data');
+	console.log(data); */
 
 	return (
 		<>

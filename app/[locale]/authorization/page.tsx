@@ -6,6 +6,14 @@ import IconWrapper from "../components/IconWrapper";
 import styled from "styled-components";
 import { useI18n } from "@/locales/client";
 import Button from "../components/Button";
+import { auth } from "../../firebase/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+import { useState, useEffect } from "react";
 
 const AuthorizationPage = styled.div`
   position: absolute;
@@ -54,12 +62,53 @@ const PasswordInput = styled.input`
 
 const Authorization = () => {
   const t = useI18n();
+  const [userEmail, setUserEmail] = useState("");
+  const [userPass, setUserPass] = useState("");
 
-  async function getData(url: string) {
-    const response = await fetch(url);
-    const responseData = await response.json();
-    return responseData;
+  async function registerUser() {
+    console.log(userEmail, userPass);
+    await createUserWithEmailAndPassword(auth, userEmail, userPass)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
   }
+
+  async function loginUser() {
+    console.log(userEmail, userPass);
+
+    signInWithEmailAndPassword(auth, userEmail, userPass)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  }
+
+  async function sighOut() {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log("Signed out successfully");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  }
+
   return (
     <AuthorizationPage>
       <AuthorizationContentWrapper>
@@ -69,9 +118,23 @@ const Authorization = () => {
           width="100px"
           margin="0 10px"
         />
-        <EmailInput placeholder={t(`enter_email`)} />
-        <PasswordInput placeholder={t(`enter_password`)} />
-        <Button>{t(`enter_now`)}</Button>
+        <EmailInput
+          placeholder={t(`enter_email`)}
+          onChange={(e) => setUserEmail(e.target.value)}
+        />
+        <PasswordInput
+          placeholder={t(`enter_password`)}
+          onChange={(e) => setUserPass(e.target.value)}
+        />
+        <div onClick={() => registerUser()}>
+          <Button>{t(`enter_now`)}</Button>
+        </div>
+        <div onClick={() => loginUser()}>
+          <Button>Войти</Button>
+        </div>
+        <div onClick={() => sighOut()}>
+          <Button>Выйти</Button>
+        </div>
       </AuthorizationContentWrapper>
     </AuthorizationPage>
   );
