@@ -95,13 +95,14 @@ interface CarouselThumbnailProps {
 const CarouselThumbnail: FC<CarouselThumbnailProps> = ({ props }) => {
 	const { item, index, animationCurrent, chooseCarousel, animationController } =
 		props;
+	const productLink = item.link.src.replace('/p/', '');
 
 	return (
 		<AnimationWrapper>
 			{animationCurrent === index ? (
 				<Link
 					href={{
-						pathname: `${item.link.src}`,
+						pathname: `${productLink}`,
 						query: {
 							id: `${item.offer.id}`,
 							namespace: `${item.offer.namespace}`,
