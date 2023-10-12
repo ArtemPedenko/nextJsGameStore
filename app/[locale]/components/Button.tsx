@@ -25,7 +25,7 @@ const StyledButton = styled.button<StyledButtonProps>((props) => ({
 interface ButtonProps {
   children: string;
   $contained?: any;
-  onClick?: MouseEventHandler<HTMLButtonElement> | Function;
+  onClick?: any;
   type?: "button" | "submit" | "reset" | undefined;
 }
 
