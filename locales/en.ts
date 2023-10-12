@@ -18,4 +18,7 @@ export default {
   enter_email: "Enter email",
   enter_password: "Enter password",
   enter_now: "Enter now",
+  game_wallet: "GAME WALLET",
+  wishlist: "WISHLIST",
+  logout: "LOGOUT",
 } as const;

@@ -18,4 +18,7 @@ export default {
   enter_email: "Введите email",
   enter_password: "Введите пароль",
   enter_now: "Войти сейчас",
+  game_wallet: "КОРЗИНА",
+  wishlist: "СПИСОК ЖЕЛАЕМОГО",
+  logout: "ВЫЙТИ",
 } as const;
