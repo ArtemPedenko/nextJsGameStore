@@ -1,25 +1,20 @@
 "use client";
 
-import Slider from "../components/Slider";
-import SiteLogo from "@/images/SiteLogo";
-import IconWrapper from "../components/IconWrapper";
 import styled from "styled-components";
 import { useI18n } from "@/locales/client";
-import Button from "../components/Button";
 import { auth } from "../../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { setUserData } from "@/app/store/slice";
 import { useRouter } from "next/navigation";
-import { Formik } from "formik";
-import * as Yup from "yup";
+import Login from "./components/Login";
+import Registration from "./components/Registration";
 
 const AuthorizationPage = styled.div`
   position: absolute;
@@ -67,9 +62,6 @@ const Authorization = () => {
   const t = useI18n();
   const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.games.userData);
-  const [userEmail, setUserEmail] = useState("");
-  const [userPass, setUserPass] = useState("");
-  const [userName, setUserName] = useState("");
   const [pageView, setPageView] = useState("login");
   const [userError, setUserError] = useState(false);
 
@@ -137,147 +129,17 @@ const Authorization = () => {
     <AuthorizationPage>
       <AuthorizationContentWrapper>
         {pageView === "login" ? (
-          <>
-            <IconWrapper
-              icon={<SiteLogo />}
-              height="100px"
-              width="100px"
-              margin="0 10px"
-            />
-            <Formik
-              initialValues={{ email: "", password: "" }}
-              onSubmit={(values) => loginUser(values.email, values.password)}
-              validateOnChange={false}
-              validateOnBlur={false}
-              validationSchema={Yup.object().shape({
-                email: Yup.string().email().required("Обязательное поле"),
-                password: Yup.string().min(6).required("Обязательное поле"),
-              })}
-            >
-              {(props) => {
-                props.submitCount > 0 && (props.validateOnChange = true);
-                const { values, errors, handleChange, handleSubmit } = props;
-                return (
-                  <Form onSubmit={handleSubmit}>
-                    <Input
-                      id="email"
-                      placeholder="Enter your email"
-                      type="text"
-                      value={values.email}
-                      onChange={handleChange}
-                    />
-                    {errors.email ? (
-                      <div style={{ color: "red" }}>{errors.email}</div>
-                    ) : null}
-
-                    <Input
-                      id="password"
-                      placeholder="Enter your password"
-                      type="password"
-                      value={values.password}
-                      onChange={handleChange}
-                    />
-                    {errors.password ? (
-                      <div style={{ color: "red" }}>{errors.password}</div>
-                    ) : null}
-
-                    <Button type="submit" onClick={() => null}>
-                      Submit
-                    </Button>
-                  </Form>
-                );
-              }}
-            </Formik>
-            {userError ? <div>Неправильный емаил/пароль</div> : null}
-            {
-              <>
-                <div>Нет акка?</div>
-                <div
-                  onClick={() => setPageView("registration")}
-                  style={{ textDecoration: "underline", cursor: "pointer" }}
-                >
-                  зарегестрироваться
-                </div>
-              </>
-            }
-          </>
+          <Login
+            loginUser={loginUser}
+            userError={userError}
+            setPageView={setPageView}
+          />
         ) : (
-          <>
-            <IconWrapper
-              icon={<SiteLogo />}
-              height="100px"
-              width="100px"
-              margin="0 10px"
-            />
-            <Formik
-              initialValues={{ email: "", password: "", login: "" }}
-              onSubmit={(values) =>
-                registerUser(values.email, values.password, values.login)
-              }
-              validateOnChange={false}
-              validateOnBlur={false}
-              validationSchema={Yup.object().shape({
-                email: Yup.string().email().required("Обязательное поле"),
-                login: Yup.string().min(6).required("Обязательное поле"),
-                password: Yup.string().min(6).required("Обязательное поле"),
-              })}
-            >
-              {(props) => {
-                props.submitCount > 0 && (props.validateOnChange = true);
-                const { values, errors, handleChange, handleSubmit } = props;
-                return (
-                  <Form onSubmit={handleSubmit}>
-                    <Input
-                      id="email"
-                      placeholder="Enter your email"
-                      type="text"
-                      value={values.email}
-                      onChange={handleChange}
-                    />
-                    {errors.email ? (
-                      <div style={{ color: "red" }}>{errors.email}</div>
-                    ) : null}
-                    <Input
-                      id="login"
-                      placeholder="Enter your login"
-                      type="text"
-                      value={values.login}
-                      onChange={handleChange}
-                    />
-                    {errors.login ? (
-                      <div style={{ color: "red" }}>{errors.login}</div>
-                    ) : null}
-                    <Input
-                      id="password"
-                      placeholder="Enter your password"
-                      type="password"
-                      value={values.password}
-                      onChange={handleChange}
-                    />
-                    {errors.password ? (
-                      <div style={{ color: "red" }}>{errors.password}</div>
-                    ) : null}
-
-                    <Button type="submit" onClick={() => null}>
-                      Submit
-                    </Button>
-                  </Form>
-                );
-              }}
-            </Formik>
-            {userError ? <div>Неправильный емаил/пароль</div> : null}
-            {
-              <>
-                <div>Есть акк?</div>
-                <div
-                  onClick={() => setPageView("login")}
-                  style={{ textDecoration: "underline", cursor: "pointer" }}
-                >
-                  войти
-                </div>
-              </>
-            }
-          </>
+          <Registration
+            registerUser={registerUser}
+            userError={userError}
+            setPageView={setPageView}
+          />
         )}
       </AuthorizationContentWrapper>
     </AuthorizationPage>
