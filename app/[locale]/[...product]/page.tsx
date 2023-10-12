@@ -8,8 +8,6 @@ import { getI18n } from '@/locales/server';
 
 const ProductPage = async ({ searchParams, params }) => {
 	const t = await getI18n();
-	console.log(params.product[0]);
-	console.log(typeof params.product);
 
 	async function getData(url: string) {
 		const response = await fetch(url);
