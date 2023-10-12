@@ -18,6 +18,8 @@ import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { setUserData } from "@/app/store/slice";
 import { useRouter } from "next/navigation";
+import { Formik } from "formik";
+import * as Yup from "yup";
 
 const AuthorizationPage = styled.div`
   position: absolute;
@@ -41,7 +43,7 @@ const AuthorizationContentWrapper = styled.div`
   gap: 10px;
 `;
 
-const EmailInput = styled.input`
+const Input = styled.input`
   width: 100%;
   height: 50px;
   background-color: #2a2a2a;
@@ -139,24 +141,54 @@ const Authorization = () => {
               width="100px"
               margin="0 10px"
             />
-            <EmailInput
-              placeholder={t(`enter_email`)}
-              onChange={(e) => setUserEmail(e.target.value)}
-            />
-            <PasswordInput
-              placeholder={t(`enter_password`)}
-              onChange={(e) => setUserPass(e.target.value)}
-            />
-            <Button onClick={loginUser}>Войти</Button>
-            <>
-              Нету акка?{" "}
-              <div
-                onClick={() => setPageView("registration")}
-                style={{ cursor: "pointer", textDecoration: "underline" }}
-              >
-                зарегацо
-              </div>
-            </>
+            <Formik
+              initialValues={{ email: "", password: "" }}
+              onSubmit={(values) => console.log(values)}
+              validateOnChange={false}
+              validateOnBlur={false}
+              validationSchema={Yup.object().shape({
+                email: Yup.string().email().required("Обязательное поле"),
+                password: Yup.string().min(6).required("Обязательное поле"),
+              })}
+            >
+              {(props) => {
+                props.submitCount > 0 && (props.validateOnChange = true);
+                const {
+                  values,
+                  touched,
+                  errors,
+                  isSubmitting,
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                } = props;
+                return (
+                  <form onSubmit={handleSubmit}>
+                    <Input
+                      id="email"
+                      placeholder="Enter your email"
+                      type="text"
+                      value={values.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email ? errors.email : null}
+
+                    <Input
+                      id="password"
+                      placeholder="Enter your password"
+                      type="password"
+                      value={values.password}
+                      onChange={handleChange}
+                    />
+                    {errors.password ? errors.password : null}
+
+                    <Button type="submit" onClick={() => null}>
+                      Submit
+                    </Button>
+                  </form>
+                );
+              }}
+            </Formik>
           </>
         ) : (
           <>
@@ -166,28 +198,6 @@ const Authorization = () => {
               width="100px"
               margin="0 10px"
             />
-            <EmailInput
-              placeholder={"Введите отображаемое имя"}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            <EmailInput
-              placeholder={t(`enter_email`)}
-              onChange={(e) => setUserEmail(e.target.value)}
-            />
-            <PasswordInput
-              placeholder={t(`enter_password`)}
-              onChange={(e) => setUserPass(e.target.value)}
-            />
-            <Button onClick={registerUser}>Зарегацо</Button>
-            <>
-              Есть акк?{" "}
-              <div
-                onClick={() => setPageView("login")}
-                style={{ cursor: "pointer", textDecoration: "underline" }}
-              >
-                войти
-              </div>
-            </>
           </>
         )}
       </AuthorizationContentWrapper>
