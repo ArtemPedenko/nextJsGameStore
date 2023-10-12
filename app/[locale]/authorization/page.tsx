@@ -56,14 +56,11 @@ const Input = styled.input`
   }
 `;
 
-const PasswordInput = styled.input`
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
-  height: 50px;
-  background-color: #2a2a2a;
-  border: 1px solid #686868;
-  border-radius: 3px;
-  color: white;
-  padding: 0;
 `;
 
 const Authorization = () => {
@@ -74,10 +71,15 @@ const Authorization = () => {
   const [userPass, setUserPass] = useState("");
   const [userName, setUserName] = useState("");
   const [pageView, setPageView] = useState("login");
+  const [userError, setUserError] = useState(false);
 
   const { push } = useRouter();
 
-  async function registerUser() {
+  async function registerUser(
+    userEmail: string,
+    userPass: string,
+    userName: string
+  ) {
     console.log(userEmail, userPass);
     await createUserWithEmailAndPassword(auth, userEmail, userPass)
       .then((userCredential) => {
@@ -102,7 +104,7 @@ const Authorization = () => {
       });
   }
 
-  async function loginUser() {
+  async function loginUser(userEmail: string, userPass: string) {
     console.log(userEmail, userPass);
 
     signInWithEmailAndPassword(auth, userEmail, userPass)
@@ -116,6 +118,7 @@ const Authorization = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        setUserError(true);
       });
   }
 
@@ -143,7 +146,7 @@ const Authorization = () => {
             />
             <Formik
               initialValues={{ email: "", password: "" }}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={(values) => loginUser(values.email, values.password)}
               validateOnChange={false}
               validateOnBlur={false}
               validationSchema={Yup.object().shape({
@@ -153,17 +156,9 @@ const Authorization = () => {
             >
               {(props) => {
                 props.submitCount > 0 && (props.validateOnChange = true);
-                const {
-                  values,
-                  touched,
-                  errors,
-                  isSubmitting,
-                  handleChange,
-                  handleBlur,
-                  handleSubmit,
-                } = props;
+                const { values, errors, handleChange, handleSubmit } = props;
                 return (
-                  <form onSubmit={handleSubmit}>
+                  <Form onSubmit={handleSubmit}>
                     <Input
                       id="email"
                       placeholder="Enter your email"
@@ -171,7 +166,9 @@ const Authorization = () => {
                       value={values.email}
                       onChange={handleChange}
                     />
-                    {errors.email ? errors.email : null}
+                    {errors.email ? (
+                      <div style={{ color: "red" }}>{errors.email}</div>
+                    ) : null}
 
                     <Input
                       id="password"
@@ -180,15 +177,29 @@ const Authorization = () => {
                       value={values.password}
                       onChange={handleChange}
                     />
-                    {errors.password ? errors.password : null}
+                    {errors.password ? (
+                      <div style={{ color: "red" }}>{errors.password}</div>
+                    ) : null}
 
                     <Button type="submit" onClick={() => null}>
                       Submit
                     </Button>
-                  </form>
+                  </Form>
                 );
               }}
             </Formik>
+            {userError ? <div>Неправильный емаил/пароль</div> : null}
+            {
+              <>
+                <div>Нет акка?</div>
+                <div
+                  onClick={() => setPageView("registration")}
+                  style={{ textDecoration: "underline", cursor: "pointer" }}
+                >
+                  зарегестрироваться
+                </div>
+              </>
+            }
           </>
         ) : (
           <>
@@ -198,6 +209,74 @@ const Authorization = () => {
               width="100px"
               margin="0 10px"
             />
+            <Formik
+              initialValues={{ email: "", password: "", login: "" }}
+              onSubmit={(values) =>
+                registerUser(values.email, values.password, values.login)
+              }
+              validateOnChange={false}
+              validateOnBlur={false}
+              validationSchema={Yup.object().shape({
+                email: Yup.string().email().required("Обязательное поле"),
+                login: Yup.string().min(6).required("Обязательное поле"),
+                password: Yup.string().min(6).required("Обязательное поле"),
+              })}
+            >
+              {(props) => {
+                props.submitCount > 0 && (props.validateOnChange = true);
+                const { values, errors, handleChange, handleSubmit } = props;
+                return (
+                  <Form onSubmit={handleSubmit}>
+                    <Input
+                      id="email"
+                      placeholder="Enter your email"
+                      type="text"
+                      value={values.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email ? (
+                      <div style={{ color: "red" }}>{errors.email}</div>
+                    ) : null}
+                    <Input
+                      id="login"
+                      placeholder="Enter your login"
+                      type="text"
+                      value={values.login}
+                      onChange={handleChange}
+                    />
+                    {errors.login ? (
+                      <div style={{ color: "red" }}>{errors.login}</div>
+                    ) : null}
+                    <Input
+                      id="password"
+                      placeholder="Enter your password"
+                      type="password"
+                      value={values.password}
+                      onChange={handleChange}
+                    />
+                    {errors.password ? (
+                      <div style={{ color: "red" }}>{errors.password}</div>
+                    ) : null}
+
+                    <Button type="submit" onClick={() => null}>
+                      Submit
+                    </Button>
+                  </Form>
+                );
+              }}
+            </Formik>
+            {userError ? <div>Неправильный емаил/пароль</div> : null}
+            {
+              <>
+                <div>Есть акк?</div>
+                <div
+                  onClick={() => setPageView("login")}
+                  style={{ textDecoration: "underline", cursor: "pointer" }}
+                >
+                  войти
+                </div>
+              </>
+            }
           </>
         )}
       </AuthorizationContentWrapper>
