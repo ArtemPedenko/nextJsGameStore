@@ -32,9 +32,6 @@ const CarouselThumbnailWrapper = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: column;
-  @media (max-width: 858px) {
-    display: none;
-  }
 `;
 
 export default function Carousel() {
