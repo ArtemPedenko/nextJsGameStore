@@ -10,6 +10,7 @@ const AnimationWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  margin: 0 15px;
   &:hover {
     cursor: pointer;
     background-color: #252525;

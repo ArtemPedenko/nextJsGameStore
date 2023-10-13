@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   height: 450px;
   display: flex;
   flex-direction: row;
-  margin: 15px auto;
+  margin: 30px auto;
   justify-content: space-between;
   @media (max-width: 1540px) {
     flex-direction: column;
@@ -23,24 +23,25 @@ const Wrapper = styled.div`
   }
 `;
 
+const ModuleBreakerItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+`;
+
 interface ModuleBreakerProps {
   data: any;
 }
 
 const ModuleBreaker: FC<ModuleBreakerProps> = ({ data }) => {
+  console.log(data);
   const t = useI18n();
   return (
     <Wrapper>
       {data.modules.map((item, index) => {
         return (
-          <div
-            key={uuid()}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "15px",
-            }}
-          >
+          <ModuleBreakerItem key={uuid()}>
             <img
               alt=""
               src={item.image.src}
@@ -49,8 +50,8 @@ const ModuleBreaker: FC<ModuleBreakerProps> = ({ data }) => {
                 objectFit: "cover",
               }}
             />
-            {item.title}
-          </div>
+            <div> {item.title}</div>
+          </ModuleBreakerItem>
         );
       })}
     </Wrapper>

@@ -23,8 +23,7 @@ interface sliderProps {
 const SliderWrapper = styled.div`
   max-width: 1427px;
   width: 90%;
-  height: 490px;
-  margin: 0 auto;
+  margin: 30px auto 0 auto;
   display: flex;
   flex-direction: column;
 `;
@@ -66,82 +65,76 @@ const Slider: FC<sliderProps> = ({ data }) => {
   }
 
   return (
-    <>
-      <SliderWrapper>
-        <SliderHead>
-          {data.title}
-          <SliderNavigation>
-            <SliderNavigationButton onClick={() => handlePrev()}>
-              <IconWrapper
-                icon={<SlierArrowLeft />}
-                height="20px"
-                width="20px"
-                margin="0 auto"
-              />
-            </SliderNavigationButton>
-            <SliderNavigationButton onClick={() => handleNext()}>
-              <IconWrapper
-                icon={<SliderArrowRight />}
-                height="20px"
-                width="20px"
-                margin="0 auto"
-              />
-            </SliderNavigationButton>
-          </SliderNavigation>
-        </SliderHead>
-        <Swiper
-          ref={sliderRef}
-          slidesPerView={1}
-          spaceBetween="30px"
-          slidesPerGroup={1}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-              slidesPerGroup: 2,
-            },
-            768: {
-              slidesPerView: 4,
-              spaceBetween: 40,
-              slidesPerGroup: 4,
-            },
-            1024: {
-              slidesPerView: 5,
-              spaceBetween: 50,
-              slidesPerGroup: 5,
-            },
-          }}
-          loop="true"
-          className="swiper-container-slider"
-        >
-          {data.offers.map((item: any, index: number) => {
-            return (
-              <SwiperSlide className="swiper-slide-slider" key={index}>
-                <Link
-                  /* href={{
+    <SliderWrapper>
+      <SliderHead>
+        {data.title}
+        <SliderNavigation>
+          <SliderNavigationButton onClick={() => handlePrev()}>
+            <IconWrapper
+              icon={<SlierArrowLeft />}
+              height="20px"
+              width="20px"
+              margin="0 auto"
+            />
+          </SliderNavigationButton>
+          <SliderNavigationButton onClick={() => handleNext()}>
+            <IconWrapper
+              icon={<SliderArrowRight />}
+              height="20px"
+              width="20px"
+              margin="0 auto"
+            />
+          </SliderNavigationButton>
+        </SliderNavigation>
+      </SliderHead>
+      <Swiper
+        ref={sliderRef}
+        slidesPerView={1}
+        spaceBetween="30px"
+        slidesPerGroup={1}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            slidesPerGroup: 2,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+            slidesPerGroup: 4,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+            slidesPerGroup: 5,
+          },
+        }}
+        loop="true"
+        className="swiper-container-slider"
+      >
+        {data.offers.map((item: any, index: number) => {
+          return (
+            <SwiperSlide className="swiper-slide-slider" key={index}>
+              <Link
+                /* href={{
 										pathname: `${item.url}`,
 										query: { id: `${item.id}`, namespace: `${item.namespace}` },
 									}} */
-                  href={`${item.url}/${item.id}/${item.namespace}`}
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  <img
-                    className="slide-img-slider"
-                    alt=""
-                    src={item.imageUrl}
-                  />
-                  <div style={{ fontSize: "16px" }}>{item.gameName} </div>
-                  <div>{item.price}</div>
-                </Link>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </SliderWrapper>
-    </>
+                href={`${item.url}/${item.id}/${item.namespace}`}
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                }}
+              >
+                <img className="slide-img-slider" alt="" src={item.imageUrl} />
+                <div style={{ fontSize: "16px" }}>{item.gameName} </div>
+                <div>{item.price}</div>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </SliderWrapper>
   );
 };
 

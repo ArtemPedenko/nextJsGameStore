@@ -56,10 +56,11 @@ const SliderImgPrevious = styled.img`
 
 const GameInfo = styled.div`
   position: absolute;
-  bottom: 50px;
-  left: 40px;
-  width: 480px;
+  bottom: 3%;
+  left: 3%;
+  width: 456px;
   color: #ffffff;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -69,8 +70,9 @@ const GameInfo = styled.div`
 
 const GameName = styled.div`
   position: absolute;
-  bottom: 250px;
-  left: 40px;
+  width: 30%;
+  bottom: 35%;
+  left: 3%;
   font-size: 40px;
   text-shadow: 2px 2px 5px black;
   animation-name: slide;
@@ -115,7 +117,11 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
           <SliderImg src={item.image.src} alt="img" />
           <GameName>
             {item.logoImage.src ? (
-              <img alt="img" src={item.logoImage.src} />
+              <img
+                alt="img"
+                src={item.logoImage.src}
+                style={{ width: "100%", objectFit: "cover" }}
+              />
             ) : null}
           </GameName>
           <GameInfo>
