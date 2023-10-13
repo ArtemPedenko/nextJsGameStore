@@ -1,235 +1,245 @@
-"use client";
+'use client';
 
-import React from "react";
-import SiteLogo from "@/images/SiteLogo";
-import LanguageLogo from "@/images/LanguageLogo";
-import ProfileLogo from "@/images/ProfileLogo";
-import CloseLogo from "@/images/CloseLogo";
-import MobileMenuLogo from "@/images/MobileMenuLogo";
-import IconWrapper from "../components/IconWrapper";
-import Divider from "../components/Divider";
-import styled from "styled-components";
-import LanguageModal from "./Header/LanguageModal";
-import { useState, useRef, useEffect } from "react";
-import HeaderButton from "./Header/HeaderButton";
+import React from 'react';
+import SiteLogo from '@/images/SiteLogo';
+import LanguageLogo from '@/images/LanguageLogo';
+import ProfileLogo from '@/images/ProfileLogo';
+import CloseLogo from '@/images/CloseLogo';
+import MobileMenuLogo from '@/images/MobileMenuLogo';
+import IconWrapper from '../components/IconWrapper';
+import Divider from '../components/Divider';
+import styled from 'styled-components';
+import LanguageModal from './Header/LanguageModal';
+import { useState, useRef, useEffect } from 'react';
+import HeaderButton from './Header/HeaderButton';
 import {
-  useI18n,
-  useCurrentLocale,
-  useChangeLocale,
-} from "../../../locales/client";
-import MobileMenu from "./Header/MobileMenu";
-import MobileMenuLanguage from "./Header/MobileMenuLanguage";
-import { auth } from "@/app/firebase/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+	useI18n,
+	useCurrentLocale,
+	useChangeLocale,
+} from '../../../locales/client';
+import MobileMenu from './Header/MobileMenu';
+import MobileMenuLanguage from './Header/MobileMenuLanguage';
+import { auth } from '@/app/firebase/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
-} from "firebase/auth";
-import { setUserData } from "@/app/store/slice";
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signOut,
+	updateProfile,
+} from 'firebase/auth';
+import { setUserData } from '@/app/store/slice';
 
 const HeaderWrapper = styled.div`
-  width: 100%;
-  height: 50px;
-  background-color: #2a2a2a;
-  display: flex;
-  align-items: center;
+	width: 100%;
+	height: 50px;
+	background-color: #2a2a2a;
+	display: flex;
+	align-items: center;
 `;
 const HeaderLeft = styled.div`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  @media (max-width: 768px) {
-    display: none;
-  }
+	display: flex;
+	align-items: center;
+	height: 50px;
+	@media (max-width: 768px) {
+		display: none;
+	}
 `;
 
 const HeaderRight = styled.div`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  gap: 10px;
-  margin: 0 0 0 auto;
-  @media (max-width: 768px) {
-    display: none;
-  }
+	display: flex;
+	align-items: center;
+	height: 50px;
+	gap: 10px;
+	margin: 0 0 0 auto;
+	@media (max-width: 768px) {
+		display: none;
+	}
 `;
 
 const MobileMenuButton = styled.div`
-  display: none;
-  @media (max-width: 768px) {
-    display: block;
-    width: 50px;
-    height: 50px;
-    background-color: #0078f2;
-    margin: 0 0 0 auto;
-  }
+	display: none;
+	@media (max-width: 768px) {
+		display: block;
+		width: 50px;
+		height: 50px;
+		background-color: #0078f2;
+		margin: 0 0 0 auto;
+	}
 `;
 
 const UserName = styled.div`
-  position: relative;
-  height: 100%;
-  display: flex;
-  align-items: center;
+	position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
 `;
 
 const UserMenu = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  padding: 10px 0;
-  top: 100%;
-  background-color: #2a2a2a;
-  z-index: 12;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+	padding: 10px 0;
+	top: 100%;
+	background-color: #2a2a2a;
+	z-index: 12;
 `;
 
 const UserMenuButton = styled.button`
-  width: 100%;
-  height: 30px;
-  background-color: #2a2a2a;
-  color: #b8b8b8;
-  text-decoration: none;
-  border: none;
-  &:hover {
-    cursor: pointer;
-    color: #ffffff;
-  }
+	width: 100%;
+	height: 30px;
+	background-color: #2a2a2a;
+	color: #b8b8b8;
+	text-decoration: none;
+	border: none;
+	&:hover {
+		cursor: pointer;
+		color: #ffffff;
+	}
 `;
 
 export default function Header() {
-  const dispatch = useAppDispatch();
-  const t = useI18n();
-  const currentLocale = useCurrentLocale();
-  const changeLocale = useChangeLocale();
-  const userData = useAppSelector((state) => state.games.userData);
+	const dispatch = useAppDispatch();
+	const t = useI18n();
+	const currentLocale = useCurrentLocale();
+	const changeLocale = useChangeLocale();
+	const userData = useAppSelector((state) => state.games.userData);
 
-  const [open, setOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobiLanguageMenu, setMobileLanguageMenu] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
+	const [open, setOpen] = useState(false);
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [mobiLanguageMenu, setMobileLanguageMenu] = useState(false);
+	const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  async function sighOut() {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-        console.log("Signed out successfully");
-        dispatch(setUserData(""));
-      })
-      .catch((error) => {
-        console.log(error); // An error happened.
-      });
-  }
+	async function sighOut() {
+		signOut(auth)
+			.then(() => {
+				// Sign-out successful.
+				console.log('Signed out successfully');
+				dispatch(setUserData(''));
+			})
+			.catch((error) => {
+				console.log(error); // An error happened.
+			});
+	}
 
-  const mobiLanguageMenuSwithcer = () =>
-    setMobileLanguageMenu(!mobiLanguageMenu);
-  const menuSwitcher = () => {
-    if (mobileMenuOpen || mobiLanguageMenu) {
-      setMobileMenuOpen(false);
-      setMobileLanguageMenu(false);
-    } else {
-      setMobileMenuOpen(true);
-    }
-  };
-  const modalOpen = () => setOpen(true);
-  const modalClose = () => setOpen(false);
-  const myRef = useRef(null);
+	const mobiLanguageMenuSwithcer = () =>
+		setMobileLanguageMenu(!mobiLanguageMenu);
+	const menuSwitcher = () => {
+		if (mobileMenuOpen || mobiLanguageMenu) {
+			setMobileMenuOpen(false);
+			setMobileLanguageMenu(false);
+		} else {
+			setMobileMenuOpen(true);
+		}
+	};
+	const modalOpen = () => setOpen(true);
+	const modalClose = () => setOpen(false);
+	const myRef = useRef(null);
 
-  return (
-    <>
-      <HeaderWrapper>
-        <>
-          <IconWrapper
-            icon={<SiteLogo />}
-            height="100%"
-            width="50px"
-            margin="0 10px"
-          />
-          <HeaderLeft>
-            <HeaderButton href="/">{t(`store`)}</HeaderButton>
-            <HeaderButton href="/">{t(`distribution`)}</HeaderButton>
-            <HeaderButton href="/">{t(`support`)}</HeaderButton>
-            <Divider />
-            <HeaderButton href="https://www.unrealengine.com/en-US">
-              UNREAL ENGINE
-            </HeaderButton>
-          </HeaderLeft>
-        </>
-        <HeaderRight>
-          <div
-            style={{
-              height: "100%",
-              alignItems: "center",
-              display: "flex",
-              justifyContent: "center",
-            }}
-            onMouseEnter={() => modalOpen()}
-            onMouseLeave={() => modalClose()}
-            ref={myRef}
-            id="modalParent"
-          >
-            <IconWrapper
-              icon={<LanguageLogo />}
-              height="30px"
-              width="30px"
-              margin="0"
-            />
-          </div>
-          <IconWrapper
-            icon={<ProfileLogo />}
-            height="30px"
-            width="30px"
-            margin="0"
-          />
-          {userData ? (
-            <UserName
-              onMouseEnter={() => setUserMenuOpen(true)}
-              onMouseLeave={() => setUserMenuOpen(false)}
-            >
-              {userData.displayName}
-              {userMenuOpen ? (
-                <UserMenu>
-                  <UserMenuButton>{t(`game_wallet`)}</UserMenuButton>
-                  <UserMenuButton>{t(`wishlist`)}</UserMenuButton>
-                  <UserMenuButton onClick={() => sighOut()}>
-                    {t(`logout`)}
-                  </UserMenuButton>
-                </UserMenu>
-              ) : (
-                <></>
-              )}
-            </UserName>
-          ) : (
-            <HeaderButton href="./authorization">{t(`sign_in`)}</HeaderButton>
-          )}
-        </HeaderRight>
-        <MobileMenuButton onClick={() => menuSwitcher()}>
-          <IconWrapper
-            icon={mobileMenuOpen ? <CloseLogo /> : <MobileMenuLogo />}
-            height="100%"
-            width="50px"
-          />
-        </MobileMenuButton>
-      </HeaderWrapper>
-      {mobileMenuOpen ? (
-        <MobileMenu mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer} />
-      ) : null}
-      {mobiLanguageMenu ? (
-        <MobileMenuLanguage
-          mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer}
-          currentLocale={currentLocale}
-          changeLocale={changeLocale}
-        />
-      ) : null}
-      <LanguageModal
-        isOpen={open}
-        close={modalClose}
-        open={modalOpen}
-        parentRef={myRef}
-      />
-    </>
-  );
+	useEffect(() => {
+		auth.onAuthStateChanged(function (user) {
+			if (user) {
+				dispatch(setUserData(user));
+				console.log('я в сети');
+				// User is signed in.
+			}
+		});
+	});
+
+	return (
+		<>
+			<HeaderWrapper>
+				<>
+					<IconWrapper
+						icon={<SiteLogo />}
+						height='100%'
+						width='50px'
+						margin='0 10px'
+					/>
+					<HeaderLeft>
+						<HeaderButton href='/'>{t(`store`)}</HeaderButton>
+						<HeaderButton href='/'>{t(`distribution`)}</HeaderButton>
+						<HeaderButton href='/'>{t(`support`)}</HeaderButton>
+						<Divider />
+						<HeaderButton href='https://www.unrealengine.com/en-US'>
+							UNREAL ENGINE
+						</HeaderButton>
+					</HeaderLeft>
+				</>
+				<HeaderRight>
+					<div
+						style={{
+							height: '100%',
+							alignItems: 'center',
+							display: 'flex',
+							justifyContent: 'center',
+						}}
+						onMouseEnter={() => modalOpen()}
+						onMouseLeave={() => modalClose()}
+						ref={myRef}
+						id='modalParent'
+					>
+						<IconWrapper
+							icon={<LanguageLogo />}
+							height='30px'
+							width='30px'
+							margin='0'
+						/>
+					</div>
+					<IconWrapper
+						icon={<ProfileLogo />}
+						height='30px'
+						width='30px'
+						margin='0'
+					/>
+					{userData ? (
+						<UserName
+							onMouseEnter={() => setUserMenuOpen(true)}
+							onMouseLeave={() => setUserMenuOpen(false)}
+						>
+							{userData.displayName}
+							{userMenuOpen ? (
+								<UserMenu>
+									<UserMenuButton>{t(`game_wallet`)}</UserMenuButton>
+									<UserMenuButton>{t(`wishlist`)}</UserMenuButton>
+									<UserMenuButton onClick={() => sighOut()}>
+										{t(`logout`)}
+									</UserMenuButton>
+								</UserMenu>
+							) : (
+								<></>
+							)}
+						</UserName>
+					) : (
+						<HeaderButton href='./authorization'>{t(`sign_in`)}</HeaderButton>
+					)}
+				</HeaderRight>
+				<MobileMenuButton onClick={() => menuSwitcher()}>
+					<IconWrapper
+						icon={mobileMenuOpen ? <CloseLogo /> : <MobileMenuLogo />}
+						height='100%'
+						width='50px'
+					/>
+				</MobileMenuButton>
+			</HeaderWrapper>
+			{mobileMenuOpen ? (
+				<MobileMenu mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer} />
+			) : null}
+			{mobiLanguageMenu ? (
+				<MobileMenuLanguage
+					mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer}
+					currentLocale={currentLocale}
+					changeLocale={changeLocale}
+				/>
+			) : null}
+			<LanguageModal
+				isOpen={open}
+				close={modalClose}
+				open={modalOpen}
+				parentRef={myRef}
+			/>
+		</>
+	);
 }
