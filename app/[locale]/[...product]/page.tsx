@@ -64,7 +64,6 @@ const ProductPage = async ({ searchParams, params }) => {
   return (
     <>
       <Logger data={data} />
-
       <div className="product-page">
         <div className="product-slider">
           <ProductSlider data={imageArray} />
