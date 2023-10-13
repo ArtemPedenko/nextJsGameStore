@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import styled from "styled-components";
 import CarouselSlider from "./Carousel/CarouselSlider";
 import CarouselThumbnail from "./Carousel/CarouselThumbnail";

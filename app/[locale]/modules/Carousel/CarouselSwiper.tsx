@@ -26,15 +26,16 @@ const CarouselSwiperWrapper = styled.div`
 
 const GameInfo = styled.div`
   position: absolute;
-  bottom: 3%;
+  bottom: 5%;
   left: 3%;
-  width: 456px;
+  width: 80%;
   color: #ffffff;
   font-size: 12px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  font-size: 20px;
+  font-size: 16px;
+  text-shadow: 0px 0px 5px black;
 `;
 
 const CarouselSwiper: FC<CarouselThumbnailProps> = ({ chosenGames }) => {
