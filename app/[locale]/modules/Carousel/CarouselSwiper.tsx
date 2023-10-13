@@ -65,6 +65,7 @@ const CarouselSwiper: FC<CarouselThumbnailProps> = ({ chosenGames }) => {
                   className="carousel-slide-img-slider"
                   alt=""
                   src={item.mobileImage.src}
+                  style={{ filter: "brightness(90%)" }}
                 />
               </Link>
               <GameInfo>

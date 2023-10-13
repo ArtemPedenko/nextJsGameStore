@@ -28,8 +28,13 @@ const SliderImg = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  filter: brightness(90%);
   animation: 200ms ${carousel} cubic-bezier(1, 0.06, 0.01, 0.89);
+`;
+
+const LogoImage = styled.img`
+  width: 100%;
+  object-fit: cover;
 `;
 
 const SliderImgPrevious = styled.img`
@@ -117,11 +122,7 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
           <SliderImg src={item.image.src} alt="img" />
           <GameName>
             {item.logoImage.src ? (
-              <img
-                alt="img"
-                src={item.logoImage.src}
-                style={{ width: "100%", objectFit: "cover" }}
-              />
+              <LogoImage alt="img" src={item.logoImage.src} />
             ) : null}
           </GameName>
           <GameInfo>
