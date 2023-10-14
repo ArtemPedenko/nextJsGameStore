@@ -17,8 +17,8 @@ import {
 	useCurrentLocale,
 	useChangeLocale,
 } from '../../../locales/client';
-import MobileMenu from './Header/MobileMenu';
-import MobileMenuLanguage from './Header/MobileMenuLanguage';
+import MobileMenu from './Header/MobileMenu/MobileMenu';
+import MobileMenuLanguage from './Header/MobileMenu/MobileMenuLanguage';
 import { auth } from '@/app/firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
@@ -29,6 +29,8 @@ import {
 	updateProfile,
 } from 'firebase/auth';
 import { setUserData } from '@/app/store/slice';
+import MobileMenuUser from './Header/MobileMenu/MobileMenuUser';
+import { useRouter } from 'next/navigation';
 
 const HeaderWrapper = styled.div`
 	width: 100%;
@@ -103,6 +105,7 @@ const UserMenuButton = styled.button`
 export default function Header() {
 	const dispatch = useAppDispatch();
 	const t = useI18n();
+	const { push } = useRouter();
 	const currentLocale = useCurrentLocale();
 	const changeLocale = useChangeLocale();
 	const userData = useAppSelector((state) => state.games.userData);
@@ -110,6 +113,7 @@ export default function Header() {
 	const [open, setOpen] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [mobiLanguageMenu, setMobileLanguageMenu] = useState(false);
+	const [mobileUserMenu, setMobileUserMenu] = useState(false);
 	const [userMenuOpen, setUserMenuOpen] = useState(false);
 
 	async function sighOut() {
@@ -118,6 +122,8 @@ export default function Header() {
 				// Sign-out successful.
 				console.log('Signed out successfully');
 				dispatch(setUserData(''));
+				menuSwitcher();
+				push('./');
 			})
 			.catch((error) => {
 				console.log(error); // An error happened.
@@ -126,10 +132,12 @@ export default function Header() {
 
 	const mobiLanguageMenuSwithcer = () =>
 		setMobileLanguageMenu(!mobiLanguageMenu);
+
 	const menuSwitcher = () => {
-		if (mobileMenuOpen || mobiLanguageMenu) {
+		if (mobileMenuOpen || mobiLanguageMenu || mobileUserMenu) {
 			setMobileMenuOpen(false);
 			setMobileLanguageMenu(false);
+			setMobileUserMenu(false);
 		} else {
 			setMobileMenuOpen(true);
 		}
@@ -225,13 +233,26 @@ export default function Header() {
 				</MobileMenuButton>
 			</HeaderWrapper>
 			{mobileMenuOpen ? (
-				<MobileMenu mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer} />
+				<MobileMenu
+					mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer}
+					userData={userData}
+					setMobileUserMenu={setMobileUserMenu}
+					menuSwitcher={menuSwitcher}
+				/>
 			) : null}
 			{mobiLanguageMenu ? (
 				<MobileMenuLanguage
 					mobiLanguageMenuSwithcer={mobiLanguageMenuSwithcer}
 					currentLocale={currentLocale}
 					changeLocale={changeLocale}
+				/>
+			) : null}
+
+			{mobileUserMenu ? (
+				<MobileMenuUser
+					userData={userData}
+					setMobileUserMenu={setMobileUserMenu}
+					sighOut={sighOut}
 				/>
 			) : null}
 			<LanguageModal

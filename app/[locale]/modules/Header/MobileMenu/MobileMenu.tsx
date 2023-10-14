@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import HeaderButton from './HeaderButton';
+import HeaderButton from '../HeaderButton';
 import { useI18n } from '@/locales/client';
-import IconWrapper from '../../components/IconWrapper';
+import IconWrapper from '../../../components/IconWrapper';
 import LanguageLogo from '@/images/LanguageLogo';
-import Divider from '../../components/Divider';
+import Divider from '../../../components/Divider';
 import ProfileLogo from '@/images/ProfileLogo';
 
 const MobileMenuWrapper = styled.div`
@@ -49,9 +49,18 @@ const MobileMenuBottomRight = styled.div`
 
 interface MobileMenuProps {
 	mobiLanguageMenuSwithcer: Function;
+	userData: any;
+	setMobileUserMenu: Function;
+	menuSwitcher: Function;
 }
 
-const MobileMenu: FC<MobileMenuProps> = ({ mobiLanguageMenuSwithcer }) => {
+const MobileMenu: FC<MobileMenuProps> = ({
+	mobiLanguageMenuSwithcer,
+	userData,
+	setMobileUserMenu,
+	menuSwitcher,
+}) => {
+	console.log(userData);
 	const t = useI18n();
 	return (
 		<MobileMenuWrapper>
@@ -74,13 +83,26 @@ const MobileMenu: FC<MobileMenuProps> = ({ mobiLanguageMenuSwithcer }) => {
 				</MobileMenuBottomLeft>
 				<Divider />
 				<MobileMenuBottomRight>
-					<IconWrapper
-						icon={<ProfileLogo />}
-						height='30px'
-						width='30px'
-						margin='0'
-					/>
-					<HeaderButton href='./'>{t(`sign_in`)}</HeaderButton>
+					{userData ? (
+						<div onClick={() => setMobileUserMenu(true)}>
+							{userData.displayName}
+						</div>
+					) : (
+						<>
+							<IconWrapper
+								icon={<ProfileLogo />}
+								height='30px'
+								width='30px'
+								margin='0'
+							/>
+							<HeaderButton
+								href='./authorization'
+								onClick={() => menuSwitcher()}
+							>
+								{t(`sign_in`)}
+							</HeaderButton>
+						</>
+					)}
 				</MobileMenuBottomRight>
 			</MobileMenuBottom>
 		</MobileMenuWrapper>
