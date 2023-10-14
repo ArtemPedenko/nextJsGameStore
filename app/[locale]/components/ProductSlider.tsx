@@ -45,6 +45,7 @@ const SliderNavigationButton = styled.div`
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	margin: 0 15px;
 `;
 
 interface sliderProps {
@@ -63,7 +64,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 	function handlePrev() {
 		myRef?.current.swiper.slidePrev();
 	}
-
+	//console.log(data);
 	return (
 		<>
 			<SliderWrapper>
@@ -103,7 +104,7 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 					<Swiper
 						ref={myRef}
 						onSwiper={setThumbsSwiper}
-						spaceBetween={10}
+						spaceBetween={1}
 						loop={true}
 						slidesPerView={4}
 						freeMode={true}

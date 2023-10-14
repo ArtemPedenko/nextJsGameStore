@@ -16,7 +16,6 @@ const Fetching: FC<epicProps> = ({ data }) => {
 
 	data.map((item: { id: string; slides: any[] }) => {
 		if (item.id === 'new-carousel-definitive') {
-			console.log(item);
 			carouselItems = data[0].slides.slice(1, item.slides.length);
 		}
 	});

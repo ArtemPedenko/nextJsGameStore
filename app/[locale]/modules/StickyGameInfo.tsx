@@ -26,14 +26,19 @@ const Wrapper = styled.div`
 `;
 
 const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
-	//console.log(data);
-	//console.log(offerData);
-	//
 	const t = useI18n();
 
 	return (
 		<Wrapper>
-			<div style={{ position: 'sticky', top: '200px' }}>
+			<div
+				style={{
+					position: 'sticky',
+					top: '200px',
+					display: 'flex',
+					flexDirection: 'column',
+					gap: '15px',
+				}}
+			>
 				<h2>{offerData.title}</h2>
 				<div style={{ color: '#b8b8b8' }}>
 					{offerData.offerType === 'BASE_GAME' ? t('base_game') : <></>}

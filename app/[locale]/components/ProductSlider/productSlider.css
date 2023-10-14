@@ -1,6 +1,7 @@
 .mySwiper2 {
 	max-width: 1200px;
 	width: 100%;
+	max-height: 550px;
 }
 .mySwiper2-slide {
 	display: flex;

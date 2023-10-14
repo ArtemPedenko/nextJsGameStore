@@ -60,7 +60,7 @@ const MobileMenu: FC<MobileMenuProps> = ({
 	setMobileUserMenu,
 	menuSwitcher,
 }) => {
-	console.log(userData);
+	//console.log(userData);
 	const t = useI18n();
 	return (
 		<MobileMenuWrapper>

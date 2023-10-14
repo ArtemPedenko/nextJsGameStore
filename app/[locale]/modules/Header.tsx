@@ -120,9 +120,11 @@ export default function Header() {
 		signOut(auth)
 			.then(() => {
 				// Sign-out successful.
-				console.log('Signed out successfully');
+				//console.log('Signed out successfully');
 				dispatch(setUserData(''));
-				menuSwitcher();
+				setMobileMenuOpen(false);
+				setMobileLanguageMenu(false);
+				setMobileUserMenu(false);
 				push('./');
 			})
 			.catch((error) => {
