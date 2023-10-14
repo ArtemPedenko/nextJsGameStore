@@ -6,6 +6,7 @@ export const metadata = {
 	description: 'Games Store',
 	initialScale: '1',
 	maximumScale: '1',
+	content: 'device-width',
 };
 
 export default function RootLayout({
