@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import { useI18n } from '@/locales/client';
-import { auth } from '../../firebase/firebase';
+import { auth } from '@/app/firebase/firebase';
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
