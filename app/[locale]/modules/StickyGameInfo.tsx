@@ -32,10 +32,12 @@ const GameOfferInfo = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
+	margin-top: 30px;
 `;
 
 const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 	const t = useI18n();
+	console.log(offerData.price);
 
 	return (
 		<Wrapper>
@@ -44,7 +46,7 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 				<div style={{ color: '#b8b8b8' }}>
 					{offerData.offerType === 'BASE_GAME' ? t('base_game') : <></>}
 				</div>
-				{offerData.price === 0 ? <div>{offerData.price}</div> : null}
+				{offerData.price === '0' ? null : <div>{offerData.price}</div>}
 
 				<Button>{t('buy')}</Button>
 				<Button>{t('add_to_cart')}</Button>

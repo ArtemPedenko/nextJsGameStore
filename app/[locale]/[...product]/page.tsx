@@ -28,8 +28,10 @@ const ProductPage = async ({ searchParams, params }) => {
 
 	const data = await getData(url);
 	let productImageData = await getData(productImagesUrl);
-	let imageArray = [];
 	const offerData = await getData(offerUrl);
+
+	let imageArray = [];
+
 	let offerDataObj = {
 		description: offerData.data.Catalog.catalogOffer.description,
 		offerType: offerData.data.Catalog.catalogOffer.offerType,
@@ -38,6 +40,7 @@ const ProductPage = async ({ searchParams, params }) => {
 				.originalPrice,
 		title: offerData.data.Catalog.catalogOffer.title,
 		developer: offerData.data.Catalog.catalogOffer.developerDisplayName,
+		genres: offerData.data.Catalog.catalogOffer.tags,
 	};
 
 	if (productImageData.data.Product.sandbox.configuration[1] === undefined) {
@@ -78,13 +81,32 @@ const ProductPage = async ({ searchParams, params }) => {
 
 	return (
 		<>
-			<Logger data={imageArray} />
+			<Logger data={offerData} />
+
 			<div className='product-page'>
 				<div className='product-slider'>
 					<ProductSlider data={imageArray} />
 					<div>{offerDataObj.description}</div>
-					<div>
+					<h2>
 						{t(`developer`)} : {offerDataObj.developer}
+					</h2>
+					<div className='genres'>
+						<div className='genres-block'>
+							<h3>{t(`genres`)}:</h3>
+							{offerDataObj.genres.map((item) => {
+								if (item.groupName === 'genre') {
+									return <div>{item.name}</div>;
+								}
+							})}
+						</div>
+						<div className='genres-block'>
+							<h3>{t(`features`)}:</h3>
+							{offerDataObj.genres.map((item) => {
+								if (item.groupName === 'feature') {
+									return <div>{item.name}</div>;
+								}
+							})}
+						</div>
 					</div>
 				</div>
 				<StickyGameInfo data={data.data} offerData={offerDataObj} />
