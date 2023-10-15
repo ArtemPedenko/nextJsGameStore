@@ -17,12 +17,21 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	background-color: #121212;
-	width: 320px;
-	height: 500px;
+	width: 25%;
 	color: white;
 	gap: 15px;
-	position: relative;
-	top: 200px;
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+`;
+
+const GameOfferInfo = styled.div`
+	position: sticky;
+	top: 100px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 `;
 
 const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
@@ -30,15 +39,7 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 
 	return (
 		<Wrapper>
-			<div
-				style={{
-					position: 'sticky',
-					top: '200px',
-					display: 'flex',
-					flexDirection: 'column',
-					gap: '15px',
-				}}
-			>
+			<GameOfferInfo>
 				<h2>{offerData.title}</h2>
 				<div style={{ color: '#b8b8b8' }}>
 					{offerData.offerType === 'BASE_GAME' ? t('base_game') : <></>}
@@ -48,7 +49,7 @@ const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
 				<Button>{t('buy')}</Button>
 				<Button>{t('add_to_cart')}</Button>
 				<Button>{t('add_to_wishlist')}</Button>
-			</div>
+			</GameOfferInfo>
 		</Wrapper>
 	);
 };

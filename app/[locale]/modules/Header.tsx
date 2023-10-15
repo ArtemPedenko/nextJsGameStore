@@ -38,6 +38,7 @@ const HeaderWrapper = styled.div`
 	background-color: #2a2a2a;
 	display: flex;
 	align-items: center;
+	position: relative;
 `;
 const HeaderLeft = styled.div`
 	display: flex;
