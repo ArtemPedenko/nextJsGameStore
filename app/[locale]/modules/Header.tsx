@@ -31,6 +31,7 @@ import {
 import { setUserData } from '@/app/store/slice';
 import MobileMenuUser from './Header/MobileMenu/MobileMenuUser';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const HeaderWrapper = styled.div`
 	width: 100%;
@@ -214,7 +215,9 @@ export default function Header() {
 							{userMenuOpen ? (
 								<UserMenu>
 									<UserMenuButton>{t(`game_wallet`)}</UserMenuButton>
-									<UserMenuButton>{t(`wishlist`)}</UserMenuButton>
+									<Link href={'/wishlist'}>
+										<UserMenuButton>{t(`wishlist`)}</UserMenuButton>
+									</Link>
 									<UserMenuButton onClick={() => sighOut()}>
 										{t(`logout`)}
 									</UserMenuButton>
