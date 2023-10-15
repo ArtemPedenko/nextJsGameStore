@@ -100,18 +100,29 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 							margin='auto auto'
 						/>
 					</SliderNavigationButton>
-
 					<Swiper
 						ref={myRef}
 						onSwiper={setThumbsSwiper}
 						spaceBetween={1}
 						loop={true}
-						slidesPerView={4}
+						slidesPerView={2}
 						freeMode={true}
 						watchSlidesProgress={true}
 						modules={[FreeMode, Thumbs]}
 						className='mySwiper'
-						slidesPerGroup={4}
+						slidesPerGroup={2}
+						breakpoints={{
+							768: {
+								slidesPerView: 3,
+								spaceBetween: 40,
+								slidesPerGroup: 3,
+							},
+							1024: {
+								slidesPerView: 5,
+								spaceBetween: 50,
+								slidesPerGroup: 5,
+							},
+						}}
 					>
 						{data.map((item) => {
 							return (
@@ -121,7 +132,6 @@ const ProductSlider: FC<sliderProps> = ({ data }) => {
 							);
 						})}
 					</Swiper>
-
 					<SliderNavigationButton onClick={() => handleNext()}>
 						<IconWrapper
 							icon={<SliderArrowRight />}
