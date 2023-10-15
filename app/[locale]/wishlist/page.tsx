@@ -1,51 +1,45 @@
+'use client';
+
 import { db } from '@/app/firebase/firebase';
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import {
+	collection,
+	doc,
+	setDoc,
+	getDoc,
+	getDocs,
+	query,
+} from 'firebase/firestore';
 
-const WishlistPage = async () => {
-	const citiesRef = collection(db, 'cities');
+const WishlistPage = () => {
+	const userData = useAppSelector((state) => state.games.userData);
+	console.log(userData);
 
-	await setDoc(doc(citiesRef, 'SF'), {
-		name: 'San Francisco',
-		state: 'CA',
-		country: 'USA',
-		capital: false,
-		population: 860000,
-		regions: ['west_coast', 'norcal'],
-	});
-	await setDoc(doc(citiesRef, 'LA'), {
-		name: 'Los Angeles',
-		state: 'CA',
-		country: 'USA',
-		capital: false,
-		population: 3900000,
-		regions: ['west_coast', 'socal'],
-	});
-	await setDoc(doc(citiesRef, 'DC'), {
-		name: 'Washington, D.C.',
-		state: null,
-		country: 'USA',
-		capital: true,
-		population: 680000,
-		regions: ['east_coast'],
-	});
-	await setDoc(doc(citiesRef, 'TOK'), {
-		name: 'Tokyo',
-		state: null,
-		country: 'Japan',
-		capital: true,
-		population: 9000000,
-		regions: ['kanto', 'honshu'],
-	});
-	await setDoc(doc(citiesRef, 'BJ'), {
-		name: 'Beijing',
-		state: null,
-		country: 'China',
-		capital: true,
-		population: 21500000,
-		regions: ['jingjinji', 'hebei'],
-	});
+	async function setUserData() {
+		const citiesRef = collection(db, 'usersData');
 
-	return <div>Wishlist</div>;
+		await setDoc(doc(citiesRef, userData.email), {
+			wishList: ['game1', 'game2'],
+		});
+	}
+
+	async function getUserData() {
+		const docRef = doc(db, 'usersData', userData.email);
+		const docSnap = await getDoc(docRef);
+		if (docSnap.exists()) {
+			console.log(docSnap.data().wishList);
+		} else {
+			// docSnap.data() will be undefined in this case
+			console.log('No such document!');
+		}
+	}
+
+	return (
+		<div>
+			<button onClick={() => setUserData()}>add user data</button>
+			<button onClick={() => getUserData()}>get user data</button>
+		</div>
+	);
 };
 
 export default WishlistPage;

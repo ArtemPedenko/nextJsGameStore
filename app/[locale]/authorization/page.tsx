@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import styled from 'styled-components';
@@ -58,12 +59,13 @@ const Form = styled.form`
 	width: 100%;
 `;
 
-const Authorization = () => {
+const Authorization = ({ searchParams, params }) => {
 	const t = useI18n();
 	const dispatch = useAppDispatch();
 	const userData = useAppSelector((state) => state.games.userData);
 	const [pageView, setPageView] = useState('login');
 	const [userError, setUserError] = useState(false);
+	const [registrError, setRegisterError] = useState('');
 
 	const { push } = useRouter();
 
@@ -91,7 +93,14 @@ const Authorization = () => {
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
+				console.log(errorCode);
+				if (errorCode == 'auth/email-already-in-use') {
+					if (params.locale === 'ru') {
+						setRegisterError('Этот email уже используется');
+					} else {
+						setRegisterError('This email already in use');
+					}
+				}
 				// ..
 			});
 	}
@@ -132,13 +141,17 @@ const Authorization = () => {
 					<Login
 						loginUser={loginUser}
 						userError={userError}
+						setUserError={setUserError}
 						setPageView={setPageView}
+						setRegisterError={setRegisterError}
 					/>
 				) : (
 					<Registration
 						registerUser={registerUser}
 						userError={userError}
 						setPageView={setPageView}
+						setUserError={setUserError}
+						registrError={registrError}
 					/>
 				)}
 			</AuthorizationContentWrapper>
