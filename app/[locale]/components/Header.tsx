@@ -6,8 +6,8 @@ import LanguageLogo from '@/images/LanguageLogo';
 import ProfileLogo from '@/images/ProfileLogo';
 import CloseLogo from '@/images/CloseLogo';
 import MobileMenuLogo from '@/images/MobileMenuLogo';
-import IconWrapper from '../components/IconWrapper';
-import Divider from '../components/Divider';
+import IconWrapper from './IconWrapper';
+import Divider from './Divider';
 import styled from 'styled-components';
 import LanguageModal from './Header/LanguageModal';
 import { useState, useRef, useEffect } from 'react';
@@ -227,7 +227,7 @@ export default function Header() {
 							)}
 						</UserName>
 					) : (
-						<HeaderButton href='./authorization'>{t(`sign_in`)}</HeaderButton>
+						<HeaderButton href='/authorization'>{t(`sign_in`)}</HeaderButton>
 					)}
 				</HeaderRight>
 				<MobileMenuButton onClick={() => menuSwitcher()}>

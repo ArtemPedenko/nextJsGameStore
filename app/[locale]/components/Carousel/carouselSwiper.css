@@ -1,0 +1,14 @@
+.carousel-swiper-container-slider {
+	width: 100%;
+}
+
+.carousel-swiper-slide-slider {
+	width: 90% !important;
+}
+
+.carousel-slide-img-slider {
+	display: block;
+	width: 90%;
+	object-fit: cover;
+	border-radius: 20px;
+}

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import './page.css';
 import ProductSlider from '../components/ProductSlider';
-import StickyGameInfo from '../modules/StickyGameInfo';
+import StickyGameInfo from '../components/StickyGameInfo';
 import Logger from './logger';
 //import { getI18n } from "@/locales/server";
 import { getI18n } from '@/locales/server';

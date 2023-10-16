@@ -2,7 +2,7 @@
 import { getI18n } from '../../locales/server';
 import getData from '../utils/gameInfo';
 import Fetching from './layout/fetching';
-import Carousel from './modules/Carousel';
+import Carousel from './components/Carousel';
 import Slider from './components/Slider';
 import ModuleBreaker from './components/ModuleBreaker';
 import { getCurrentLocale } from '../../locales/server';

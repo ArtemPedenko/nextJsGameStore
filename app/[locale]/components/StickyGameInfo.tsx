@@ -5,7 +5,7 @@
 import { FC, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useI18n } from '@/locales/client';
-import Button from '../components/Button';
+import Button from './Button';
 
 interface gameInfoProps {
 	data: any;

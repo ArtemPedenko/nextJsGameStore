@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import IconWrapper from '../../components/IconWrapper';
+import IconWrapper from '../IconWrapper';
 import SearchLogo from '@/images/SearchLogo';
 import { useI18n } from '@/locales/client';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
