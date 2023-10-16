@@ -114,6 +114,7 @@ interface SliderProps {
 const CarouselSlider: FC<SliderProps> = ({ props }) => {
 	const { item, index, animationCurrent, itemPrevious } = props;
 	const t = useI18n();
+	const productLink = item.link.src.replace('/p/', '');
 	return (
 		<>
 			{animationCurrent === index ? (
@@ -132,7 +133,11 @@ const CarouselSlider: FC<SliderProps> = ({ props }) => {
 							{item.description}
 						</div>
 						<ButtonWrapper>
-							<Button $contained>{t(`buy`)}</Button>
+							<Link
+								href={`${productLink}/${item.offer.id}/${item.offer.namespace}`}
+							>
+								<Button $contained>{t(`buy`)}</Button>
+							</Link>
 						</ButtonWrapper>
 					</GameInfo>
 				</>
