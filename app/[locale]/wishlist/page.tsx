@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const WishlistPage = () => {
   const userData = useAppSelector((state) => state.games.userData);
   const [wishlist, setWishlist] = useState({});
-  const [wishlistData, setWishListData] = useState("");
+  const [wishlistData, setWishListData] = useState([]);
   let gamesArray: any[] = [];
   async function getWishlistData(id: string, namespace: string) {
     fetch(`/en/api/wishlist?id=${id}&namespace=${namespace}`)
@@ -17,7 +17,8 @@ const WishlistPage = () => {
         serverPromise
           .json()
           .then(function (data) {
-            gamesArray.push(data);
+            gamesArray.push(data.data.Catalog.catalogOffer);
+            //setWishListData([...wishlistData, data.data.Catalog.catalogOffer]);
           })
           .catch(function (e) {
             console.log(e);
@@ -30,7 +31,8 @@ const WishlistPage = () => {
 
   Object.keys(wishlist).map((item: string) => {
     getWishlistData(wishlist[item].id, wishlist[item].namespace);
-    console.log(gamesArray);
+    console.log("gamesArray");
+    console.log(wishlistData);
   });
 
   useEffect(() => {
