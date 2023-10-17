@@ -17,12 +17,10 @@ export default function SubLayout({
 	return (
 		<Providers>
 			<I18nProviderClient locale={params.locale}>
-				<Suspense>
-					<Header />
-					<HeaderSticky />
-					{children}
-					<Footer />
-				</Suspense>
+				<Header />
+				<HeaderSticky />
+				{children}
+				<Footer />
 			</I18nProviderClient>
 		</Providers>
 	);

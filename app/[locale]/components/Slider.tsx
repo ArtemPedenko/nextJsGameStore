@@ -109,7 +109,7 @@ const Slider: FC<sliderProps> = ({ data }) => {
 						slidesPerGroup: 5,
 					},
 				}}
-				loop='true'
+				loop={true}
 				className='swiper-container-slider'
 			>
 				{data.offers.map((item: any, index: number) => {
