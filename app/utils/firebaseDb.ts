@@ -40,4 +40,26 @@ async function addToCart(
   );
 }
 
-export { addToWishlist, addToCart };
+async function deleteFromWishlist(userEmail: string, title: string) {
+  const cityRef = doc(db, "usersData", userEmail + "&wishList");
+  await updateDoc(cityRef, {
+    [title]: deleteField(),
+  });
+}
+
+async function getUserWishlist(userEmail: string) {
+  const docRef = doc(db, "usersData", userEmail + "&wishList");
+  const docSnap = await getDoc(docRef);
+  console.log(userEmail);
+
+  if (docSnap.exists()) {
+    //console.log(docSnap.data().cart);
+    //console.log(docSnap.data());
+    return docSnap.data();
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log("No such document!");
+  }
+}
+
+export { addToWishlist, addToCart, deleteFromWishlist, getUserWishlist };
