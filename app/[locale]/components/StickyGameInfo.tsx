@@ -1,11 +1,11 @@
 "use client";
 
-import { FC, useEffect, useState, useRef } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 import { useI18n } from "@/locales/client";
 import Button from "./Button";
 import { addToWishlist, addToCart } from "@/app/utils/firebaseDb";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { useAppSelector } from "@/app/store/hooks";
 
 interface gameInfoProps {
   offerData: {
@@ -50,7 +50,6 @@ const GameOfferInfo = styled.div`
 const StickyGameInfo: FC<gameInfoProps> = ({ offerData }) => {
   const t = useI18n();
   const userData = useAppSelector((state) => state.games.userData);
-  console.log(offerData);
 
   return (
     <Wrapper>

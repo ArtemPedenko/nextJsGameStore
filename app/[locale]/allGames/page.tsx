@@ -30,12 +30,12 @@ const allGamesPage = async ({
     imageUrl: string;
   };
 
-  type TgenresAttay = {
+  type TgenresArray = {
     title: string;
     offers: Tgenre[];
   };
 
-  let genresArray: TgenresAttay = {
+  let genresArray: TgenresArray = {
     title: params.locale === "ru" ? "Популярные жанры" : "Popular genres",
     offers: [],
   };

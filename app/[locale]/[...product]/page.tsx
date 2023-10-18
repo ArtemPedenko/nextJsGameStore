@@ -26,7 +26,7 @@ const ProductPage = async ({
 
   let imageArray: string[] = [];
 
-  interface TofferDataObj {
+  type TofferDataObj = {
     description: string;
     offerType: string;
     price: string;
@@ -39,7 +39,7 @@ const ProductPage = async ({
     }[];
     id: string;
     namespace: string;
-  }
+  };
 
   let offerDataObj: TofferDataObj = {
     description: offerData.data.Catalog.catalogOffer?.description,
