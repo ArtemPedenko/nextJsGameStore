@@ -9,51 +9,33 @@ import { useEffect, useState } from 'react';
 const WishlistPage = () => {
 	const userData = useAppSelector((state) => state.games.userData);
 
-	const [wishlist, setWishlist] = useState<
+	/* const [wishlist, setWishlist] = useState<
 		Record<
 			string,
 			{ id: string; namespace: string; price: string; thumbnail: string }
 		>
-	>({});
+	>({}); */
+	const [wishlist, setWishlist] = useState({});
 
 	useEffect(() => {
-		/* let gamesArray: any[] = [];
-		async function getWishlistData(
-			id: string,
-			namespace: string,
-			index: number
-		) {
-			fetch(`/en/api/wishlist?id=${id}&namespace=${namespace}`)
-				.then(function (serverPromise) {
-					serverPromise.json().then((data) => {
-						//gamesArray.push(data.data.Catalog.catalogOffer);
-						//gamesArray[index] = data.data.Catalog.catalogOffer;
-						setWishListData([...wishlistData, data.data.Catalog.catalogOffer]);
-					});
-				})
-				.catch(function (e) {
-					console.log(e);
-				});
-		} */
 		if (userData) {
-			getUserWishlist(userData.email).then((response) => {
-				if (response) {
-					setWishlist(response);
-					//console.log(response);
-					console.log(response);
-					console.log(wishlist);
-					/* Object.keys(response).map((item: string, index: number) => {
-						getWishlistData(response[item].id, response[item].namespace, index);
-					}); */
-					//setWishListData(gamesArray);
-				}
-			});
+			async function getData() {
+				getUserWishlist(userData.email).then((response) => {
+					return response;
+				});
+			}
+			const data = getData();
+			setWishlist(data);
+			console.log(wishlist);
 		}
 	}, [userData]);
 
 	return (
 		<>
-			<div></div>
+			{Object.keys(wishlist).map((item) => {
+				console.log('sad');
+				return <div key={wishlist[item].id}>{wishlist[item].title}a</div>;
+			})}
 		</>
 	);
 };
