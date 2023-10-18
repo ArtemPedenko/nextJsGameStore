@@ -25,6 +25,15 @@ const ProductPage = async ({
   const offerData = await getData(offerUrl);
 
   let imageArray: string[] = [];
+  let thumbnailImage: string;
+
+  offerData.data.Catalog.catalogOffer.keyImages.map(
+    (item: { type: string; url: string }) => {
+      if (item.type === "Thumbnail") {
+        thumbnailImage = item.url;
+      }
+    }
+  );
 
   type TofferDataObj = {
     description: string;
@@ -39,6 +48,7 @@ const ProductPage = async ({
     }[];
     id: string;
     namespace: string;
+    //thumbnail: string;
   };
 
   let offerDataObj: TofferDataObj = {
@@ -52,6 +62,7 @@ const ProductPage = async ({
     genres: offerData.data.Catalog.catalogOffer?.tags,
     id: params.product[1],
     namespace: params.product[2],
+    //thumbnail: thumbnailImage,
   };
 
   if (productImageData.data.Product?.sandbox.configuration[1] === undefined) {
@@ -80,7 +91,6 @@ const ProductPage = async ({
           }
         }
       });
-      //imageArray = productImageData.pages[0]._images_;
     }
   } else if (productImageData.data.Product.sandbox.configuration[1]) {
     productImageData.data.Product.sandbox.configuration[1].configs.keyImages.map(

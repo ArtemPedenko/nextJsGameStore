@@ -89,7 +89,8 @@ const Authorization = ({ params }: { params: { locale: string } }) => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        dispatch(setUserData(user));
+        const userJson = user.toJSON();
+        dispatch(setUserData(userJson));
         push("./");
       })
       .catch((error) => {
