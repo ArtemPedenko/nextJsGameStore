@@ -37,7 +37,8 @@ const AuthorizationContentWrapper = styled.div`
   gap: 10px;
 `;
 
-const Authorization = (params: { locale: string }) => {
+const Authorization = ({ params }: { params: { locale: string } }) => {
+  console.log(params);
   const dispatch = useAppDispatch();
   const [pageView, setPageView] = useState("login");
   const [userError, setUserError] = useState(false);
