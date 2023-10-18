@@ -6,6 +6,7 @@ import Header from './components/Header';
 import HeaderSticky from './components/HeaderSticky';
 import Footer from './components/Footer';
 import { Providers } from '../store/provider';
+import Loading from './loading';
 
 export default function SubLayout({
 	children,
@@ -19,7 +20,9 @@ export default function SubLayout({
 			<I18nProviderClient locale={params.locale}>
 				<Header />
 				<HeaderSticky />
+				<Suspense fallback={<Loading />}>
 				{children}
+				</Suspense>
 				<Footer />
 			</I18nProviderClient>
 		</Providers>
