@@ -1,14 +1,14 @@
 import { FC, useState } from "react";
 import styled from "styled-components";
-import HeaderButton from "../../HeaderButton";
-import IconWrapper from "../../../IconWrapper";
+import HeaderButton from "../HeaderButton";
+import IconWrapper from "../../IconWrapper";
 import LanguageLogo from "@/images/LanguageLogo";
-import Divider from "../../../Divider";
+import Divider from "../../Divider";
 import ProfileLogo from "@/images/ProfileLogo";
 import { useAppSelector } from "@/app/store/hooks";
 import { useI18n, useCurrentLocale, useChangeLocale } from "@/locales/client";
-import MobileMenuLanguage from "./MobileMenuLanguage";
-import MobileMenuUser from "./MobileMenuUser";
+import MobileMenuLanguage from "./MobileMenu/MobileMenuLanguage";
+import MobileMenuUser from "./MobileMenu/MobileMenuUser";
 
 const MobileMenuWrapper = styled.div`
   position: absolute;

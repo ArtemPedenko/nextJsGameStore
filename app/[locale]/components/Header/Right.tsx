@@ -14,7 +14,7 @@ import { useI18n } from "@/locales/client";
 import CloseLogo from "@/images/CloseLogo";
 import MobileMenuLogo from "@/images/MobileMenuLogo";
 import LanguageModal from "./Right/LanguageModal";
-import MobileMenu from "./Right/MobileMenu/MobileMenu";
+import MobileMenu from "./Right/MobileMenu";
 
 const HeaderRight = styled.div`
   display: flex;
