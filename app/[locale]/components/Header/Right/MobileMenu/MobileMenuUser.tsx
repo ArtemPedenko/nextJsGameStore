@@ -35,7 +35,9 @@ const MobileLanguageMenuItem = styled.div`
 
 interface MobileMenuProps {
   setMobileUserMenu: Function;
-  userData: any;
+  userData: {
+    displayName: string;
+  };
   signOut: Function;
 }
 
