@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 "use client";
 
 import { FC, useEffect, useState, useRef } from "react";
@@ -10,8 +8,20 @@ import { addToWishlist, addToCart } from "@/app/utils/firebaseDb";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 
 interface gameInfoProps {
-  data: any;
-  offerData: any;
+  offerData: {
+    description: string;
+    offerType: string;
+    price: string;
+    title: string;
+    developer: string;
+    genres: {
+      id: string;
+      name: string;
+      groupName: string;
+    }[];
+    id: string;
+    namespace: string;
+  };
 }
 
 const Wrapper = styled.div`
@@ -37,9 +47,10 @@ const GameOfferInfo = styled.div`
   margin-top: 30px;
 `;
 
-const StickyGameInfo: FC<gameInfoProps> = ({ data, offerData }) => {
+const StickyGameInfo: FC<gameInfoProps> = ({ offerData }) => {
   const t = useI18n();
   const userData = useAppSelector((state) => state.games.userData);
+  console.log(offerData);
 
   return (
     <Wrapper>
