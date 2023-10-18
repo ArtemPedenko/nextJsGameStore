@@ -35,18 +35,20 @@ const WishlistPage = () => {
 					console.log(e);
 				});
 		} */
-		getUserWishlist(userData.email).then((response) => {
-			if (response) {
-				setWishlist(response);
-				//console.log(response);
-				console.log(response);
-				console.log(wishlist);
-				/* Object.keys(response).map((item: string, index: number) => {
-					getWishlistData(response[item].id, response[item].namespace, index);
-				}); */
-				//setWishListData(gamesArray);
-			}
-		});
+		if (userData) {
+			getUserWishlist(userData.email).then((response) => {
+				if (response) {
+					setWishlist(response);
+					//console.log(response);
+					console.log(response);
+					console.log(wishlist);
+					/* Object.keys(response).map((item: string, index: number) => {
+						getWishlistData(response[item].id, response[item].namespace, index);
+					}); */
+					//setWishListData(gamesArray);
+				}
+			});
+		}
 	}, [userData]);
 
 	return (
