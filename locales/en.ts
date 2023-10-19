@@ -30,4 +30,5 @@ export default {
   wrong_email_password: "Wrong email or password",
   email_already_in_use: "This email already in use",
   delete: "Delete",
+  price_free: "Free",
 } as const;

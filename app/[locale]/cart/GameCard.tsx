@@ -1,17 +1,19 @@
 import { FC } from "react";
 import styled from "styled-components";
-import Button from "../../components/Button";
+import Button from "../components/Button";
 import { useI18n } from "@/locales/client";
 import { addToCart, deleteFromWishlist } from "@/app/utils/firebaseDb";
 import omit from "lodash/omit";
+import { addToWishlist } from "@/app/utils/firebaseDb";
 
 const GameCardWrapper = styled.div`
   background-color: #2a2a2a;
   max-width: 90%;
   margin: 15px auto;
-  border: 1px solid red;
   display: flex;
   flex-direction: row;
+  padding: 10px;
+  border-radius: 8px;
 `;
 
 const CardRight = styled.div`
@@ -20,13 +22,13 @@ const CardRight = styled.div`
   flex-direction: column;
   align-items: start;
   margin-left: 15px;
-  border: 1px solid green;
 `;
 
 const GameImg = styled.img`
   max-width: 20%;
   min-width: 80px;
   object-fit: contain;
+  border-radius: 8px;
 `;
 
 const Delete = styled.div`
@@ -40,7 +42,6 @@ const ButtonsBlock = styled.div`
   align-items: end;
   gap: 10px;
   margin: auto 0 0 auto;
-  border: 1px solid blue;
 `;
 
 interface Igame {
@@ -67,7 +68,7 @@ const GameCard: FC<Igame> = ({ game, setWishlist, wishlist }) => {
       <GameImg alt={game.title} src={game.thumbnail} />
       <CardRight>
         <h3>{game.title}</h3>
-        <p>{game.price}</p>
+        <p>{game.price === "0" ? t("price_free") : game.price}</p>
         <ButtonsBlock>
           <Delete
             onClick={() => {
@@ -77,7 +78,7 @@ const GameCard: FC<Igame> = ({ game, setWishlist, wishlist }) => {
           >
             {t("delete")}
           </Delete>
-          <Button
+          <Delete
             onClick={() =>
               addToCart(
                 game.email,
@@ -89,8 +90,8 @@ const GameCard: FC<Igame> = ({ game, setWishlist, wishlist }) => {
               )
             }
           >
-            {t("add_to_cart")}
-          </Button>
+            {t("add_to_wishlist")}
+          </Delete>
         </ButtonsBlock>
       </CardRight>
     </GameCardWrapper>

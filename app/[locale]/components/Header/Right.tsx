@@ -147,7 +147,9 @@ export default function Right() {
             {userData.displayName}
             {userMenuOpen ? (
               <UserMenu>
-                <UserMenuButton>{t(`game_wallet`)}</UserMenuButton>
+                <Link href={"/cart"}>
+                  <UserMenuButton>{t(`game_wallet`)}</UserMenuButton>
+                </Link>
                 <Link href={"/wishlist"}>
                   <UserMenuButton>{t(`wishlist`)}</UserMenuButton>
                 </Link>

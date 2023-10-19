@@ -30,4 +30,5 @@ export default {
   wrong_email_password: "Неверный email или пароль",
   email_already_in_use: "Такой email уже используется",
   delete: "Удалить",
+  price_free: "Бесплатно",
 } as const;

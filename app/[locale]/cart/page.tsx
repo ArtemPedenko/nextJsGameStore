@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import GameCard from "./GameCard";
 
-const WishlistPage = () => {
+const CartPage = () => {
   const userData = useAppSelector((state) => state.games.userData);
 
-  const [wishlist, setWishlist] = useState<
+  const [cart, setCart] = useState<
     Record<
       string,
       { id: string; namespace: string; price: string; thumbnail: string }
@@ -18,12 +18,12 @@ const WishlistPage = () => {
 
   useEffect(() => {
     async function getUserWishlist(userEmail: string) {
-      const docRef = doc(db, "usersData", userEmail + "&wishList");
+      const docRef = doc(db, "usersData", userEmail + "&cart");
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-        setWishlist(data);
+        setCart(data);
       } else {
         console.log("No such document!");
       }
@@ -36,23 +36,19 @@ const WishlistPage = () => {
 
   return (
     <>
-      {Object.keys(wishlist).map((item: string) => {
+      {Object.keys(cart).map((item: string) => {
         const game = {
           email: userData.email,
           title: item,
-          id: wishlist[item].id,
-          namespace: wishlist[item].namespace,
-          thumbnail: wishlist[item].thumbnail,
-          price: wishlist[item].price,
+          id: cart[item].id,
+          namespace: cart[item].namespace,
+          thumbnail: cart[item].thumbnail,
+          price: cart[item].price,
         };
 
         return (
           <div key={item}>
-            <GameCard
-              game={game}
-              setWishlist={setWishlist}
-              wishlist={wishlist}
-            />
+            <GameCard game={game} setWishlist={setCart} wishlist={cart} />
           </div>
         );
       })}
@@ -60,4 +56,4 @@ const WishlistPage = () => {
   );
 };
 
-export default WishlistPage;
+export default CartPage;
