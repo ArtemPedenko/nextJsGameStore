@@ -9,6 +9,7 @@ import GameCard from "./GameCard";
 const CartPage = () => {
   const userData = useAppSelector((state) => state.games.userData);
 
+  const [totalPrice, setTotalPrice] = useState<number>();
   const [cart, setCart] = useState<
     Record<
       string,
@@ -37,6 +38,7 @@ const CartPage = () => {
   return (
     <>
       {Object.keys(cart).map((item: string) => {
+        console.log(cart[item].price);
         const game = {
           email: userData.email,
           title: item,

@@ -51,6 +51,13 @@ async function deleteFromWishlist(userEmail: string, title: string) {
   });
 }
 
+async function deleteFromCart(userEmail: string, title: string) {
+  const gameRef = doc(db, "usersData", userEmail + "&cart");
+  await updateDoc(gameRef, {
+    [title]: deleteField(),
+  });
+}
+
 async function getUserWishlist(userEmail: string) {
   const docRef = doc(db, "usersData", userEmail + "&wishList");
   const docSnap = await getDoc(docRef);
@@ -66,4 +73,10 @@ async function getUserWishlist(userEmail: string) {
   }
 }
 
-export { addToWishlist, addToCart, deleteFromWishlist, getUserWishlist };
+export {
+  addToWishlist,
+  addToCart,
+  deleteFromWishlist,
+  deleteFromCart,
+  getUserWishlist,
+};

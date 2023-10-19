@@ -2,9 +2,8 @@ import { FC } from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { useI18n } from "@/locales/client";
-import { addToCart, deleteFromWishlist } from "@/app/utils/firebaseDb";
+import { addToWishlist, deleteFromCart } from "@/app/utils/firebaseDb";
 import omit from "lodash/omit";
-import { addToWishlist } from "@/app/utils/firebaseDb";
 
 const GameCardWrapper = styled.div`
   background-color: #2a2a2a;
@@ -73,14 +72,14 @@ const GameCard: FC<Igame> = ({ game, setWishlist, wishlist }) => {
           <Delete
             onClick={() => {
               setWishlist(omit(wishlist, game.title));
-              deleteFromWishlist(game.email, game.title);
+              deleteFromCart(game.email, game.title);
             }}
           >
             {t("delete")}
           </Delete>
           <Delete
             onClick={() =>
-              addToCart(
+              addToWishlist(
                 game.email,
                 game.id,
                 game.namespace,
