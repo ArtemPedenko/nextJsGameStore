@@ -7,6 +7,7 @@ import { useI18n } from '@/locales/client';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { setSearchGames } from '@/app/store/slice';
 import { useEffect } from 'react';
+import { useCurrentLocale } from '@/locales/client';
 
 let myInterval: any;
 
@@ -49,6 +50,7 @@ const SearchField = () => {
 	const t = useI18n();
 	const dispatch = useAppDispatch();
 	const searchGames = useAppSelector((state) => state.games.searchGames);
+	let arr: any[] = [];
 
 	function delaySearching(searchText: string) {
 		if (searchText === '') {
@@ -57,7 +59,6 @@ const SearchField = () => {
 		clearInterval(myInterval);
 		myInterval = setInterval(getSearchingData, 1000, searchText);
 	}
-
 	async function getSearchingData(searchText: string) {
 		clearInterval(myInterval);
 		fetch(`/en/api/searchfield?search=${searchText}`)
@@ -65,8 +66,30 @@ const SearchField = () => {
 				serverPromise
 					.json()
 					.then((data) => {
-						console.log(data.data.Catalog.searchStore.elements);
-						dispatch(setSearchGames(data.data.Catalog.searchStore.elements));
+						//console.log(data.data.Catalog.searchStore.elements);
+						const gamesArray = data.data.Catalog.searchStore.elements;
+						//dispatch(setSearchGames(gamesArray));
+						gamesArray.map((item: { offerId: string; sandboxId: string }) => {
+							fetch(
+								`/en/api/wishlist?id=${item.offerId}&namespace=${item.sandboxId}`
+							)
+								.then((sPromise) => {
+									sPromise.json().then((data) => {
+										//console.log(data.data.Catalog.catalogOffer);
+										const game = data.data.Catalog.catalogOffer;
+										arr.push(game);
+										if (gamesArray.length === arr.length) {
+											dispatch(setSearchGames(arr));
+											console.log(game);
+										}
+										//console.log(arr);
+										//console.log(searchGames);
+									});
+								})
+								.catch((e) => {
+									console.log(e);
+								});
+						});
 					})
 					.catch((e) => {
 						console.log(e);
@@ -90,7 +113,13 @@ const SearchField = () => {
 				placeholder={t(`search`)}
 				onChange={(e) => delaySearching(e.target.value)}
 			></Search>
-			{searchGames.length ? <SearchingGames>{'asd'}</SearchingGames> : null}
+			{searchGames.length ? (
+				<SearchingGames>
+					{searchGames.map((item: { title: string }) => {
+						return <div key={item.title}>{item.title}</div>;
+					})}
+				</SearchingGames>
+			) : null}
 		</SearchContainer>
 	);
 };
