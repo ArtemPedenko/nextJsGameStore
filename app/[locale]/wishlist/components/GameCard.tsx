@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { useI18n } from "@/locales/client";
 import { addToCart, deleteFromWishlist } from "@/app/utils/firebaseDb";
 import omit from "lodash/omit";

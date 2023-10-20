@@ -35,4 +35,7 @@ export default {
   price: "Price",
   in_developing: "Sorry, this page is under construction",
   search_error: "No matching titles found",
+  rights: "All rights reserved ©",
+  empty_cart: "Your cart is empty.",
+  empty_wishlist: "You haven't added anything to your wishlist yet.",
 } as const;

@@ -7,7 +7,7 @@ const InDevelopingPage = async () => {
     <div
       style={{
         width: "100vw",
-        height: "80vh",
+        height: "70vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
