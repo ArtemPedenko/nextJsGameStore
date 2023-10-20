@@ -72,6 +72,7 @@ const SearchField = () => {
   const dispatch = useAppDispatch();
   const searchGames = useAppSelector((state) => state.games.searchGames);
   const [inputValue, setInputValue] = useState("");
+  const [searchError, setSearchError] = useState(false);
   let arr: any[] = [];
 
   function delaySearching(searchText: string) {
@@ -95,7 +96,13 @@ const SearchField = () => {
         serverPromise
           .json()
           .then((data) => {
+            console.log(data);
             const gamesArray = data.data.Catalog.searchStore.elements;
+            if (gamesArray.length === 0) {
+              setSearchError(true);
+              console.log("ничего не найдено");
+              return null;
+            }
             gamesArray.map((item: { offerId: string; sandboxId: string }) => {
               fetch(
                 `/en/api/wishlist?id=${item.offerId}&namespace=${item.sandboxId}`
@@ -171,7 +178,7 @@ const SearchField = () => {
               return <GameCard game={item} />;
             })
           ) : (
-            <SpeenWheel />
+            <>{searchError ? <p>{t(`search_error`)}</p> : <SpeenWheel />}</>
           )}
         </SearchingGames>
       ) : null}

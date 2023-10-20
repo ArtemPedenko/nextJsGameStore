@@ -27,8 +27,8 @@ export default function Left() {
       />
       <HeaderLeft>
         <HeaderButton href="/">{t(`store`)}</HeaderButton>
-        <HeaderButton href="/">{t(`distribution`)}</HeaderButton>
-        <HeaderButton href="/">{t(`support`)}</HeaderButton>
+        <HeaderButton href="/indeveloping">{t(`distribution`)}</HeaderButton>
+        <HeaderButton href="/indeveloping">{t(`support`)}</HeaderButton>
         <Divider />
         <HeaderButton href="https://www.unrealengine.com/en-US">
           UNREAL ENGINE
