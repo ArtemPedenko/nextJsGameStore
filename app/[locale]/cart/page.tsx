@@ -75,35 +75,34 @@ const CartPage = () => {
   }, [userData]);
 
   return (
-    <Wrapper>
-      {empty ? (
-        <Empty />
-      ) : (
-        <>
-          <GamesWrapper>
-            {Object.keys(cart).map((item: string) => {
-              const game = {
-                email: userData.email,
-                title: item,
-                id: cart[item].id,
-                namespace: cart[item].namespace,
-                thumbnail: cart[item].thumbnail,
-                price: cart[item].price,
-              };
+    <>
+      <Wrapper>
+        <GamesWrapper>
+          {Object.keys(cart).map((item: string) => {
+            const game = {
+              email: userData.email,
+              title: item,
+              id: cart[item].id,
+              namespace: cart[item].namespace,
+              thumbnail: cart[item].thumbnail,
+              price: cart[item].price,
+            };
 
-              return (
-                <div key={item}>
-                  <GameCard game={game} setWishlist={setCart} wishlist={cart} />
-                </div>
-              );
-            })}
-          </GamesWrapper>
+            return (
+              <div key={item}>
+                <GameCard game={game} setWishlist={setCart} wishlist={cart} />
+              </div>
+            );
+          })}
+        </GamesWrapper>
+        {Object.keys(cart).length != 0 ? (
           <OfferWrapper>
             <Offer totalPrice={totalPrice} />
           </OfferWrapper>
-        </>
-      )}
-    </Wrapper>
+        ) : null}
+      </Wrapper>
+      {empty ? <Empty /> : null}
+    </>
   );
 };
 

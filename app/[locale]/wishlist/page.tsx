@@ -25,7 +25,10 @@ const WishlistPage = () => {
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-
+        if (Object.keys(data).length === 0) {
+          setEmpty(true);
+          return null;
+        }
         setWishlist(data);
       } else {
         console.log("No such document!");
@@ -39,33 +42,28 @@ const WishlistPage = () => {
 
   return (
     <>
-      {Object.keys(wishlist).length === 0 ? (
-        <Empty />
-      ) : (
-        <>
-          {Object.keys(wishlist).map((item: string) => {
-            console.log(Object.keys(wishlist).length);
-            const game = {
-              email: userData.email,
-              title: item,
-              id: wishlist[item].id,
-              namespace: wishlist[item].namespace,
-              thumbnail: wishlist[item].thumbnail,
-              price: wishlist[item].price,
-            };
+      {Object.keys(wishlist).map((item: string) => {
+        console.log(Object.keys(wishlist).length);
+        const game = {
+          email: userData.email,
+          title: item,
+          id: wishlist[item].id,
+          namespace: wishlist[item].namespace,
+          thumbnail: wishlist[item].thumbnail,
+          price: wishlist[item].price,
+        };
 
-            return (
-              <div key={item}>
-                <GameCard
-                  game={game}
-                  setWishlist={setWishlist}
-                  wishlist={wishlist}
-                />
-              </div>
-            );
-          })}
-        </>
-      )}
+        return (
+          <div key={item}>
+            <GameCard
+              game={game}
+              setWishlist={setWishlist}
+              wishlist={wishlist}
+            />
+          </div>
+        );
+      })}
+      {empty ? <Empty /> : null}
     </>
   );
 };
