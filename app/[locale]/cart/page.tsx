@@ -63,6 +63,7 @@ const CartPage = () => {
           }
         });
         setTotalPrice(sum);
+        console.log("1");
         setCart(data);
       } else {
         console.log("No such document!");
