@@ -5,17 +5,23 @@ import { useI18n } from "@/locales/client";
 
 const FooterWrapper = styled.div`
   width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: end;
+  margin-top: auto;
+`;
+
+const FooterInner = styled.div`
+width: 100%;
   height: 50px;
-  background-color: #2a2a2a;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 50px 0 0 0;
-  z-index: 10;
-`;
+  background-color: #2a2a2a;
+`
 
 export default function Footer() {
   const t = useI18n();
 
-  return <FooterWrapper>{t(`rights`)}</FooterWrapper>;
+  return <FooterWrapper><FooterInner>{t(`rights`)}</FooterInner></FooterWrapper>;
 }
