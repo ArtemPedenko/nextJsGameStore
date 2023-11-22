@@ -6,6 +6,7 @@ import Carousel from './components/Carousel';
 import Slider from './components/Slider';
 import ModuleBreaker from './components/ModuleBreaker';
 import { getCurrentLocale } from '../../locales/server';
+import Logger from './[...product]/logger';
 
 const Home = async () => {
 	const locale = getCurrentLocale();
@@ -51,6 +52,7 @@ const Home = async () => {
 
 	return (
 		<>
+		<Logger data={data} />
 			{/* add data to Fetching to out it in redux store */}
 			<Fetching data={data} />
 			<Carousel />
