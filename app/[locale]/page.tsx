@@ -30,7 +30,7 @@ const Home = async () => {
 
 	sliderData1.map((item: any, index: number) => {
 		sliderData[index].title = item.title;
-		item.offers.map((offer: any, offerIndex: number) => {
+		item.offers?.map((offer: any, offerIndex: number) => {
 			let imgUrl = '';
 
 			offer.offer.keyImages.map((imgs: any) => {
@@ -52,13 +52,13 @@ const Home = async () => {
 
 	return (
 		<>
-		<Logger data={data} />
+		<Logger data={sliderData} />
 			{/* add data to Fetching to out it in redux store */}
 			<Fetching data={data} />
 			<Carousel />
-			{sliderData[0].title ? <Slider data={sliderData[0]} /> : null}
+			{sliderData[0].offers.length !== 0 ? <Slider data={sliderData[0]} /> : null}
 			<ModuleBreaker data={moduleBeakerData} />
-			{sliderData[1].title ? <Slider data={sliderData[1]} /> : null}
+			{sliderData[1].offers.length !== 0 ? <Slider data={sliderData[1]} /> : null}
 		</>
 	);
 };
