@@ -19,7 +19,7 @@ const Home = async () => {
 		{ title: null, offers: [] },
 	];
 
-	data.map((item: any) => {
+	data.map((item: {type: string, id: string}) => {
 		if (item.type === 'group') {
 			sliderData1.push(item);
 		}
